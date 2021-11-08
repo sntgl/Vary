@@ -17,12 +17,13 @@ final class StartContainer {
         let router = StartRouter()
         let interactor = StartInteractor()
         let presenter = StartPresenter(router: router, interactor: interactor)
-		let viewController = StartViewController(output: presenter)
+        let viewController = StartViewController(output: presenter)
 
-		presenter.view = viewController
-		presenter.moduleOutput = context.moduleOutput
+        presenter.view = viewController
+        presenter.moduleOutput = context.moduleOutput
 
-		interactor.output = presenter
+        interactor.output = presenter
+        router.viewController = viewController
 
         return StartContainer(view: viewController, input: presenter, router: router)
 	}

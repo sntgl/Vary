@@ -12,20 +12,20 @@ protocol TeamsModuleInput {
 	var moduleOutput: TeamsModuleOutput? { get }
 }
 
-protocol TeamsModuleOutput: class {
+protocol TeamsModuleOutput: AnyObject {
 }
 
-protocol TeamsViewInput: class {
+protocol TeamsViewInput: AnyObject {
 }
 
-protocol TeamsViewOutput: class {
+protocol TeamsViewOutput: AnyObject {
 }
 
-protocol TeamsInteractorInput: class {
+protocol TeamsInteractorInput: AnyObject {
 }
 
-protocol TeamsInteractorOutput: class {
+protocol TeamsInteractorOutput: AnyObject {
 }
 
-protocol TeamsRouterInput: class {
+protocol TeamsRouterInput: AnyObject {
 }

@@ -22,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let container = StartContainer.assemble(with: .init())
         let viewController = container.viewController
         
-        window.rootViewController = viewController
-//        window.rootViewController = UINavigationController(rootViewController:                                                             viewController)
-        window.rootViewController?.navigationController?.navigationBar.isHidden = true
+//        window.rootViewController = viewController
+        window.rootViewController = UINavigationController(rootViewController:                                                             viewController)
+//        window.rootViewController?.navigationController?.navigationBar.isHidden = true
         self.window = window
         window.makeKeyAndVisible()
     }

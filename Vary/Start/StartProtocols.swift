@@ -19,6 +19,7 @@ protocol StartViewInput: AnyObject {
 }
 
 protocol StartViewOutput: AnyObject {
+    func didTapStartNewGameButton()
 }
 
 protocol StartInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol StartInteractorOutput: AnyObject {
 }
 
 protocol StartRouterInput: AnyObject {
+    func startNewGame()
 }

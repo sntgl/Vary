@@ -50,9 +50,15 @@ final class StartViewController: UIViewController {
         setupSubviews()
         setupConstraints()
         setupStyle()
+        setupActions()
 	}
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func setupStyle() {
+
         view.backgroundColor = primaryColor
         
         container.backgroundColor = surfaceColor
@@ -129,8 +135,17 @@ final class StartViewController: UIViewController {
         ].forEach({constraint in constraint.isActive = true})
         
     }
+    
+    func setupActions() {
+        newGameButton.addTarget(self, action: #selector(onStartNewGameButtonClicked), for: .touchUpInside)
+    }
+    
+    @IBAction func onStartNewGameButtonClicked() {
+        output.didTapStartNewGameButton()
+    }
 
 }
 
 extension StartViewController: StartViewInput {
+    
 }

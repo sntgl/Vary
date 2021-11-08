@@ -12,20 +12,20 @@ protocol SettingsModuleInput {
 	var moduleOutput: SettingsModuleOutput? { get }
 }
 
-protocol SettingsModuleOutput: class {
+protocol SettingsModuleOutput: AnyObject {
 }
 
-protocol SettingsViewInput: class {
+protocol SettingsViewInput: AnyObject {
 }
 
-protocol SettingsViewOutput: class {
+protocol SettingsViewOutput: AnyObject {
 }
 
-protocol SettingsInteractorInput: class {
+protocol SettingsInteractorInput: AnyObject {
 }
 
-protocol SettingsInteractorOutput: class {
+protocol SettingsInteractorOutput: AnyObject {
 }
 
-protocol SettingsRouterInput: class {
+protocol SettingsRouterInput: AnyObject {
 }
