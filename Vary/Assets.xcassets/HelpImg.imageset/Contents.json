@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_baseline_help_outline_24.xml.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "ezgif-4-12d1f5edcfb3-2.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "ezgif-4-59a1a455becd.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
