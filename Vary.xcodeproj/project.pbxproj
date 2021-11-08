@@ -22,6 +22,12 @@
 		4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */; };
 		4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */; };
 		4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */; };
+		4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF9F2739D38B00F5F0CA /* SettingsPresenter.swift */; };
+		4CF9FFA62739D38B00F5F0CA /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA02739D38B00F5F0CA /* SettingsRouter.swift */; };
+		4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA12739D38B00F5F0CA /* SettingsViewController.swift */; };
+		4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */; };
+		4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */; };
+		4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsProtocols.swift; sourceTree = "<group>"; };
 		4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsInteractor.swift; sourceTree = "<group>"; };
 		4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsContainer.swift; sourceTree = "<group>"; };
+		4CF9FF9F2739D38B00F5F0CA /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		4CF9FFA02739D38B00F5F0CA /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		4CF9FFA12739D38B00F5F0CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocols.swift; sourceTree = "<group>"; };
+		4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +126,12 @@
 		4CF9FF912739D2C600F5F0CA /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4CF9FF9F2739D38B00F5F0CA /* SettingsPresenter.swift */,
+				4CF9FFA02739D38B00F5F0CA /* SettingsRouter.swift */,
+				4CF9FFA12739D38B00F5F0CA /* SettingsViewController.swift */,
+				4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */,
+				4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */,
+				4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -192,19 +210,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */,
+				4CF9FFA62739D38B00F5F0CA /* SettingsRouter.swift in Sources */,
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
+				4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				4CE42D9527383B88005631D6 /* StartInteractor.swift in Sources */,
 				4CF9FF982739D2EE00F5F0CA /* TeamsPresenter.swift in Sources */,
+				4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */,
 				4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */,
 				4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */,
 				4CF9FF992739D2EE00F5F0CA /* TeamsRouter.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
+				4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
+				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
+				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
