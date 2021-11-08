@@ -16,6 +16,12 @@
 		4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8E27383B88005631D6 /* StartProtocols.swift */; };
 		4CE42D9527383B88005631D6 /* StartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8F27383B88005631D6 /* StartInteractor.swift */; };
 		4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D9027383B88005631D6 /* StartContainer.swift */; };
+		4CF9FF982739D2EE00F5F0CA /* TeamsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF922739D2EE00F5F0CA /* TeamsPresenter.swift */; };
+		4CF9FF992739D2EE00F5F0CA /* TeamsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF932739D2EE00F5F0CA /* TeamsRouter.swift */; };
+		4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF942739D2EE00F5F0CA /* TeamsViewController.swift */; };
+		4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */; };
+		4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */; };
+		4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		4CE42D8E27383B88005631D6 /* StartProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartProtocols.swift; sourceTree = "<group>"; };
 		4CE42D8F27383B88005631D6 /* StartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartInteractor.swift; sourceTree = "<group>"; };
 		4CE42D9027383B88005631D6 /* StartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartContainer.swift; sourceTree = "<group>"; };
+		4CF9FF922739D2EE00F5F0CA /* TeamsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsPresenter.swift; sourceTree = "<group>"; };
+		4CF9FF932739D2EE00F5F0CA /* TeamsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsRouter.swift; sourceTree = "<group>"; };
+		4CF9FF942739D2EE00F5F0CA /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
+		4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsProtocols.swift; sourceTree = "<group>"; };
+		4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsInteractor.swift; sourceTree = "<group>"; };
+		4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +76,8 @@
 			children = (
 				4CE42D76273839B0005631D6 /* AppDelegate.swift */,
 				4CE42D78273839B0005631D6 /* SceneDelegate.swift */,
+				4CF9FF912739D2C600F5F0CA /* Settings */,
+				4CF9FF902739D2B400F5F0CA /* Teams */,
 				4CE42D8A27383B68005631D6 /* Start */,
 				4CE42D7F273839B5005631D6 /* Assets.xcassets */,
 				4CE42D84273839B5005631D6 /* Info.plist */,
@@ -82,6 +96,26 @@
 				4CE42D9027383B88005631D6 /* StartContainer.swift */,
 			);
 			path = Start;
+			sourceTree = "<group>";
+		};
+		4CF9FF902739D2B400F5F0CA /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				4CF9FF922739D2EE00F5F0CA /* TeamsPresenter.swift */,
+				4CF9FF932739D2EE00F5F0CA /* TeamsRouter.swift */,
+				4CF9FF942739D2EE00F5F0CA /* TeamsViewController.swift */,
+				4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */,
+				4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */,
+				4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */,
+			);
+			path = Teams;
+			sourceTree = "<group>";
+		};
+		4CF9FF912739D2C600F5F0CA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,13 +191,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */,
+				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				4CE42D9527383B88005631D6 /* StartInteractor.swift in Sources */,
+				4CF9FF982739D2EE00F5F0CA /* TeamsPresenter.swift in Sources */,
+				4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */,
 				4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */,
+				4CF9FF992739D2EE00F5F0CA /* TeamsRouter.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
+				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
