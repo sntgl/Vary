@@ -15,10 +15,13 @@ final class StartViewController: UIViewController {
     private let surfaceColor = UIColor(named: "Surface")!
     private let secondaryColor = UIColor(named: "Secondary")!
     private let additionalColor = UIColor(named: "Additional")!
+    private let textColor = UIColor(named: "TextBright")!
     
     private let iconsSize = CGFloat(60)
     
     private let container = UIView()
+    
+    private let appNameLabel = UILabel()
     
     private let helpButton = UIButton(type: .custom)
     private var helpImage = UIImage(named: "HelpImg")!
@@ -48,7 +51,6 @@ final class StartViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        setupConstraints()
         setupStyle()
         setupActions()
 	}
@@ -57,8 +59,13 @@ final class StartViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupConstraints()
+    }
+    
     func setupStyle() {
-
         view.backgroundColor = primaryColor
         
         container.backgroundColor = surfaceColor
@@ -77,11 +84,16 @@ final class StartViewController: UIViewController {
         
         newGameButton.configuration = buttonConf
         newGameButton.setTitle("Новая игра", for: .normal)
+        newGameButton.titleLabel?.textColor = textColor
         
         continueGameButton.configuration = buttonConf
         continueGameButton.setTitle("Продолжить игру", for: .normal)
         continueGameButton.isEnabled = true
+        continueGameButton.titleLabel?.textColor = textColor
         
+        appNameLabel.text = "Vary"
+        appNameLabel.font = appNameLabel.font.withSize(40) //TODO поменять шрифт
+        appNameLabel.textColor = textColor
     }
     
     func setupSubviews() {
@@ -90,9 +102,9 @@ final class StartViewController: UIViewController {
             helpButton,
             settingsButton,
             newGameButton,
-            continueGameButton
+            continueGameButton,
+            appNameLabel
         ].forEach({v in container.addSubview(v)})
-        
     }
     
     func setupConstraints() {
@@ -132,6 +144,12 @@ final class StartViewController: UIViewController {
             continueGameButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             continueGameButton.bottomAnchor.constraint(equalTo: newGameButton.topAnchor, constant: -12),
             continueGameButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
+        ].forEach({constraint in constraint.isActive = true})
+        
+        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        [
+            appNameLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            appNameLabel.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -120)
         ].forEach({constraint in constraint.isActive = true})
         
     }
