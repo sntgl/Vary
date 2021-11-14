@@ -25,6 +25,10 @@ extension StartPresenter: StartModuleInput {
 }
 
 extension StartPresenter: StartViewOutput {
+    func onSettingsButtonClicked() {
+        router.openSettings()
+    }
+    
     func didTapStartNewGameButton() {
         router.startNewGame()
     }

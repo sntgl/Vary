@@ -20,6 +20,8 @@ protocol StartViewInput: AnyObject {
 
 protocol StartViewOutput: AnyObject {
     func didTapStartNewGameButton()
+    
+    func onSettingsButtonClicked()
 }
 
 protocol StartInteractorInput: AnyObject {
@@ -30,4 +32,5 @@ protocol StartInteractorOutput: AnyObject {
 
 protocol StartRouterInput: AnyObject {
     func startNewGame()
+    func openSettings()
 }

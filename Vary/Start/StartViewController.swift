@@ -15,7 +15,7 @@ final class StartViewController: UIViewController {
     private let surfaceColor = UIColor(named: "Surface")!
     private let secondaryColor = UIColor(named: "Secondary")!
     private let additionalColor = UIColor(named: "Additional")!
-    private let textColor = UIColor(named: "TextBright")!
+    private let textColor = UIColor(named: "textBright")!
     
     private let iconsSize = CGFloat(60)
     
@@ -151,16 +151,21 @@ final class StartViewController: UIViewController {
             appNameLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             appNameLabel.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -120)
         ].forEach({constraint in constraint.isActive = true})
-        
     }
     
     func setupActions() {
         newGameButton.addTarget(self, action: #selector(onStartNewGameButtonClicked), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(onSettingsButtonClicked), for: .touchUpInside)
     }
     
     @IBAction func onStartNewGameButtonClicked() {
         output.didTapStartNewGameButton()
     }
+    
+    @IBAction func onSettingsButtonClicked() {
+        output.onSettingsButtonClicked()
+    }
+
 
 }
 
