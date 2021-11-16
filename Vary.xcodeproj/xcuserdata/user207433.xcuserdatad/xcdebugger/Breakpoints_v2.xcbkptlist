@@ -62,8 +62,8 @@
             filePath = "Vary/Settings/SettingsRouter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "startNewGame(settingsViewController:)"
             landmarkType = "7">
          </BreakpointContent>

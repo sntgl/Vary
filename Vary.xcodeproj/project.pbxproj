@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D76273839B0005631D6 /* AppDelegate.swift */; };
 		4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D78273839B0005631D6 /* SceneDelegate.swift */; };
-		4CE42D80273839B5005631D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8B27383B88005631D6 /* StartPresenter.swift */; };
 		4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8C27383B88005631D6 /* StartRouter.swift */; };
 		4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8D27383B88005631D6 /* StartViewController.swift */; };
@@ -28,6 +27,7 @@
 		4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */; };
 		4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */; };
 		4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */; };
+		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA71274132BE00B01C26 /* SliderView.swift */; };
 		72E0FA7E27414A9900B01C26 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 72E0FA7D27414A9900B01C26 /* DropDown */; };
 		72E0FA8127414AC000B01C26 /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 72E0FA8027414AC000B01C26 /* RadioGroup */; };
@@ -39,7 +39,7 @@
 		4CE42D73273839B0005631D6 /* Vary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE42D76273839B0005631D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CE42D78273839B0005631D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4CE42D7F273839B5005631D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4CE42D7F273839B5005631D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Vary/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4CE42D84273839B5005631D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE42D8B27383B88005631D6 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		4CE42D8C27383B88005631D6 /* StartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouter.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE42D80273839B5005631D6 /* Assets.xcassets in Resources */,
+				7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
