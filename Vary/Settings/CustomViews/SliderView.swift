@@ -13,6 +13,7 @@ protocol ISliderViewDelegate: AnyObject {
 
 class SliderView: UIView {
     
+    
     var titleLabelString: String?
     var valueLabelString: String?
     var valueIntString: Int? {
@@ -21,7 +22,7 @@ class SliderView: UIView {
             valueLabel.text = String(value) + " " + (valueLabelString ?? "")
         }
     }
-    
+
     weak var delegate: ISliderViewDelegate?
     
     private let titleLabel: UILabel = {
@@ -40,13 +41,18 @@ class SliderView: UIView {
         return view
     }()
     
+    private let sliderStep: Float = 10
+    
     private let slider: UISlider = {
+       let secondaryColor = UIColor(named: "Secondary")!
        let view = UISlider()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.maximumValue = 100
-        view.minimumValue = 0
-        view.value = 0
+        view.minimumValue = 10
+        view.value = 60
         view.isUserInteractionEnabled = true
+        view.minimumTrackTintColor = secondaryColor
+        view.thumbTintColor = secondaryColor
         return view
         
     }()
@@ -73,7 +79,7 @@ class SliderView: UIView {
         addSubview(slider)
         
         titleLabel.text = titleLabelString
-        valueLabel.text = "0 " + valueLabelString!
+        valueLabel.text = String(Int(slider.value)) + " " + valueLabelString!
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -92,9 +98,14 @@ class SliderView: UIView {
         ])
     }
     
+    private func calcSliderStep() -> Int{
+        return Int(round(slider.value / sliderStep) * sliderStep)
+
+    }
+    
     @objc
     private func sliderValueChange(_ sender: UISlider) {
-        delegate?.valueDidChange(nweValue: sender.value)
-        valueIntString = Int(sender.value)
+        delegate?.valueDidChange(nweValue: sender.value)        
+        valueIntString = Int(calcSliderStep())
     }
 }

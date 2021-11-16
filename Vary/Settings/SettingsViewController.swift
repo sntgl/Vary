@@ -98,13 +98,22 @@ final class SettingsViewController: UIViewController {
         bigSettingsLabelButton.clipsToBounds = true
         bigSettingsLabelButton.layer.cornerRadius = 30
         bigSettingsLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        bigSettingsLabelButton.isUserInteractionEnabled = false
+        //bigSettingsLabelButton.isUserInteractionEnabled = false
         bigSettingsLabelButton.titleLabel?.textColor = textColor
+        bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(25)
+        
         
         radioGroupPenalty.titleColor = textColor
         radioGroupPenalty.spacing = 25
         radioGroupPenalty.itemSpacing = 5
+        radioGroupPenalty.tintColor = secondaryColor       // surrounding ring
+        radioGroupPenalty.selectedColor = secondaryColor     // inner circle (default is same color as ring)
+        radioGroupPenalty.selectedTintColor = secondaryColor  // selected radio button's surrounding ring (default is tintColor)
+        radioGroupPenalty.selectedIndex = 1
         
+        commonLastWordSwitcher.isOn = true
+        commonLastWordSwitcher.onTintColor = additionalColor
+        commonLastWordSwitcher.thumbTintColor = secondaryColor
         
         nextButton.configuration = buttonConf
         nextButton.setTitle("Далее", for: .normal)
@@ -115,6 +124,7 @@ final class SettingsViewController: UIViewController {
         nextButton.layer.cornerRadius = 30
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         nextButton.titleLabel?.textColor = textColor
+        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         
         labelArray = [
                       penaltyLabel, commonLastWordLabel,
@@ -171,7 +181,7 @@ final class SettingsViewController: UIViewController {
         
         allElements.forEach({v in container.addSubview(v)})
         allElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
-        
+        setupActions()
         setupConstraints()
         
 
@@ -249,6 +259,15 @@ final class SettingsViewController: UIViewController {
             //container.widthAnchor.constraint(equalToConstant: 100)
         ])
 
+    }
+    
+    func setupActions() {
+        bigSettingsLabelButton.addTarget(self, action: #selector(onSettingsButtonClicked), for: .touchUpInside)
+    }
+    
+    
+    @IBAction func onSettingsButtonClicked() {
+        output.onSettingsButtonClicked(settingsViewController: self)
     }
     
 }
