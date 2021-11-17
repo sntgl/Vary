@@ -8,7 +8,6 @@
 
 import UIKit
 import RadioGroup
-import DropDown
 
 final class SettingsViewController: UIViewController {
 	private let output: SettingsViewOutput
