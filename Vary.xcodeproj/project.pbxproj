@@ -29,7 +29,6 @@
 		4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */; };
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA71274132BE00B01C26 /* SliderView.swift */; };
-		72E0FA7E27414A9900B01C26 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 72E0FA7D27414A9900B01C26 /* DropDown */; };
 		72E0FA8127414AC000B01C26 /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 72E0FA8027414AC000B01C26 /* RadioGroup */; };
 		72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA852741534500B01C26 /* DropDownMenu.swift */; };
 		72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA88274154EF00B01C26 /* View+anchors.swift */; };
@@ -70,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72E0FA8127414AC000B01C26 /* RadioGroup in Frameworks */,
-				72E0FA7E27414A9900B01C26 /* DropDown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +180,6 @@
 			);
 			name = Vary;
 			packageProductDependencies = (
-				72E0FA7D27414A9900B01C26 /* DropDown */,
 				72E0FA8027414AC000B01C26 /* RadioGroup */,
 			);
 			productName = Vary;
@@ -214,7 +211,6 @@
 			);
 			mainGroup = 4CE42D6A273839B0005631D6;
 			packageReferences = (
-				72E0FA7C27414A9900B01C26 /* XCRemoteSwiftPackageReference "DropDown" */,
 				72E0FA7F27414AC000B01C26 /* XCRemoteSwiftPackageReference "RadioGroup" */,
 			);
 			productRefGroup = 4CE42D74273839B0005631D6 /* Products */;
@@ -465,14 +461,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		72E0FA7C27414A9900B01C26 /* XCRemoteSwiftPackageReference "DropDown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AssistoLab/DropDown";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		72E0FA7F27414AC000B01C26 /* XCRemoteSwiftPackageReference "RadioGroup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yonat/RadioGroup";
@@ -484,11 +472,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		72E0FA7D27414A9900B01C26 /* DropDown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 72E0FA7C27414A9900B01C26 /* XCRemoteSwiftPackageReference "DropDown" */;
-			productName = DropDown;
-		};
 		72E0FA8027414AC000B01C26 /* RadioGroup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 72E0FA7F27414AC000B01C26 /* XCRemoteSwiftPackageReference "RadioGroup" */;
