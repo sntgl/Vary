@@ -25,7 +25,7 @@ class DropDownMenu: UIView {
         text.isEnabled = true
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = .white
-        text.attributedPlaceholder = NSAttributedString(string: " ", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named:"textBright")])
+        text.attributedPlaceholder = NSAttributedString(string: " ", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named:"textBright")!])
         text.textColor = .white
         return text
     }()
