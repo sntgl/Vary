@@ -86,7 +86,7 @@ final class TeamsViewController: UIViewController {
 
         teamsLabel.text = "Команды"
         teamsLabel.textColor = .white
-        teamsLabel.font = teamsLabel.font.withSize(30)
+//        teamsLabel.font = teamsLabel.font.withSize(30)
         teamsLabel.textAlignment = .center
         teamsLabel.isEnabled = true
         teamsLabel.layer.cornerRadius = 0
@@ -102,7 +102,7 @@ final class TeamsViewController: UIViewController {
         continueButton.clipsToBounds = true
         continueButton.layer.cornerRadius = 30
         continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        continueButton.titleLabel?.font =  continueButton.titleLabel?.font.withSize(25)
+//        continueButton.titleLabel?.font =  continueButton.titleLabel?.font.withSize(25)
     }
 
     override func viewDidLayoutSubviews() {
@@ -185,8 +185,10 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     @objc func removeRowButtonClicked(sender : UIButton!) {
-        teamsArray.remove(at: sender.tag)
-        self.teamsTableView.reloadData()
+        if teamsArray.count > 2 {
+            teamsArray.remove(at: sender.tag)
+            self.teamsTableView.reloadData()
+        }
     }
 
     @objc func addRowButtonClicked(sender : UIButton!) {

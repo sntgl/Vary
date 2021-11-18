@@ -33,7 +33,6 @@ class TeamTableViewCell: UITableViewCell {
     private func setupStyle(){
         nameLabel.text = "Команда 1"
         nameLabel.textColor = .white
-        nameLabel.font = UIFont(name: "HelveticaNeue-Italic", size: 24)
         nameLabel.isUserInteractionEnabled = true
         let nameLabelTap = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
         nameLabelTap.numberOfTapsRequired = 2
@@ -81,13 +80,15 @@ class TeamTableViewCell: UITableViewCell {
             textField.keyboardType = .default
         }
 
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        let okAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (action) -> Void in
             if alert.textFields![0].text == "" {
                 self.nameLabel.text = "Название"
             } else {
                 self.nameLabel.text = alert.textFields?[0].text
             }
         } )
+        let returnAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+        alert.addAction(returnAction)
         alert.addAction(okAction)
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
