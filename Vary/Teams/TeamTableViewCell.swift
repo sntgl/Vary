@@ -32,7 +32,7 @@ class TeamTableViewCell: UITableViewCell {
 
     private func setupStyle(){
         nameLabel.text = "Команда 1"
-        nameLabel.textColor = .white
+        nameLabel.textColor = UIColor(named: "TextBright")!
         nameLabel.font = UIFont(name: "HelveticaNeue-Italic", size: 24)
         nameLabel.isUserInteractionEnabled = true
         let nameLabelTap = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))

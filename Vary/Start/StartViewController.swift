@@ -15,7 +15,7 @@ final class StartViewController: UIViewController {
     private let surfaceColor = UIColor(named: "Surface")!
     private let secondaryColor = UIColor(named: "Secondary")!
     private let additionalColor = UIColor(named: "Additional")!
-    private let textColor = UIColor(named: "textBright")!
+    private let textColor = UIColor(named: "TextBright")!
     
     private let iconsSize = CGFloat(60)
     
