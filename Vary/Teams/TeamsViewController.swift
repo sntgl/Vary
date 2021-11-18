@@ -68,6 +68,8 @@ final class TeamsViewController: UIViewController {
         container.backgroundColor = Colors.surfaceColor
 
         continueButton.setTitle("Далее", for: .normal)
+        continueButton.addTarget(self, action: #selector(onContinueButtonClicked), for: .touchUpInside)
+
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = Colors.primaryColor
 
@@ -155,6 +157,10 @@ final class TeamsViewController: UIViewController {
 
     @IBAction func backToStartViewController() {
         output.didBackToStartViewControllerButton()
+    }
+    
+    @IBAction func onContinueButtonClicked() {
+        output.didContinue()
     }
 }
 

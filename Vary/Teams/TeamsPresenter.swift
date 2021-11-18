@@ -25,8 +25,13 @@ extension TeamsPresenter: TeamsModuleInput {
 }
 
 extension TeamsPresenter: TeamsViewOutput {
+
     func didBackToStartViewControllerButton() {
         router.backToStartViewController()
+    }
+    
+    func didContinue() {
+        router.nextScreen()
     }
 }
 
