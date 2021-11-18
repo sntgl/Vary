@@ -39,7 +39,6 @@ final class TeamsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Команды"
         navigationController?.setNavigationBarHidden(false, animated: true)
         teamsTableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -77,16 +76,13 @@ final class TeamsViewController: UIViewController {
         backButton.addTarget(self, action: #selector(backToStartViewController), for: .touchUpInside)
 
         addButton.configuration = buttonConf
-        addButton.setTitle("add", for: .normal)
+        addButton.setTitle("Добавить", for: .normal)
+//        addButton.setImage(UIImage(systemName: "cross"), for: .normal)
         addButton.addTarget(self, action: #selector(addRowButtonClicked), for: .touchUpInside)
 
         teamsTableView.backgroundColor = Colors.surfaceColor
         teamsTableView.alwaysBounceVertical = false;
         teamsTableView.tableFooterView = addButton
-
-        buttonConf.baseBackgroundColor = Colors.primaryColor
-
-        continueButton.configuration = buttonConf
 
         teamsLabel.text = "Команды"
         teamsLabel.textColor = .white
@@ -103,7 +99,6 @@ final class TeamsViewController: UIViewController {
         continueButton.setTitle("Далее", for: .normal)
         continueButton.isEnabled = true
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = Colors.primaryColor
         continueButton.clipsToBounds = true
         continueButton.layer.cornerRadius = 30
         continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -175,7 +170,6 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TeamTableViewCell
 
         cell.nameLabel.text = teamsArray[indexPath.row]
-        cell.tag = indexPath.row
         cell.cross.tag = indexPath.row
         cell.cross.addTarget(self, action: #selector(removeRowButtonClicked), for: .touchUpInside)
         

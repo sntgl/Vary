@@ -17,6 +17,20 @@ class TeamTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupSubviews()
+        setupStyle()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupSubviews(){
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(cross)
+    }
+
+    private func setupStyle(){
         nameLabel.text = "Команда 1"
         nameLabel.textColor = .white
         nameLabel.font = UIFont(name: "HelveticaNeue-Italic", size: 24)
@@ -24,13 +38,7 @@ class TeamTableViewCell: UITableViewCell {
         let nameLabelTap = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
         nameLabelTap.numberOfTapsRequired = 2
         nameLabel.addGestureRecognizer(nameLabelTap)
-//        cross.image = UIImage(named: "Cross", in: .none, with: .none)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(cross)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        cross.setImage(UIImage(named: "delete", in: .none, with: .none), for: .normal)
     }
 
     override func layoutSubviews() {
