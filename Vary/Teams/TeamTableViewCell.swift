@@ -9,33 +9,47 @@ import UIKit
 
 class TeamTableViewCell: UITableViewCell {
 
-    let nameTF = UITextField()
+    var nameLabel = UILabel()
 
-    let cross = UIImageView()
+//    let cross = UIImageView()
+
+    public let cross = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        nameTF.text = "Команда 1"
-        nameTF.textColor = .white
-        nameTF.font = UIFont(name: "HelveticaNeue-BoldItalic", size: 24)
-        //        cross.image = UIImage(named: "Cross", in: .none, with: .none)
-        contentView.addSubview(nameTF)
-        contentView.addSubview(cross)
+        setupSubviews()
+        setupStyle()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        nameTF.translatesAutoresizingMaskIntoConstraints = false
+    private func setupSubviews(){
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(cross)
+    }
 
-        nameTF.translatesAutoresizingMaskIntoConstraints = false
+    private func setupStyle(){
+        nameLabel.text = "Команда 1"
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont(name: "HelveticaNeue-Italic", size: 24)
+        nameLabel.isUserInteractionEnabled = true
+        let nameLabelTap = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
+        nameLabelTap.numberOfTapsRequired = 2
+        nameLabel.addGestureRecognizer(nameLabelTap)
+        cross.setImage(UIImage(named: "delete", in: .none, with: .none), for: .normal)
+    }
+
+    override func layoutSubviews() {
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         [
-            nameTF.topAnchor.constraint(equalTo: contentView.topAnchor),
-            nameTF.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            nameTF.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            nameTF.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             //            nameTF.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ].forEach({constraint in constraint.isActive = true})
 
@@ -43,7 +57,7 @@ class TeamTableViewCell: UITableViewCell {
         [
             cross.topAnchor.constraint(equalTo: contentView.topAnchor),
             cross.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            cross.leadingAnchor.constraint(equalTo: nameTF.trailingAnchor),
+            cross.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             cross.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ].forEach({constraint in constraint.isActive = true})
     }
@@ -59,4 +73,22 @@ class TeamTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @objc
+    func nameLabelTapped(_ sender: UITapGestureRecognizer){
+        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.text = self.nameLabel.text
+            textField.keyboardType = .default
+        }
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            if alert.textFields![0].text == "" {
+                self.nameLabel.text = "Название"
+            } else {
+                self.nameLabel.text = alert.textFields?[0].text
+            }
+        } )
+        alert.addAction(okAction)
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
 }
