@@ -8,185 +8,121 @@
 import Foundation
 import UIKit
 
-class DropDownMenu: UIView {
+class DropDownMenu: UITextField  {
+
     
-    //MARK: - Properties
-    var dataSourse: [String]?
+    private var menuContent: [String] = ["Placeholder"]
     
-    private(set) var curentCurrency: String?
-    private var tableViewHeightValue: CGFloat = 100
-    private var tableViewHeightConstraint: NSLayoutConstraint!
-    private let tableViewIndentifier = "tableViewIdentifier"
-    
-    private var currencyTextField: UITextField	= {
-        let text = UITextField()
-        text.placeholder = ""
-        text.isUserInteractionEnabled = false
-        text.isEnabled = true
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.backgroundColor = .white
-        text.attributedPlaceholder = NSAttributedString(string: " ", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named:"textBright")])
-        text.textColor = .white
-        return text
-    }()
-    
-    private var imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "triangle"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private var invoiceNameContainer: UIView = {
-        let view = UIView()
+    private let teamLabel: UILabel = {
+        let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .brown
+        view.textColor = UIColor(named: "Primary")!
         return view
     }()
+
     
-    private var containerView: UIView = {
-        let view = UIView()
+    private let dropButton: UIButton = {
+        let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 4.5
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        view.setImage(UIImage(named: "DownTriangle"), for: .normal)
         return view
     }()
+
+    //
+        required init?(coder: NSCoder) {
+            super.init(coder: coder)
+        }
+
     
-    private var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor(named: "Surface")
-        return tableView
-    }()
-    
-    //MARK: - Init
-    override init(frame: CGRect = CGRect()) {
-        super.init(frame: frame)
-        configureConstraints()
-        configureTableView()
-        configureGestures()
-        isUserInteractionEnabled = true
+    init(menuContent labelsValue:[String]) {
+         super.init(frame: .zero)
+         menuContent = labelsValue
+         teamLabel.text = menuContent[0]
+         setupConstrains()
+         setUpPicker()
     }
 
-    init(textPlaceholder: String){
-        super.init(frame: CGRect())
-        configureConstraints()
-        configureTableView()
-        configureGestures()
-        currencyTextField.placeholder = textPlaceholder
-        isUserInteractionEnabled = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    //MARK: - Func
-    
-    override func layoutSubviews() {
-        currencyTextField.backgroundColor = UIColor(named: "Surface")
-        currencyTextField.textColor = UIColor(named: "textBright")
-        super.layoutSubviews()
-    }
-    
-    func showError(message: String) {
-//        currencyTextField.showError(message: message)
-    }
-    
-    private func configureConstraints() {
-        addSubview(containerView)
-        containerView.addSubview(invoiceNameContainer)
-        invoiceNameContainer.addSubview(currencyTextField)
-        invoiceNameContainer.addSubview(imageView)
-        containerView.addSubview(tableView)
+//
 
-        containerView.anchor(top: safeAreaLayoutGuide.topAnchor,
-                             leading: safeAreaLayoutGuide.leadingAnchor,
-                             bottom: safeAreaLayoutGuide.bottomAnchor,
-                             trailing: safeAreaLayoutGuide.trailingAnchor)
+    private func setUpPicker(){
+        let elementPicker = UIPickerView()
+        elementPicker.delegate = self
         
-        invoiceNameContainer.anchor(top: containerView.topAnchor,
-                              leading: containerView.leadingAnchor,
-                              trailing: containerView.trailingAnchor)
+        self.inputView = elementPicker
+        createToolbar()
+    }
+    
+    func createToolbar() {
         
-        currencyTextField.anchor(top: invoiceNameContainer.topAnchor,
-                         leading: invoiceNameContainer.leadingAnchor,
-                         bottom: invoiceNameContainer.bottomAnchor)
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
-        imageView.anchor(
-            trailing: invoiceNameContainer.trailingAnchor,
-            padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8),
-            size: CGSize(width: 15, height: 15),
-            centerY: currencyTextField.centerYAnchor)
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(dismissKeyboard))
         
-        tableView.anchor(top: invoiceNameContainer.bottomAnchor,
-                         leading: containerView.leadingAnchor,
-                         bottom: containerView.bottomAnchor,
-                         trailing: containerView.trailingAnchor)
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
         
-        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 0)
+        self.inputAccessoryView = toolbar
+   
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
+    
+    private func setupConstrains() {
+        addSubview(teamLabel)
+        addSubview(dropButton)
+        
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor(red:255, green:225/255, blue:227/255, alpha: 1).cgColor
         
         NSLayoutConstraint.activate([
-            tableViewHeightConstraint
+
+            teamLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3),
+            teamLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            teamLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 3),
+            
+            dropButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            // HArdCOre!!
+            dropButton.heightAnchor.constraint(equalToConstant: 9),
+            dropButton.widthAnchor.constraint(equalToConstant: 9),
+            //
+            dropButton.centerYAnchor.constraint(equalTo: teamLabel.centerYAnchor),
+            
+            self.heightAnchor.constraint(equalTo: teamLabel.heightAnchor, constant: 5)
+        
         ])
+        self.sendSubviewToBack(dropButton)
+        
+        
     }
     
-    private func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableViewIndentifier)
-    }
     
-    private func configureGestures() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showHideTableView))
-        tap.cancelsTouchesInView = false
-        invoiceNameContainer.addGestureRecognizer(tap)
-    }
-    
-    @objc private func showHideTableView(_ sender: UITapGestureRecognizer) {
-        if tableViewHeightConstraint.constant == 0 {
-            showTableView()
-        } else {
-            hideTableView()
-        }
-    }
-    
-    private func showTableView() {
-        tableViewHeightConstraint.constant = tableViewHeightValue
-        UIView.animate(withDuration: 0.2, animations: { [unowned self] in
-            self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
-            self.superview?.layoutIfNeeded()
-        })
-    }
-    
-    private func hideTableView() {
-        tableViewHeightConstraint.constant = 0
-        UIView.animate(withDuration: 0.2, animations: { [unowned self] in
-            self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
-            self.superview?.layoutIfNeeded()
-        })
-    }
 }
 
-
-extension DropDownMenu: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        curentCurrency = dataSourse?[indexPath.row]
-        currencyTextField.text = curentCurrency
-        hideTableView()
-    }
-}
-
-extension DropDownMenu: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSourse?.count ?? 0
+extension DropDownMenu: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIndentifier, for: indexPath)
-        cell.textLabel?.text = dataSourse?[indexPath.row]
-        cell.selectionStyle = .none
-        cell.backgroundColor = UIColor(named: "Surface")
-        cell.textLabel?.textColor = .white
-        return cell
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return menuContent.count
     }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return menuContent[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let selectedElement = menuContent[row]
+        teamLabel.text = selectedElement
+    }
+
+    
 }
