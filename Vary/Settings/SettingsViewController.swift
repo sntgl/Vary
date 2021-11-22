@@ -49,8 +49,8 @@ final class SettingsViewController: UIViewController {
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private let dropDownTeam = DropDownMenu(textPlaceholder: "Случайная")
-    private let dropDownDeck = DropDownMenu(textPlaceholder: "Средние")
+    private let dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"] )
+    private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
     
     private let numberOfCartsView: SliderView = {
         let view = SliderView(titleLabelString: "Количество карт", valueLabelString: "штук")
@@ -80,6 +80,7 @@ final class SettingsViewController: UIViewController {
         setupSubviews()
         setupStyle()
 	}
+
     
     func setupStyle() {
         view.backgroundColor = primaryColor
@@ -114,6 +115,7 @@ final class SettingsViewController: UIViewController {
         commonLastWordSwitcher.onTintColor = additionalColor
         commonLastWordSwitcher.thumbTintColor = secondaryColor
         
+           
         nextButton.configuration = buttonConf
         nextButton.setTitle("Далее", for: .normal)
         nextButton.isEnabled = true
@@ -138,8 +140,8 @@ final class SettingsViewController: UIViewController {
         beginningTeamPullDown.text = "Вместо выпадающего списка"
         chooseDeckPullDown.text = "Вместо выпадающего списка"
         
-        dropDownTeam.dataSourse = ["Команда 1", "Команда 2"]
-        dropDownDeck.dataSourse = ["Маленькие", "Большие"]
+        //dropDownTeam.dataSourse = ["Команда 1", "Команда 2"]
+        //dropDownDeck.dataSourse = ["Маленькие", "Большие"]
         
         for label in labelArray{
             label.font = label.font.withSize(20)
