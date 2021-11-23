@@ -42,16 +42,28 @@ final class TeamsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Команды"
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+        ]
         navigationController?.setNavigationBarHidden(false, animated: true)
         teamsTableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "Cell")
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backToStartViewController))
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
 
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
 
         setupSubviews()
         setupStyle()
+
+        self.navigationController?.navigationBar.frame.size = (self.navigationController?.navigationBar.sizeThatFits(CGSize(width: view.frame.width, height: 200)))!
+//        self.navigationController?.navigationBar.clipsToBounds = true
+//        self.navigationController?.navigationBar.backgroundColor = .red
+
+//        navigationController?.navigationBar.
+//        self.navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
     }
 
     func setupSubviews() {
@@ -59,8 +71,8 @@ final class TeamsViewController: UIViewController {
         [
             continueButton,
             teamsTableView,
-            teamsLabel,
-            backButton,
+//            teamsLabel,
+//            backButton,
             addButton
         ].forEach({subView in container.addSubview(subView)})
     }
@@ -87,7 +99,7 @@ final class TeamsViewController: UIViewController {
         teamsTableView.alwaysBounceVertical = false;
         teamsTableView.tableFooterView = addButton
 
-        teamsLabel.text = "Команды"
+//        teamsLabel.text = "Команды"
         teamsLabel.textColor = .white
 //        teamsLabel.font = teamsLabel.font.withSize(30)
         teamsLabel.textAlignment = .center
@@ -95,11 +107,12 @@ final class TeamsViewController: UIViewController {
         teamsLabel.layer.cornerRadius = 0
         teamsLabel.backgroundColor = Colors.primaryColor
         teamsLabel.clipsToBounds = true
-        teamsLabel.layer.cornerRadius = 30
+        teamsLabel.layer.cornerRadius = 20
         teamsLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
         continueButton.configuration = buttonConf
         continueButton.setTitle("Далее", for: .normal)
+        continueButton.backgroundColor = Colors.primaryColor
         continueButton.isEnabled = true
         continueButton.layer.cornerRadius = 0
         continueButton.clipsToBounds = true
@@ -123,13 +136,13 @@ final class TeamsViewController: UIViewController {
             container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ].forEach({constraint in constraint.isActive = true})
 
-        teamsLabel.translatesAutoresizingMaskIntoConstraints = false
-        [
-            teamsLabel.topAnchor.constraint(equalTo: container.topAnchor),
-            teamsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            teamsLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-            teamsLabel.heightAnchor.constraint(equalTo: continueButton.heightAnchor)
-        ].forEach({constraint in constraint.isActive = true})
+//        teamsLabel.translatesAutoresizingMaskIntoConstraints = false
+//        [
+//            teamsLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: -35),
+//            teamsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            teamsLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            teamsLabel.heightAnchor.constraint(equalTo: continueButton.heightAnchor)
+//        ].forEach({constraint in constraint.isActive = true})
 
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         [
@@ -141,19 +154,19 @@ final class TeamsViewController: UIViewController {
 
         teamsTableView.translatesAutoresizingMaskIntoConstraints = false
         [
-            teamsTableView.topAnchor.constraint(equalTo:  teamsLabel.bottomAnchor, constant: 10),
+            teamsTableView.topAnchor.constraint(equalTo:  container.topAnchor, constant: 10),
             teamsTableView.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -10),
             teamsTableView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             teamsTableView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
         ].forEach({constraint in constraint.isActive = true})
 
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        [
-            backButton.topAnchor.constraint(equalTo: container.topAnchor),
-            backButton.bottomAnchor.constraint(equalTo: teamsLabel.bottomAnchor),
-            backButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            backButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.2)
-        ].forEach({constraint in constraint.isActive = true})
+//        backButton.translatesAutoresizingMaskIntoConstraints = false
+//        [
+//            backButton.topAnchor.constraint(equalTo: container.topAnchor),
+//            backButton.bottomAnchor.constraint(equalTo: teamsLabel.bottomAnchor),
+//            backButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+//            backButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.2)
+//        ].forEach({constraint in constraint.isActive = true})
     }
 
     @IBAction func backToStartViewController() {
@@ -232,3 +245,10 @@ private extension TeamsViewController {
         static let surfaceColor = UIColor(named: "Surface")!
     }
 }
+
+//extension UINavigationBar {
+//    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+//        let newSize: CGSize = CGSize(width: self.frame.size.width, height: 100)
+//        return newSize
+//    }
+//}
