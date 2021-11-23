@@ -24,7 +24,7 @@ class DropDownMenu: UITextField  {
     private let dropButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setImage(UIImage(named: "DownTriangle"), for: .normal)
+        view.setImage(UIImage(systemName: "chevron.compact.down"), for: .normal)
         return view
     }()
 
@@ -40,6 +40,7 @@ class DropDownMenu: UITextField  {
          teamLabel.text = menuContent[0]
          setupConstrains()
          setUpPicker()
+        
     }
 
 //
