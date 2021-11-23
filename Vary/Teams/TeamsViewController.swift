@@ -15,6 +15,8 @@ final class TeamsViewController: UIViewController {
 
     private let continueButton = UIButton()
 
+//    let back = UIBarButtonItem(barButtonSystemItem: .Back, target: view, action: #selector(view))
+
     private let backButton = UIButton()
     private let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
 
@@ -71,7 +73,8 @@ final class TeamsViewController: UIViewController {
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = Colors.primaryColor
 
-        backButton.setImage(UIImage(systemName: "arrowtriangle.backward.fill"), for: .normal)
+//        backButton.setImage(UIImage(systemName: "arrowtriangle.backward.fill"), for: .normal)
+        backButton.setTitle("< Назад", for: .normal)
         backButton.tintColor = Colors.surfaceColor
         backButton.addTarget(self, action: #selector(backToStartViewController), for: .touchUpInside)
 
