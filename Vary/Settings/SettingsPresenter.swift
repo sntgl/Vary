@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class SettingsPresenter {
 	weak var view: SettingsViewInput?
@@ -25,6 +26,10 @@ extension SettingsPresenter: SettingsModuleInput {
 }
 
 extension SettingsPresenter: SettingsViewOutput {
+    func onSettingsButtonClicked(settingsViewController: UIViewController) {
+        router.startNewGame(settingsViewController:settingsViewController)
+    }
+    
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {

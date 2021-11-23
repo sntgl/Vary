@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsModuleInput {
 	var moduleOutput: SettingsModuleOutput? { get }
@@ -19,6 +20,7 @@ protocol SettingsViewInput: AnyObject {
 }
 
 protocol SettingsViewOutput: AnyObject {
+    func onSettingsButtonClicked(settingsViewController: UIViewController)
 }
 
 protocol SettingsInteractorInput: AnyObject {
@@ -28,4 +30,6 @@ protocol SettingsInteractorOutput: AnyObject {
 }
 
 protocol SettingsRouterInput: AnyObject {
+    func startNewGame(settingsViewController: UIViewController)
+    
 }
