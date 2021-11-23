@@ -29,6 +29,8 @@
 		4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */; };
 		725772AA274C58360033C7F7 /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 725772A9274C58360033C7F7 /* RadioGroup */; };
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
+		72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */; };
+		72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F37274D11C5003F32D0 /* RadioButton.swift */; };
 		72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA71274132BE00B01C26 /* SliderView.swift */; };
 		72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA852741534500B01C26 /* DropDownMenu.swift */; };
 		72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA88274154EF00B01C26 /* View+anchors.swift */; };
@@ -58,6 +60,8 @@
 		4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocols.swift; sourceTree = "<group>"; };
 		4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
+		72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroupView.swift; sourceTree = "<group>"; };
+		72AE6F37274D11C5003F32D0 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		72E0FA71274132BE00B01C26 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		72E0FA852741534500B01C26 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		72E0FA88274154EF00B01C26 /* View+anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+anchors.swift"; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			children = (
 				72E0FA71274132BE00B01C26 /* SliderView.swift */,
 				72E0FA852741534500B01C26 /* DropDownMenu.swift */,
+				72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */,
+				72AE6F37274D11C5003F32D0 /* RadioButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 				72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */,
 				4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */,
 				4CF9FF992739D2EE00F5F0CA /* TeamsRouter.swift in Sources */,
+				72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
 				72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */,
@@ -259,6 +266,7 @@
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
+				72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */,
 				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
 				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
 			);

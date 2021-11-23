@@ -32,7 +32,8 @@ final class SettingsViewController: UIViewController {
     private let roundTimeSlider = UISlider()
     
     private let penaltyLabel = UILabel()
-    private let radioGroupPenalty = RadioGroup(titles: ["Нет", "Потеря баллов", "Задание от игроков"])
+//    private let radioGroupPenalty = RadioGroup(titles: ["Нет", "Потеря баллов", "Задание от игроков"])
+    private let radioGroupPenalty = RadioGroupView(titles: ["Нет", "Потеря баллов", "Задание от игроков"], defaultChecked: 0)
     
     private let commonLastWordLabel = UILabel()
     private let commonLastWordSwitcher = UISwitch()
@@ -103,13 +104,13 @@ final class SettingsViewController: UIViewController {
         bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(25)
         
         
-        radioGroupPenalty.titleColor = textColor
-        radioGroupPenalty.spacing = 25
-        radioGroupPenalty.itemSpacing = 5
-        radioGroupPenalty.tintColor = secondaryColor       // surrounding ring
-        radioGroupPenalty.selectedColor = secondaryColor     // inner circle (default is same color as ring)
-        radioGroupPenalty.selectedTintColor = secondaryColor  // selected radio button's surrounding ring (default is tintColor)
-        radioGroupPenalty.selectedIndex = 1
+        //radioGroupPenalty.titleColor = textColor
+        //radioGroupPenalty.spacing = 25
+        //radioGroupPenalty.itemSpacing = 5
+        //radioGroupPenalty.tintColor = secondaryColor       // surrounding ring
+        //radioGroupPenalty.selectedColor = secondaryColor     // inner circle (default is same color as ring)
+        //radioGroupPenalty.selectedTintColor = secondaryColor  // selected radio button's surrounding ring (default is tintColor)
+        //radioGroupPenalty.selectedIndex = 1
         
         commonLastWordSwitcher.isOn = true
         commonLastWordSwitcher.onTintColor = additionalColor
@@ -163,6 +164,7 @@ final class SettingsViewController: UIViewController {
 //
 //            commonLastWordSwitcher,
 //
+
             penaltyLabel,
             commonLastWordLabel,
             commonLastWordSwitcher,
@@ -177,7 +179,7 @@ final class SettingsViewController: UIViewController {
             
             nextButton
         ]
-        
+
         view.addSubview(container)
         
         allElements.forEach({v in container.addSubview(v)})
@@ -232,6 +234,7 @@ final class SettingsViewController: UIViewController {
             
             radioGroupPenalty.topAnchor.constraint(equalTo: penaltyLabel.bottomAnchor, constant: 12),
             radioGroupPenalty.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            radioGroupPenalty.heightAnchor.constraint(equalToConstant: 120),
             
             commonLastWordLabel.topAnchor.constraint(equalTo: radioGroupPenalty.bottomAnchor, constant: 24),
             commonLastWordLabel.leadingAnchor.constraint(equalTo: penaltyLabel.leadingAnchor),
