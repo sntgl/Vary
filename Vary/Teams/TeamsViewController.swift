@@ -172,8 +172,34 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = teamsArray[indexPath.row]
         cell.cross.tag = indexPath.row
         cell.cross.addTarget(self, action: #selector(removeRowButtonClicked), for: .touchUpInside)
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
+        cell.addGestureRecognizer(tapGesture)
+        cell.isUserInteractionEnabled = true
+        cell.tag = indexPath.row;
+
         return cell
+    }
+
+    @objc
+    func nameLabelTapped(_ sender: UITapGestureRecognizer){
+        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.text = self.teamsArray[sender.view!.tag]
+            textField.keyboardType = .default
+        }
+
+        let okAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (action) -> Void in
+            if alert.textFields![0].text == "" {
+                self.teamsArray[sender.view!.tag] = "Название"
+            } else {
+                self.teamsArray[sender.view!.tag] = (alert.textFields?[0].text)!
+            }
+            self.teamsTableView.reloadData()
+        } )
+        let returnAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+        alert.addAction(returnAction)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
