@@ -17,7 +17,7 @@ final class SettingsViewController: UIViewController {
     private let surfaceColor = UIColor(named: "Surface")!
     private let secondaryColor = UIColor(named: "Secondary")!
     private let additionalColor = UIColor(named: "Additional")!
-    private let textColor = UIColor(named: "textBright")!
+    private let textColor = UIColor(named: "TextBright")!
     
     private let container = UIView()
     
@@ -78,9 +78,24 @@ final class SettingsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
         setupSubviews()
         setupStyle()
+//        setupNavController()
 	}
+    
+    func setupNavController(){
+        guard let navController = self.navigationController else {
+            print("no nav controller")
+            return
+        }
+        navController.setNavigationBarHidden(false, animated: true)
+        navController.navigationBar.addSubview(bigSettingsLabelButton)
+        bigSettingsLabelButton.translatesAutoresizingMaskIntoConstraints = false
+//        UIApplication.shared.keyWindow!.bringSubviewToFront(navController.navigationBar)
+//        navController.navigationBar.layer.
+//        bigSettingsLabelButton.addSubview(navController)
+    }
 
     
     func setupStyle() {
