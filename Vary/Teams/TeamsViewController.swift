@@ -51,6 +51,7 @@ final class TeamsViewController: UIViewController {
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backToStartViewController))
 
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.addSubview(teamsLabel)
 
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
