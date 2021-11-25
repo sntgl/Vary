@@ -15,8 +15,6 @@ final class TeamsViewController: UIViewController {
 
     private let continueButton = UIButton()
 
-//    let back = UIBarButtonItem(barButtonSystemItem: .Back, target: view, action: #selector(view))
-
     private let backButton = UIButton()
     private let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
 
@@ -51,29 +49,19 @@ final class TeamsViewController: UIViewController {
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backToStartViewController))
 
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.addSubview(teamsLabel)
 
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
 
         setupSubviews()
         setupStyle()
-
-        self.navigationController?.navigationBar.frame.size = (self.navigationController?.navigationBar.sizeThatFits(CGSize(width: view.frame.width, height: 200)))!
-//        self.navigationController?.navigationBar.clipsToBounds = true
-//        self.navigationController?.navigationBar.backgroundColor = .red
-
-//        navigationController?.navigationBar.
-//        self.navigationController?.navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-    }
+  }
 
     func setupSubviews() {
         view.addSubview(container)
         [
             continueButton,
             teamsTableView,
-//            teamsLabel,
-//            backButton,
             addButton
         ].forEach({subView in container.addSubview(subView)})
     }
@@ -108,6 +96,7 @@ final class TeamsViewController: UIViewController {
         teamsLabel.layer.cornerRadius = 0
         teamsLabel.backgroundColor = Colors.primaryColor
         teamsLabel.clipsToBounds = true
+
         teamsLabel.layer.cornerRadius = 20
         teamsLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
@@ -119,7 +108,6 @@ final class TeamsViewController: UIViewController {
         continueButton.clipsToBounds = true
         continueButton.layer.cornerRadius = 30
         continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-//        continueButton.titleLabel?.font =  continueButton.titleLabel?.font.withSize(25)
     }
 
     override func viewDidLayoutSubviews() {
@@ -137,13 +125,6 @@ final class TeamsViewController: UIViewController {
             container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ].forEach({constraint in constraint.isActive = true})
 
-//        teamsLabel.translatesAutoresizingMaskIntoConstraints = false
-//        [
-//            teamsLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: -35),
-//            teamsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            teamsLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            teamsLabel.heightAnchor.constraint(equalTo: continueButton.heightAnchor)
-//        ].forEach({constraint in constraint.isActive = true})
 
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         [
@@ -160,14 +141,6 @@ final class TeamsViewController: UIViewController {
             teamsTableView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             teamsTableView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
         ].forEach({constraint in constraint.isActive = true})
-
-//        backButton.translatesAutoresizingMaskIntoConstraints = false
-//        [
-//            backButton.topAnchor.constraint(equalTo: container.topAnchor),
-//            backButton.bottomAnchor.constraint(equalTo: teamsLabel.bottomAnchor),
-//            backButton.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-//            backButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.2)
-//        ].forEach({constraint in constraint.isActive = true})
     }
 
     @IBAction func backToStartViewController() {
@@ -247,9 +220,3 @@ private extension TeamsViewController {
     }
 }
 
-//extension UINavigationBar {
-//    open override func sizeThatFits(_ size: CGSize) -> CGSize {
-//        let newSize: CGSize = CGSize(width: self.frame.size.width, height: 100)
-//        return newSize
-//    }
-//}

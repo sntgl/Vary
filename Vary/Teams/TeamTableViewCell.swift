@@ -32,9 +32,6 @@ class TeamTableViewCell: UITableViewCell {
         nameLabel.text = "Команда 1"
         nameLabel.textColor = .white
         nameLabel.isUserInteractionEnabled = true
-//        let nameLabelTap = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
-//        nameLabelTap.numberOfTapsRequired = 2
-//        nameLabel.addGestureRecognizer(nameLabelTap)
         cross.setImage(UIImage(named: "delete", in: .none, with: .none), for: .normal)
     }
 
@@ -70,24 +67,4 @@ class TeamTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-//    @objc
-//    func nameLabelTapped(_ sender: UITapGestureRecognizer){
-//        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
-//        alert.addTextField { (textField:UITextField) in
-//            textField.text = self.nameLabel.text
-//            textField.keyboardType = .default
-//        }
-//
-//        let okAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (action) -> Void in
-//            if alert.textFields![0].text == "" {
-//                self.nameLabel.text = "Название"
-//            } else {
-//                self.nameLabel.text = alert.textFields?[0].text
-//            }
-//        } )
-//        let returnAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
-//        alert.addAction(returnAction)
-//        alert.addAction(okAction)
-//        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-//    }
 }

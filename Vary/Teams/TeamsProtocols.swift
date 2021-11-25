@@ -20,6 +20,7 @@ protocol TeamsViewInput: AnyObject {
 
 protocol TeamsViewOutput: AnyObject {
     func didBackToStartViewControllerButton()
+    func didContinue()
 }
 
 protocol TeamsInteractorInput: AnyObject {
@@ -30,5 +31,6 @@ protocol TeamsInteractorOutput: AnyObject {
 
 protocol TeamsRouterInput: AnyObject {
     func backToStartViewController()
+    func nextScreen()
 }
 
