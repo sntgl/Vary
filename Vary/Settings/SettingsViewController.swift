@@ -32,7 +32,8 @@ final class SettingsViewController: UIViewController {
     private let roundTimeSlider = UISlider()
     
     private let penaltyLabel = UILabel()
-    private let radioGroupPenalty = RadioGroup(titles: ["Нет", "Потеря баллов", "Задание от игроков"])
+//    private let radioGroupPenalty = RadioGroup(titles: ["Нет", "Потеря баллов", "Задание от игроков"])
+    private let radioGroupPenalty = RadioGroupView(titles: ["Нет", "Потеря баллов", "Задание от игроков"], defaultChecked: 0)
     
     private let commonLastWordLabel = UILabel()
     private let commonLastWordSwitcher = UISwitch()
@@ -49,8 +50,8 @@ final class SettingsViewController: UIViewController {
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private let dropDownTeam = DropDownMenu(textPlaceholder: "Случайная")
-    private let dropDownDeck = DropDownMenu(textPlaceholder: "Средние")
+    private let dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"] )
+    private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
     
     private let numberOfCartsView: SliderView = {
         let view = SliderView(titleLabelString: "Количество карт", valueLabelString: "штук")
@@ -77,50 +78,148 @@ final class SettingsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+ 
         setupSubviews()
         setupStyle()
+        setupNavController()
+//
 	}
     
-    func setupStyle() {
-        view.backgroundColor = primaryColor
+    func setupNavController(){
+        guard let navController = self.navigationController else {
+            print("no nav controller")
+            return
+        }
+        navController.setNavigationBarHidden(false, animated: true)
+
+//        let label = UILabel()
+//        title = "Настройки игры"
+//        navController.navigationBar.topItem?.title = "Your title"
+//        navController.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 34)!, NSAttributedString.Key.foregroundColor: UIColor.white]
         
-        container.backgroundColor = surfaceColor
-         
+//        navController.navigationBar.frame.size = navController.navigationBar.sizeThatFits(CGSize(width: navController.navigationBar.frame.size.width,height: 80))
+        
+//        navController.navigationBar.titleTextAttributes = [
+//                    .foregroundColor: UIColor.white,
+//                ]
+//        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 45)!]
+//        UINavigationBar.appearance().titleTextAttributes = attributes
+//
+//        let height: CGFloat = 25 //whatever height you want to add to the existing height
+//        let bounds = self.navigationController!.navigationBar.bounds
+        
+//        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+//        navController.navigationItem.titleView = label
+//        navController.navigationBar.addSubview(bigSettingsLabelButton)
+//        bigSettingsLabelButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+//       buttonConf.buttonSize = .large
+//       buttonConf.baseBackgroundColor = primaryColor
+
+//       bigSettingsLabelButton.configuration = buttonConf
+//       bigSettingsLabelButton.setTitle("Настройки игры", for: .normal)
+//       bigSettingsLabelButton.isEnabled = true
+//       bigSettingsLabelButton.layer.cornerRadius = 0
+//       bigSettingsLabelButton.backgroundColor = primaryColor
+//       bigSettingsLabelButton.clipsToBounds = true
+//       bigSettingsLabelButton.layer.cornerRadius = 30
+//       bigSettingsLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//       //bigSettingsLabelButton.isUserInteractionEnabled = false
+//       bigSettingsLabelButton.titleLabel?.textColor = textColor
+//       bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(25)
+////        UIApplication.shared.keyWindow!.bringSubviewToFront(navController.navigationBar)
+//        navController.navigationBar.layer.
+//        bigSettingsLabelButton.addSubview(navController)
+        
+//        navController.navigationBar.isTranslucent = true;
+        
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = primaryColor
-        
+
         bigSettingsLabelButton.configuration = buttonConf
         bigSettingsLabelButton.setTitle("Настройки игры", for: .normal)
         bigSettingsLabelButton.isEnabled = true
         bigSettingsLabelButton.layer.cornerRadius = 0
         bigSettingsLabelButton.backgroundColor = primaryColor
         bigSettingsLabelButton.clipsToBounds = true
-        bigSettingsLabelButton.layer.cornerRadius = 30
+        bigSettingsLabelButton.layer.cornerRadius = 10
         bigSettingsLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         //bigSettingsLabelButton.isUserInteractionEnabled = false
         bigSettingsLabelButton.titleLabel?.textColor = textColor
-        bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(25)
+//        bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
+        bigSettingsLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
+        navController.navigationBar.addSubview(bigSettingsLabelButton)
+        NSLayoutConstraint.activate([
+            
+            
+            bigSettingsLabelButton.topAnchor.constraint(equalTo: navController.navigationBar.topAnchor),
+//            bigSettingsLabelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+////            bigSettingsLabelButton.heightAnchor.constraint(equalToConstant: 10),
+            bigSettingsLabelButton.widthAnchor.constraint(equalTo: navController.navigationBar.widthAnchor),
+            ])
+        navController.navigationBar.sendSubviewToBack(bigSettingsLabelButton)
+//        bigSettingsLabelButton.alpha = 0.2
+//        let xPosition = navController.navigationBar.frame.origin.x
+//        let yPosition = navController.navigationBar.frame.origin.y - 20 // Slide Up - 20px
+
+//        let width = bigSettingsLabelButton.frame.size.width
+//        let height = bigSettingsLabelButton.frame.size.height
+
+//        bigSettingsLabelButton.frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
+//        self.view.sendSubviewToBack(bigSettingsLabelButton)
+        
+
+        bigSettingsLabelButton.translatesAutoresizingMaskIntoConstraints = false
+        bigSettingsLabelButton.layer.zPosition = -1;
+        bigSettingsLabelButton.isUserInteractionEnabled = false
+
+    }
+
+    
+    func setupStyle() {
+        view.backgroundColor = primaryColor
+        
+        container.backgroundColor = surfaceColor
+
+        buttonConf.buttonSize = .large
+        buttonConf.baseBackgroundColor = primaryColor
+
+//        bigSettingsLabelButton.configuration = buttonConf
+//        bigSettingsLabelButton.setTitle("Настройки игры", for: .normal)
+//        bigSettingsLabelButton.isEnabled = true
+//        bigSettingsLabelButton.layer.cornerRadius = 0
+//        bigSettingsLabelButton.backgroundColor = primaryColor
+//        bigSettingsLabelButton.clipsToBounds = true
+//        bigSettingsLabelButton.layer.cornerRadius = 10
+//        bigSettingsLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        //bigSettingsLabelButton.isUserInteractionEnabled = false
+//        bigSettingsLabelButton.titleLabel?.textColor = textColor
+//        bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(25)
+
+
         
         
-        radioGroupPenalty.titleColor = textColor
-        radioGroupPenalty.spacing = 25
-        radioGroupPenalty.itemSpacing = 5
-        radioGroupPenalty.tintColor = secondaryColor       // surrounding ring
-        radioGroupPenalty.selectedColor = secondaryColor     // inner circle (default is same color as ring)
-        radioGroupPenalty.selectedTintColor = secondaryColor  // selected radio button's surrounding ring (default is tintColor)
-        radioGroupPenalty.selectedIndex = 1
+        //radioGroupPenalty.titleColor = textColor
+        //radioGroupPenalty.spacing = 25
+        //radioGroupPenalty.itemSpacing = 5
+        //radioGroupPenalty.tintColor = secondaryColor       // surrounding ring
+        //radioGroupPenalty.selectedColor = secondaryColor     // inner circle (default is same color as ring)
+        //radioGroupPenalty.selectedTintColor = secondaryColor  // selected radio button's surrounding ring (default is tintColor)
+        //radioGroupPenalty.selectedIndex = 1
         
         commonLastWordSwitcher.isOn = true
         commonLastWordSwitcher.onTintColor = additionalColor
         commonLastWordSwitcher.thumbTintColor = secondaryColor
         
+           
         nextButton.configuration = buttonConf
         nextButton.setTitle("Далее", for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
         nextButton.backgroundColor = primaryColor
         nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 30
+        nextButton.layer.cornerRadius = 10
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         nextButton.titleLabel?.textColor = textColor
         nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
@@ -138,8 +237,8 @@ final class SettingsViewController: UIViewController {
         beginningTeamPullDown.text = "Вместо выпадающего списка"
         chooseDeckPullDown.text = "Вместо выпадающего списка"
         
-        dropDownTeam.dataSourse = ["Команда 1", "Команда 2"]
-        dropDownDeck.dataSourse = ["Маленькие", "Большие"]
+        //dropDownTeam.dataSourse = ["Команда 1", "Команда 2"]
+        //dropDownDeck.dataSourse = ["Маленькие", "Большие"]
         
         for label in labelArray{
             label.font = label.font.withSize(20)
@@ -150,7 +249,7 @@ final class SettingsViewController: UIViewController {
     
     func setupSubviews() {
         allElements = [
-            bigSettingsLabelButton,
+//            bigSettingsLabelButton,
 
             // sliders views
             numberOfCartsView,
@@ -161,6 +260,7 @@ final class SettingsViewController: UIViewController {
 //
 //            commonLastWordSwitcher,
 //
+
             penaltyLabel,
             commonLastWordLabel,
             commonLastWordSwitcher,
@@ -175,7 +275,7 @@ final class SettingsViewController: UIViewController {
             
             nextButton
         ]
-        
+
         view.addSubview(container)
         
         allElements.forEach({v in container.addSubview(v)})
@@ -202,22 +302,27 @@ final class SettingsViewController: UIViewController {
             
         ].forEach({constraint in constraint.isActive = true})
 
-        
+//        guard let navController = self.navigationController else {
+//            print("no nav controller")
+//            return
+//        }
 
-        
+//        bigSettingsLabelButton.layer.zPosition = -1;
 //        container.backgroundColor = .purple
-        
+//        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(bigSettingsLabelButton)
         NSLayoutConstraint.activate([
             
-            bigSettingsLabelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            bigSettingsLabelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bigSettingsLabelButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+//            bigSettingsLabelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            bigSettingsLabelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+////            bigSettingsLabelButton.heightAnchor.constraint(equalToConstant: 10),
+//            bigSettingsLabelButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
 //            container.topAnchor.constraint(equalTo: view.topAnchor),
 //            container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 //            container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 //            container.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            numberOfCartsView.topAnchor.constraint(equalTo: bigSettingsLabelButton.bottomAnchor, constant: 12),
+            numberOfCartsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             numberOfCartsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             numberOfCartsView.widthAnchor.constraint(equalToConstant: 300),
             
@@ -230,6 +335,7 @@ final class SettingsViewController: UIViewController {
             
             radioGroupPenalty.topAnchor.constraint(equalTo: penaltyLabel.bottomAnchor, constant: 12),
             radioGroupPenalty.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            radioGroupPenalty.heightAnchor.constraint(equalToConstant: 120),
             
             commonLastWordLabel.topAnchor.constraint(equalTo: radioGroupPenalty.bottomAnchor, constant: 24),
             commonLastWordLabel.leadingAnchor.constraint(equalTo: penaltyLabel.leadingAnchor),
@@ -274,3 +380,22 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: SettingsViewInput {
 }
     
+
+
+extension UINavigationBar {
+
+    
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+        let navigationNormalHeight: CGFloat = 44
+        let navigationExtendHeight: CGFloat = 84
+        
+        var barHeight: CGFloat = navigationNormalHeight
+    
+        if size.height == navigationExtendHeight {
+            barHeight = size.height
+        }
+    
+        let newSize: CGSize = CGSize(width: self.frame.size.width, height: barHeight)
+        return newSize
+    }
+}
