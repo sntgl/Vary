@@ -26,14 +26,5 @@ extension StartRouter: StartRouterInput {
     }
     
     func openSettings(){
-        guard let navController = viewController?.navigationController else {
-            print("no nav controller")
-            return
-        }
-        let context: SettingsContext = SettingsContext()
-        let container: SettingsContainer = SettingsContainer.assemble(with: context)
-        let settingsViewController: UIViewController = container.viewController
-        
-        navController.pushViewController(settingsViewController, animated: true)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */; };
 		4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D76273839B0005631D6 /* AppDelegate.swift */; };
 		4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D78273839B0005631D6 /* SceneDelegate.swift */; };
 		4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D8B27383B88005631D6 /* StartPresenter.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		4CE42D73273839B0005631D6 /* Vary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE42D76273839B0005631D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CE42D78273839B0005631D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				4CF9FF952739D2EE00F5F0CA /* TeamsProtocols.swift */,
 				4CF9FF962739D2EE00F5F0CA /* TeamsInteractor.swift */,
 				4CF9FF972739D2EE00F5F0CA /* TeamsContainer.swift */,
+				3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */,
 			);
 			path = Teams;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				4CF9FFA62739D38B00F5F0CA /* SettingsRouter.swift in Sources */,
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
+				3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */,
 				4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */,
