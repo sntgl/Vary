@@ -53,6 +53,20 @@ final class StartViewController: UIViewController {
         setupSubviews()
         setupStyle()
         setupActions()
+        
+        let network = VaryNetwork(appVersion: 0, serverIp: "")
+        network.getLastVersionAsync { result in
+            switch result {
+            case .success(let version):
+                DispatchQueue.main.async {
+                    // update UI
+                }
+                break
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
 	}
     
     override func viewDidAppear(_ animated: Bool) {
