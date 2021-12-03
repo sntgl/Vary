@@ -108,6 +108,7 @@
 		4CE42D75273839B0005631D6 /* Vary */ = {
 			isa = PBXGroup;
 			children = (
+				72BD781F2753EEF000CF4F8D /* Models.swift */,
 				72BD7821275407B200CF4F8D /* Storage */,
 				72BD781C2753EB5700CF4F8D /* Network */,
 				4CE42D76273839B0005631D6 /* AppDelegate.swift */,
@@ -167,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				72BD781D2753EE7400CF4F8D /* Network.swift */,
-				72BD781F2753EEF000CF4F8D /* Models.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

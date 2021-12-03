@@ -9,18 +9,33 @@ import Foundation
 
 protocol NetworkManager{
     
-    func getLastVersion() -> Int?
     
-    func getNewCards() -> Dictionary?
+    func getLastVersion(completion: @escaping (Result<Int, Error>) -> Void)
     
-    // ==========================
-    
-    func getLastVersionAsync(completion: @escaping (Result<Int, Error>) -> Void)
+    func getCards(completion: @escaping (Result<Dictionary, Error>) -> Void)
     
 }
 
 
+
+enum NetworkError: Error {
+    case invalidIpRequest
+    case missingData
+    case connectionError
+    case decodingError
+    
+//    var debugDescription: String {
+//        switch self {
+//        case .missingData: return "ajkshd"
+//        case .kek: return "asdasda"
+//        }
+//    }
+}
+
+
+
 class VaryNetwork: NetworkManager{
+
     
     
     
@@ -40,94 +55,100 @@ class VaryNetwork: NetworkManager{
         self.ip = ip
     }
     
-    func getLastVersion() -> Int? {
-            
-        guard let url = URL(string: requestGetVersion) else { return nil }
-        
-        let session = URLSession.shared
-        var serverVersion: Int? = -1
-        session.dataTask(with: url) { (data, response, error) in
-             
-            
-            guard let response = response, let data = data else { return }
-            
-            print(response)
-            print(data)
-            
-//            do {
-                serverVersion = Int(String(decoding: data, as: UTF8.self))
-            
-
-//            } catch {
-//                print(error)
-//            }
-        }.resume()
-        return nil
-    }
+//    func getLastVersion() -> Int? {
+//
+//        guard let url = URL(string: requestGetVersion) else { return nil }
+//
+//        let session = URLSession.shared
+//        var serverVersion: Int? = -1
+//        session.dataTask(with: url) { (data, response, error) in
+//
+//
+//            guard let response = response, let data = data else { return }
+//
+//            print(response)
+//            print(data)
+//
+////            do {
+//                serverVersion = Int(String(decoding: data, as: UTF8.self))
+//
+//
+////            } catch {
+////                print(error)
+////            }
+//        }.resume()
+//        return nil
+//    }
     
-    func getNewCards() -> Dictionary? {
-        
-        guard let url = URL(string: requestGetCards) else { return nil}
-        
-        let session = URLSession.shared
-        var downloadedDictionary: Dictionary
-        session.dataTask(with: url) { (data, response, error) in
+    func getLastVersion(completion: @escaping (Result<Int, Error>) -> Void) {
+        guard let url = URL(string: requestGetVersion) else {
+            completion(.failure(NetworkError.invalidIpRequest))
+            return
             
-            guard let response = response, let data = data else { return }
-            
-            print(response)
-            print(data)
-            
-            do {
-                downloadedDictionary = try JSONDecoder().decode(Dictionary.self, from: data)
-                print(downloadedDictionary.name)
-            } catch {
-                print(error)
-            }
-        }.resume()
-        
-        return downloadedDictionary
-    }
-    
-    func getLastVersionAsync(completion: @escaping (Result<Int, Error>) -> Void) {
-        guard let url = URL(string: requestGetVersion) else { return }
+        }
         
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
             guard let response = response, let data = data else {
-                completion(.failure(NSError(domain: "test_error", code: 1, userInfo: nil)))
+                completion(.failure(NetworkError.missingData))
                 print("getLastVersionAsync - error")
                 return
             }
             
             if let error = error {
-                completion(.failure(NSError(domain: "test_error", code: 1, userInfo: nil)))
+                completion(.failure(NetworkError.connectionError))
                 print("error occurred: \(error)")
-                
                 return
             }
             
             print(response)
             print(data)
             guard let serverVersion = Int(String(decoding: data, as: UTF8.self)) else {
-                completion(.failure(NSError(domain: "test_error", code: 1, userInfo: nil)))
+                completion(.failure(NetworkError.decodingError))
                 return
             }
             completion(.success(serverVersion))
         
         }.resume()
     }
-}
-
-
-enum CustomError: Error, CustomDebugStringConvertible {
-    case missingData
-    case kek
     
-    var debugDescription: String {
-        switch self {
-        case .missingData: return "ajkshd"
-        case .kek: return "asdasda"
+    
+    
+    func getCards(completion: @escaping (Result<Dictionary, Error>) -> Void) {
+        
+        guard let url = URL(string: requestGetCards) else {
+            completion(.failure(NetworkError.invalidIpRequest))
+            return
         }
+        
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            
+            guard let response = response, let data = data else {
+                completion(.failure(NetworkError.missingData))
+                print("getNewCards - error")
+                return
+                
+            }
+            
+            if let error = error {
+                completion(.failure(NetworkError.connectionError))
+                print("error occurred: \(error)")
+                return
+            }
+            print(response)
+            print(data)
+            
+            do {
+                let downloadedDictionary: Dictionary = try JSONDecoder().decode(Dictionary.self, from: data)
+                print(downloadedDictionary.name)
+                completion(.success(downloadedDictionary))
+            } catch {
+                completion(.failure(NetworkError.decodingError))
+                print(error)
+            }
+        }.resume()
+        
     }
 }
+
