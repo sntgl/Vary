@@ -40,15 +40,16 @@ class VaryNetwork: NetworkManager{
     
     
     private let version:Int
-    private var ip:String {
-        didSet{
-            requestGetVersion = "http://\(ip)/categories/version"
-            requestGetCards = "http://\(ip)/categories?version=\(version)"
-        }
+    private let ip:String
+    
+    
+    private var requestGetVersionIp: String {
+        return "\(ip)/categories/version"
     }
-
-    private var requestGetVersion:String = ""
-    private var requestGetCards:String = ""
+  
+    private var requestGetCards:String {
+        return "\(ip)/categories?version=\(version)"
+    }
     
     init(appVersion version:Int, serverIp ip:String) {
         self.version = version
@@ -89,6 +90,8 @@ class VaryNetwork: NetworkManager{
         
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
+            
+            // TODO think about of error/response chekcking order
             guard let response = response, let data = data else {
                 completion(.failure(NetworkError.missingData))
                 print("getLastVersionAsync - error")

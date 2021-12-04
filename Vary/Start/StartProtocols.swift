@@ -16,18 +16,28 @@ protocol StartModuleOutput: AnyObject {
 }
 
 protocol StartViewInput: AnyObject {
+    func showInfoMessage(message:String)
+    
 }
 
 protocol StartViewOutput: AnyObject {
     func didTapStartNewGameButton()
     
     func onSettingsButtonClicked()
+    
+    func viewDidLoad()
 }
 
 protocol StartInteractorInput: AnyObject {
+    func loadVersion()
+    
+    func loadCards()
+    
 }
 
 protocol StartInteractorOutput: AnyObject {
+    
+    func loadedCards(_ version:Int)
 }
 
 protocol StartRouterInput: AnyObject {
