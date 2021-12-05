@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct Dictionary: Codable {
     
     let name: String

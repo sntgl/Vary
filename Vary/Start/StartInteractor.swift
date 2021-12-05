@@ -31,6 +31,7 @@ extension StartInteractor: StartInteractorInput {
         let networkManager: NetworkManager = VaryNetwork(appVersion: self.appVersion ?? 0, serverIp: self.serverIp)
         var serverVersion: Int = 0
         networkManager.getLastVersion { result in
+          
             switch result{
             case .success(let version):
                 // KAKOITO PIZDEC
@@ -43,7 +44,8 @@ extension StartInteractor: StartInteractorInput {
                     
             case .failure(let error):
                 print("Error in Interactor  \(error)") // TODO ErrorBox
-            }
+                }
+            
         }
     
         
@@ -54,6 +56,7 @@ extension StartInteractor: StartInteractorInput {
         
             if serverVersion > appVersion ?? 0 {
                 networkManager.getCards { [weak output] result in
+                    DispatchQueue.main.async {
                     switch result{
                         case .success(let downloadedCards):
                             self.storageManager?.saveCards(downloadedCards)
@@ -62,6 +65,8 @@ extension StartInteractor: StartInteractorInput {
                             print("Error in Interactor 2: \(error)") // TODO ErrorBox
                         
                         }
+                    }
+                    
                 }
             }
 

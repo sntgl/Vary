@@ -43,12 +43,12 @@ class VaryNetwork: NetworkManager{
     private let ip:String
     
     
-    private var requestGetVersionIp: String {
-        return "\(ip)/categories/version"
+    private var requestGetVersion: String {
+        return "http://\(ip)/categories/version"
     }
   
     private var requestGetCards:String {
-        return "\(ip)/categories?version=\(version)"
+        return "http://\(ip)/categories?version=\(version)"
     }
     
     init(appVersion version:Int, serverIp ip:String) {
@@ -143,9 +143,9 @@ class VaryNetwork: NetworkManager{
             print(data)
             
             do {
-                let downloadedDictionary: Dictionary = try JSONDecoder().decode(Dictionary.self, from: data)
-                print(downloadedDictionary.name)
-                completion(.success(downloadedDictionary))
+                let downloadedDictionary = try JSONDecoder().decode([Dictionary].self, from: data)
+                print(downloadedDictionary.first!.name)
+                completion(.success(downloadedDictionary.first!))
             } catch {
                 completion(.failure(NetworkError.decodingError))
                 print(error)
