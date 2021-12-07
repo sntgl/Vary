@@ -108,6 +108,7 @@ final class TeamsViewController: UIViewController {
         continueButton.clipsToBounds = true
         continueButton.layer.cornerRadius = 30
         continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        continueButton.addTarget(self, action: #selector(goToSettingsView), for: .touchUpInside)
     }
 
     override func viewDidLayoutSubviews() {
@@ -146,6 +147,11 @@ final class TeamsViewController: UIViewController {
     @IBAction func backToStartViewController() {
         output.didBackToStartViewControllerButton()
     }
+    
+    @IBAction func goToSettingsView(){
+        output.didContinue()
+    }
+    
 }
 
 extension TeamsViewController: TeamsViewInput {

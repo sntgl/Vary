@@ -21,8 +21,10 @@ final class SettingsContainer {
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-
-		interactor.output = presenter
+        //my changes
+        router.viewController = viewController
+		
+        interactor.output = presenter
 
         return SettingsContainer(view: viewController, input: presenter, router: router)
 	}

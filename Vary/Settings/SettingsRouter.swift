@@ -26,4 +26,16 @@ extension SettingsRouter: SettingsRouterInput {
 //        startController.modalPresentationStyle = .fullScreen
 //        settingsViewController.present(startController, animated: true, completion: nil)
     }
+    func nextScreen() {
+        guard let navController = viewController?.navigationController else {
+            print("no nav controller")
+            return
+        }
+        let context: ScoresContext = ScoresContext()
+        let container: ScoresContainer = ScoresContainer.assemble(with: context)
+        let scoresViewController: UIViewController = container.viewController
+        
+        navController.pushViewController(scoresViewController, animated: true)
+    }
+    
 }

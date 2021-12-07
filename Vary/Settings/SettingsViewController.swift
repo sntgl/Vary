@@ -78,7 +78,7 @@ final class SettingsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
- 
+
         setupSubviews()
         setupStyle()
         setupNavController()
@@ -223,6 +223,7 @@ final class SettingsViewController: UIViewController {
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         nextButton.titleLabel?.textColor = textColor
         nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
+        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         labelArray = [
                       penaltyLabel, commonLastWordLabel,
@@ -375,6 +376,12 @@ final class SettingsViewController: UIViewController {
         output.onSettingsButtonClicked(settingsViewController: self)
     }
     
+    
+    
+    @IBAction func onNextButtonClicked() {
+        output.onNextButtonClicked()
+        
+    }
 }
 
 extension SettingsViewController: SettingsViewInput {

@@ -30,6 +30,10 @@ extension SettingsPresenter: SettingsViewOutput {
         router.startNewGame(settingsViewController:settingsViewController)
     }
     
+    func onNextButtonClicked(){
+        router.nextScreen()
+    }
+    
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
