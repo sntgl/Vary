@@ -25,6 +25,11 @@ extension StartPresenter: StartModuleInput {
 }
 
 extension StartPresenter: StartViewOutput {
+    func viewDidLoad() {
+        interactor.loadCards()
+        
+    }
+    
     func onSettingsButtonClicked() {
         router.openSettings()
     }
@@ -36,4 +41,8 @@ extension StartPresenter: StartViewOutput {
 }
 
 extension StartPresenter: StartInteractorOutput {
+    func loadedCards(_ version: Int) {
+        view?.showInfoMessage(message:String(version))
+    }
+    
 }
