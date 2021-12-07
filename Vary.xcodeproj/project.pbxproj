@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BB800BE275D35940061D2F6 /* ResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800B8275D35940061D2F6 /* ResultsPresenter.swift */; };
+		3BB800BF275D35940061D2F6 /* ResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800B9275D35940061D2F6 /* ResultsRouter.swift */; };
+		3BB800C0275D35940061D2F6 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800BA275D35940061D2F6 /* ResultsViewController.swift */; };
+		3BB800C1275D35940061D2F6 /* ResultsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800BB275D35940061D2F6 /* ResultsProtocols.swift */; };
+		3BB800C2275D35940061D2F6 /* ResultsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800BC275D35940061D2F6 /* ResultsInteractor.swift */; };
+		3BB800C3275D35940061D2F6 /* ResultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800BD275D35940061D2F6 /* ResultsContainer.swift */; };
+		3BB800C5275D35A50061D2F6 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB800C4275D35A50061D2F6 /* ResultTableViewCell.swift */; };
+		3BB986E8275CC05B005BC87A /* ScoresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E2275CC05B005BC87A /* ScoresPresenter.swift */; };
+		3BB986E9275CC05B005BC87A /* ScoresRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E3275CC05B005BC87A /* ScoresRouter.swift */; };
+		3BB986EA275CC05B005BC87A /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E4275CC05B005BC87A /* ScoresViewController.swift */; };
+		3BB986EB275CC05B005BC87A /* ScoresProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E5275CC05B005BC87A /* ScoresProtocols.swift */; };
+		3BB986EC275CC05B005BC87A /* ScoresInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E6275CC05B005BC87A /* ScoresInteractor.swift */; };
+		3BB986ED275CC05B005BC87A /* ScoresContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E7275CC05B005BC87A /* ScoresContainer.swift */; };
+		3BB986F0275CC14E005BC87A /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986EF275CC14E005BC87A /* ScoreTableViewCell.swift */; };
 		3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */; };
 		4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D76273839B0005631D6 /* AppDelegate.swift */; };
 		4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D78273839B0005631D6 /* SceneDelegate.swift */; };
@@ -42,6 +56,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BB800B8275D35940061D2F6 /* ResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPresenter.swift; sourceTree = "<group>"; };
+		3BB800B9275D35940061D2F6 /* ResultsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsRouter.swift; sourceTree = "<group>"; };
+		3BB800BA275D35940061D2F6 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		3BB800BB275D35940061D2F6 /* ResultsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsProtocols.swift; sourceTree = "<group>"; };
+		3BB800BC275D35940061D2F6 /* ResultsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsInteractor.swift; sourceTree = "<group>"; };
+		3BB800BD275D35940061D2F6 /* ResultsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsContainer.swift; sourceTree = "<group>"; };
+		3BB800C4275D35A50061D2F6 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		3BB986E2275CC05B005BC87A /* ScoresPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresPresenter.swift; sourceTree = "<group>"; };
+		3BB986E3275CC05B005BC87A /* ScoresRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresRouter.swift; sourceTree = "<group>"; };
+		3BB986E4275CC05B005BC87A /* ScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
+		3BB986E5275CC05B005BC87A /* ScoresProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresProtocols.swift; sourceTree = "<group>"; };
+		3BB986E6275CC05B005BC87A /* ScoresInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresInteractor.swift; sourceTree = "<group>"; };
+		3BB986E7275CC05B005BC87A /* ScoresContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresContainer.swift; sourceTree = "<group>"; };
+		3BB986EF275CC14E005BC87A /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		4CE42D73273839B0005631D6 /* Vary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE42D76273839B0005631D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +117,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BB800B7275D35790061D2F6 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				3BB800B8275D35940061D2F6 /* ResultsPresenter.swift */,
+				3BB800B9275D35940061D2F6 /* ResultsRouter.swift */,
+				3BB800BA275D35940061D2F6 /* ResultsViewController.swift */,
+				3BB800BB275D35940061D2F6 /* ResultsProtocols.swift */,
+				3BB800BC275D35940061D2F6 /* ResultsInteractor.swift */,
+				3BB800BD275D35940061D2F6 /* ResultsContainer.swift */,
+				3BB800C4275D35A50061D2F6 /* ResultTableViewCell.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
+		3BB986EE275CC066005BC87A /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				3BB986E2275CC05B005BC87A /* ScoresPresenter.swift */,
+				3BB986E3275CC05B005BC87A /* ScoresRouter.swift */,
+				3BB986E4275CC05B005BC87A /* ScoresViewController.swift */,
+				3BB986E5275CC05B005BC87A /* ScoresProtocols.swift */,
+				3BB986E6275CC05B005BC87A /* ScoresInteractor.swift */,
+				3BB986E7275CC05B005BC87A /* ScoresContainer.swift */,
+				3BB986EF275CC14E005BC87A /* ScoreTableViewCell.swift */,
+			);
+			path = Scores;
+			sourceTree = "<group>";
+		};
 		4CE42D6A273839B0005631D6 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +172,8 @@
 				4CF9FF912739D2C600F5F0CA /* Settings */,
 				4CF9FF902739D2B400F5F0CA /* Teams */,
 				4CE42D8A27383B68005631D6 /* Start */,
+				3BB986EE275CC066005BC87A /* Scores */,
+				3BB800B7275D35790061D2F6 /* Results */,
 				4CE42D7F273839B5005631D6 /* Assets.xcassets */,
 				4CE42D84273839B5005631D6 /* Info.plist */,
 			);
@@ -277,32 +335,45 @@
 			files = (
 				4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */,
 				4CF9FFA62739D38B00F5F0CA /* SettingsRouter.swift in Sources */,
+				3BB986ED275CC05B005BC87A /* ScoresContainer.swift in Sources */,
+				3BB800C1275D35940061D2F6 /* ResultsProtocols.swift in Sources */,
+				3BB986EC275CC05B005BC87A /* ScoresInteractor.swift in Sources */,
+				3BB986E8275CC05B005BC87A /* ScoresPresenter.swift in Sources */,
+				3BB800BE275D35940061D2F6 /* ResultsPresenter.swift in Sources */,
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
+				3BB986EB275CC05B005BC87A /* ScoresProtocols.swift in Sources */,
+				3BB986EA275CC05B005BC87A /* ScoresViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
 				3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */,
 				72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */,
 				4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */,
+				3BB800BF275D35940061D2F6 /* ResultsRouter.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */,
 				4CE42D9527383B88005631D6 /* StartInteractor.swift in Sources */,
 				4CF9FF982739D2EE00F5F0CA /* TeamsPresenter.swift in Sources */,
 				4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */,
+				3BB986F0275CC14E005BC87A /* ScoreTableViewCell.swift in Sources */,
 				4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */,
 				72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */,
 				4CE42D9127383B88005631D6 /* StartPresenter.swift in Sources */,
 				4CF9FF992739D2EE00F5F0CA /* TeamsRouter.swift in Sources */,
+				3BB800C0275D35940061D2F6 /* ResultsViewController.swift in Sources */,
 				72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
 				72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */,
+				3BB800C3275D35940061D2F6 /* ResultsContainer.swift in Sources */,
 				4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */,
+				3BB986E9275CC05B005BC87A /* ScoresRouter.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
 				72BD781E2753EE7400CF4F8D /* Network.swift in Sources */,
 				72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */,
-				72BD78252754082A00CF4F8D /* UserDefaultsManager.swift in Sources */,
+				3BB800C2275D35940061D2F6 /* ResultsInteractor.swift in Sources */,
 				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
+				3BB800C5275D35A50061D2F6 /* ResultTableViewCell.swift in Sources */,
 				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
 				72BD78202753EEF000CF4F8D /* Models.swift in Sources */,
 			);
