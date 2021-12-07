@@ -53,6 +53,20 @@ final class StartViewController: UIViewController {
         setupSubviews()
         setupStyle()
         setupActions()
+        output.viewDidLoad()
+//        let network = VaryNetwork(appVersion: 0, serverIp: "")
+//        network.getLastVersionAsync { result in
+//            switch result {
+//            case .success(let version):
+//                DispatchQueue.main.async {
+//                    // update UI
+//                }
+//                break
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        
 	}
     
     override func viewDidAppear(_ animated: Bool) {
@@ -170,5 +184,11 @@ final class StartViewController: UIViewController {
 }
 
 extension StartViewController: StartViewInput {
+    func showInfoMessage(message: String) {
+        let alert = UIAlertController(title: "Updated", message: "Updated to version " + message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
 }

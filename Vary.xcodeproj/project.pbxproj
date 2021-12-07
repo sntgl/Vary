@@ -32,6 +32,10 @@
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */; };
 		72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F37274D11C5003F32D0 /* RadioButton.swift */; };
+		72BD781E2753EE7400CF4F8D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781D2753EE7400CF4F8D /* Network.swift */; };
+		72BD78202753EEF000CF4F8D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781F2753EEF000CF4F8D /* Models.swift */; };
+		72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD7822275407DE00CF4F8D /* StorageManager.swift */; };
+		72BD78252754082A00CF4F8D /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD78242754082A00CF4F8D /* UserDefaultsManager.swift */; };
 		72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA71274132BE00B01C26 /* SliderView.swift */; };
 		72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA852741534500B01C26 /* DropDownMenu.swift */; };
 		72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA88274154EF00B01C26 /* View+anchors.swift */; };
@@ -64,6 +68,10 @@
 		4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
 		72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroupView.swift; sourceTree = "<group>"; };
 		72AE6F37274D11C5003F32D0 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		72BD781D2753EE7400CF4F8D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		72BD781F2753EEF000CF4F8D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		72BD7822275407DE00CF4F8D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		72BD78242754082A00CF4F8D /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		72E0FA71274132BE00B01C26 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		72E0FA852741534500B01C26 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		72E0FA88274154EF00B01C26 /* View+anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+anchors.swift"; sourceTree = "<group>"; };
@@ -100,6 +108,9 @@
 		4CE42D75273839B0005631D6 /* Vary */ = {
 			isa = PBXGroup;
 			children = (
+				72BD781F2753EEF000CF4F8D /* Models.swift */,
+				72BD7821275407B200CF4F8D /* Storage */,
+				72BD781C2753EB5700CF4F8D /* Network */,
 				4CE42D76273839B0005631D6 /* AppDelegate.swift */,
 				4CE42D78273839B0005631D6 /* SceneDelegate.swift */,
 				4CF9FF912739D2C600F5F0CA /* Settings */,
@@ -151,6 +162,23 @@
 				4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		72BD781C2753EB5700CF4F8D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				72BD781D2753EE7400CF4F8D /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		72BD7821275407B200CF4F8D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				72BD7822275407DE00CF4F8D /* StorageManager.swift */,
+				72BD78242754082A00CF4F8D /* UserDefaultsManager.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		72E0FA702741328A00B01C26 /* CustomViews */ = {
@@ -252,6 +280,7 @@
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
 				3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */,
+				72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */,
 				4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */,
@@ -270,9 +299,12 @@
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
+				72BD781E2753EE7400CF4F8D /* Network.swift in Sources */,
 				72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */,
+				72BD78252754082A00CF4F8D /* UserDefaultsManager.swift in Sources */,
 				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
 				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
+				72BD78202753EEF000CF4F8D /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
