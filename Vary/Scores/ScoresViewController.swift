@@ -32,7 +32,7 @@ final class ScoresViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor        = Colors.primaryColor
-
+        
         scoresTableView.register(ScoreTableViewCell.self, forCellReuseIdentifier: "Cell")
         scoresTableView.delegate = self
         scoresTableView.dataSource = self
@@ -53,6 +53,8 @@ final class ScoresViewController: UIViewController {
         scoresTableView.separatorColor = .black
         scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         scoresTableView.separatorStyle = .singleLine
+        
+
 	}
 
     func setupConstraints(){

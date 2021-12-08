@@ -16,7 +16,7 @@ protocol StorageManagerProtocol {
 
 }
 
-class StorageManager: StorageManagerProtocol{
+class StorageManager{
 
     
     private let userDefaultManager: UserDefaultsManagerProtocol
@@ -135,11 +135,14 @@ class StorageManager: StorageManagerProtocol{
         return FileManager.default.fileExists(atPath: url.path)
     }
 
-    
-    
-     init(userDefaultManager: UserDefaultsManagerProtocol) {
-        self.userDefaultManager = userDefaultManager
-    }
+    init(userDefaultManager: UserDefaultsManagerProtocol) {
+       self.userDefaultManager = userDefaultManager
+   }
+  
+}
+
+extension StorageManager: StorageManagerProtocol{
+
     
     func saveVersion(version: Int) {
         storageQueue.async { [weak self] in

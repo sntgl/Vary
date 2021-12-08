@@ -26,9 +26,6 @@ extension SettingsPresenter: SettingsModuleInput {
 }
 
 extension SettingsPresenter: SettingsViewOutput {
-    func onSettingsButtonClicked(settingsViewController: UIViewController) {
-        router.startNewGame(settingsViewController:settingsViewController)
-    }
     
     func onNextButtonClicked(){
         router.nextScreen()

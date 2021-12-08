@@ -20,7 +20,6 @@ protocol SettingsViewInput: AnyObject {
 }
 
 protocol SettingsViewOutput: AnyObject {
-    func onSettingsButtonClicked(settingsViewController: UIViewController)
     func onNextButtonClicked()
 }
 
@@ -31,6 +30,6 @@ protocol SettingsInteractorOutput: AnyObject {
 }
 
 protocol SettingsRouterInput: AnyObject {
-    func startNewGame(settingsViewController: UIViewController)
+    func startNewGame()
     func nextScreen()
 }
