@@ -12,6 +12,8 @@ import UIKit
 final class SettingsViewController: UIViewController {
 	private let output: SettingsViewOutput
     
+    //
+    public var gameSettingsOptions: GameSettings?
     
     // Colors
     private let primaryColor = VaryColors.primaryColor
@@ -267,13 +269,18 @@ final class SettingsViewController: UIViewController {
     }
     
     func collectGameSettings(){
-        
+        self.gameSettingsOptions = GameSettings(cardNumber: numberOfCartsView.valueIntString ?? 60,
+                                                 roundTime: roundTimeView.valueIntString ?? 60,
+                                                 penaltyForPass: radioGroupPenalty.currentChecked ?? 0,
+                                                 lastCommonWord: commonLastWordSwitcher.isOn,
+                                                 beginningTeam: dropDownTeam.selectedRow,
+                                                 chosenDeck: dropDownTeam.selectedRowTitle ?? "Средние")
     }
     
     
     @IBAction func onNextButtonClicked() {
+        self.collectGameSettings()
         output.onNextButtonClicked()
-        
     }
 }
 

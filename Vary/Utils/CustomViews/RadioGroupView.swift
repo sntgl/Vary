@@ -12,7 +12,8 @@ class RadioGroupView: UIView {
     private let stackView =  UIStackView()
     
     var multipleChoice: Bool = false
-    private var defaultChecked: Int?
+    public var defaultChecked: Int?
+    public var currentChecked: Int?
     
     private var radioTitles: [String] = []
     
@@ -23,6 +24,7 @@ class RadioGroupView: UIView {
         radioTitles = values
         
         defaultChecked = num
+        currentChecked = defaultChecked
         setupRadioGroup()
     }
     
@@ -79,6 +81,7 @@ extension RadioGroupView: RadioButtonDelegate{
             for btn in radioButtonsList{
                 if button.id != btn.id{
                     btn.isPressed = false
+                    self.currentChecked = button.id
                 }
             }
             

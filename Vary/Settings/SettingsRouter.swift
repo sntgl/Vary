@@ -28,6 +28,9 @@ extension SettingsRouter: SettingsRouterInput {
             print("no nav controller")
             return
         }
+        let settingsViewController: SettingsViewController = viewController as! SettingsViewController
+
+        
         let context: ScoresContext = ScoresContext()
         let container: ScoresContainer = ScoresContainer.assemble(with: context)
         let scoresViewController: UIViewController = container.viewController

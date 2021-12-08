@@ -11,6 +11,9 @@ import UIKit
 class DropDownMenu: UITextField  {
 
     
+    public var selectedRowTitle:String?
+    public var selectedRow:Int = 0
+    
     private var menuContent: [String] = ["Placeholder"]
     
     private let teamLabel: UILabel = {
@@ -38,6 +41,7 @@ class DropDownMenu: UITextField  {
          super.init(frame: .zero)
          menuContent = labelsValue
          teamLabel.text = menuContent[0]
+         selectedRowTitle = menuContent[0]
          setupConstrains()
          setUpPicker()
         
@@ -123,6 +127,8 @@ extension DropDownMenu: UIPickerViewDataSource, UIPickerViewDelegate {
         
         let selectedElement = menuContent[row]
         teamLabel.text = selectedElement
+        self.selectedRowTitle = selectedElement
+        self.selectedRow = row
     }
 
     
