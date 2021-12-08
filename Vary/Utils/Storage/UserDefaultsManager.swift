@@ -23,4 +23,6 @@ class UserDefaultsManager: UserDefaultsManagerProtocol {
             userDefaults.set(newValue, forKey: appVersionKey)
         }
     }
+    
+    
 }

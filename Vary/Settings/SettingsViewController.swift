@@ -81,12 +81,13 @@ final class SettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavController(navTitle: "Настройки игры")
+    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        setupNavController(navTitle: "Настройки игры")
         setupSubviews()
         setupStyle()
 

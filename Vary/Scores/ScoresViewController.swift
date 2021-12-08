@@ -19,7 +19,7 @@ final class ScoresViewController: UIViewController {
         self.output = output
 
         super.init(nibName: nil, bundle: nil)
-        title = "Набранные баллы"
+//        title = "Набранные баллы"
 
 
     }
@@ -54,8 +54,59 @@ final class ScoresViewController: UIViewController {
         scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         scoresTableView.separatorStyle = .singleLine
         
-
+//        setupNavController(navTitle: "SCores")
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavController(navTitle: "Набранные баллы")
+    }
+    
+    
+    func setupNavController(navTitle title:String){
+        guard let navController = self.navigationController else {
+            print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
+            return
+        }
+        
+        navController.setNavigationBarHidden(false, animated: true)
+
+        for views in navController.navigationBar.subviews {
+            views.removeFromSuperview()
+        }
+
+
+        // Add Button to NavBar
+        var navBarButtonConf = UIButton.Configuration.filled()
+        navBarButtonConf.buttonSize = .large
+        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
+
+        let navBarLabelButton = UIButton()
+        navBarLabelButton.configuration = navBarButtonConf
+        navBarLabelButton.setTitle(title, for: .normal)
+        navBarLabelButton.isEnabled = true
+        navBarLabelButton.layer.cornerRadius = 0
+        navBarLabelButton.backgroundColor = VaryColors.primaryColor
+        navBarLabelButton.clipsToBounds = true
+        navBarLabelButton.layer.cornerRadius = 10
+        navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        navBarLabelButton.titleLabel?.textColor = VaryColors.textColor
+        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
+        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
+
+        // navBar SubView
+        navController.navigationBar.addSubview(navBarLabelButton)
+        navBarLabelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBarLabelButton.topAnchor.constraint(equalTo: navController.navigationBar.topAnchor),
+            navBarLabelButton.widthAnchor.constraint(equalTo: navController.navigationBar.widthAnchor),
+            ])
+
+        // Send button to back
+        navController.navigationBar.sendSubviewToBack(navBarLabelButton)
+        navBarLabelButton.layer.zPosition = -1;
+        navBarLabelButton.isUserInteractionEnabled = false
+
+    }
 
     func setupConstraints(){
 

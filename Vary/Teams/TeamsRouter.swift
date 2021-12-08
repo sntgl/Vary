@@ -24,7 +24,6 @@ extension TeamsRouter: TeamsRouterInput {
         let context: SettingsContext = SettingsContext()
         let container: SettingsContainer = SettingsContainer.assemble(with: context)
         let settingsViewController: UIViewController = container.viewController
-        
         navController.pushViewController(settingsViewController, animated: true)
     }
 }

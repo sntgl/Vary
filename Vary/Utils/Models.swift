@@ -25,6 +25,21 @@ struct Card: Codable {
 }
 
 
+
+// Saving Teams info to Struct
+struct AllTeams{
+    let teamsList: [Team]
+}
+
+struct Team{
+    let id: Int
+    let name: String
+    let score: Int
+}
+
+
+
+
 struct GameSettings {
     
     let cardNumber: Int
