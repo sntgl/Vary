@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomNavBar{
+class CustomNavigationController: UINavigationController{
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -27,60 +27,80 @@ class CustomNavBar{
 //    private var title: String = ""
 //    private var navBar : UINavigationBar?
 //
-//    init(currentNavBar navBar:UINavigationBar, title label: String) {
+//    init(title label: String) {
 //        super.init(frame: .zero)
 //        self.title = label
 //        self.navBar = navBar
 //        self.setupNavController()
 //    }
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        self.setupNavController()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupNavController()
+    }
+    
+    var myTitleButton: UIButton?
+    
+    var myTitle: String? {
+        
+        didSet{
+            guard let btn = myTitleButton else{
+                return
+            }
+            btn.setTitle(myTitle, for: .normal)
+//            newValue
+        }
+    }
+    
+    func setupNavController(){
 //
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-//
-//    static func setupNavController(navTitle title:String){
-////
-////        guard let navBar = self.navBar else{
-////            return
-////        }
-////
-////        for views in navBar.subviews {
-////            views.removeFromSuperview()
-////        }
-////
-//        guard let navController = self.navigationController else {
+//        guard let navBar = self.navBar else{
 //            return
 //        }
 //
-//        var navBarButtonConf = UIButton.Configuration.filled()
-//        navBarButtonConf.buttonSize = .large
-//        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
+//        for views in navBar.subviews {
+//            views.removeFromSuperview()
+//        }
 //
-//        let navBarLabelButton = UIButton()
-//        navBarLabelButton.configuration = navBarButtonConf
+//        guard let navController = self.navigationController else {
+//            return
+//        }
+
+        var navBarButtonConf = UIButton.Configuration.filled()
+        navBarButtonConf.buttonSize = .large
+        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
+
+        let navBarLabelButton = UIButton()
+        navBarLabelButton.configuration = navBarButtonConf
 //        navBarLabelButton.setTitle(title, for: .normal)
-//        navBarLabelButton.isEnabled = true
-//        navBarLabelButton.layer.cornerRadius = 0
-//        navBarLabelButton.backgroundColor = primaryColor
-//        navBarLabelButton.clipsToBounds = true
-//        navBarLabelButton.layer.cornerRadius = 10
-//        navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-//        navBarLabelButton.titleLabel?.textColor = textColor
-//        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
-//        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
-//
-//        // navBar SubView
-//        navBar.addSubview(navBarLabelButton)
-//        navBarLabelButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            navBarLabelButton.topAnchor.constraint(equalTo: self.topAnchor),
-//            navBarLabelButton.widthAnchor.constraint(equalTo: self.widthAnchor),
-//            ])
-//
-//        // Send button to back
-//        navBar.sendSubviewToBack(navBarLabelButton)
-//        navBarLabelButton.layer.zPosition = -1;
-//        navBarLabelButton.isUserInteractionEnabled = false
-//
-//    }
+        navBarLabelButton.isEnabled = true
+        navBarLabelButton.layer.cornerRadius = 0
+        navBarLabelButton.backgroundColor = primaryColor
+        navBarLabelButton.clipsToBounds = true
+        navBarLabelButton.layer.cornerRadius = 10
+        navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        navBarLabelButton.titleLabel?.textColor = textColor
+        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
+        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
+        myTitleButton = navBarLabelButton
+        
+        // navBar SubView
+        self.navigationBar.addSubview(navBarLabelButton)
+        navBarLabelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navBarLabelButton.topAnchor.constraint(equalTo: self.navigationBar.topAnchor),
+            navBarLabelButton.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor),
+            ])
+
+        // Send button to back
+        self.navigationBar.sendSubviewToBack(navBarLabelButton)
+        navBarLabelButton.layer.zPosition = -1;
+        navBarLabelButton.isUserInteractionEnabled = false
+
+    }
 }

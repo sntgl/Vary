@@ -27,26 +27,34 @@ struct Card: Codable {
 
 
 // Saving Teams info to Struct
-struct AllTeams{
+struct AllTeams: Codable{
     let teamsList: [Team]
 }
 
-struct Team{
+struct Team: Codable{
     let id: Int
     let name: String
     let score: Int
 }
 
 
+struct CurrentGameInfo: Codable{
+    
+    let cardsForGame: [Card]
+    var guessedCardsIndex: [Int]
+    var notGuessedCardsIndex: [Int]
+    
+}
 
 
-struct GameSettings {
+
+struct GameSettings: Codable {
     
     let cardNumber: Int
     let roundTime: Int
     let penaltyForPass: Penalty
     
-    enum Penalty{
+    enum Penalty: Codable{
         case No
         case LosePoints
         case TaskFromPlayers
@@ -67,7 +75,7 @@ struct GameSettings {
     let beginningTeam: Int // -1 - random
     let chosenDeck : Deck
     
-    enum Deck{
+    enum Deck: Codable{
         case medium
         case small
         case large

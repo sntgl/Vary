@@ -55,11 +55,20 @@ final class ScoresViewController: UIViewController {
         scoresTableView.separatorStyle = .singleLine
         
 //        setupNavController(navTitle: "SCores")
+    
 	}
     
+    
+
+    
     override func viewWillAppear(_ animated: Bool) {
-        setupNavController(navTitle: "Набранные баллы")
+        guard let navController = self.navigationController as? CustomNavigationController else {
+                  print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
+                  return
+              }
+        navController.myTitle = "Набранные баллы"
     }
+    
     
     
     func setupNavController(navTitle title:String){

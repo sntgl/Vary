@@ -81,8 +81,13 @@ final class SettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
-        setupNavController(navTitle: "Настройки игры")
+        guard let navController = self.navigationController as? CustomNavigationController else {
+                  print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
+                  return
+              }
+        navController.myTitle = "Настройки игры"
     }
     
 	override func viewDidLoad() {
