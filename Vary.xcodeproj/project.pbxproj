@@ -21,6 +21,18 @@
 		3BB986EC275CC05B005BC87A /* ScoresInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E6275CC05B005BC87A /* ScoresInteractor.swift */; };
 		3BB986ED275CC05B005BC87A /* ScoresContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986E7275CC05B005BC87A /* ScoresContainer.swift */; };
 		3BB986F0275CC14E005BC87A /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB986EF275CC14E005BC87A /* ScoreTableViewCell.swift */; };
+		3BDAB13C2763EC9D00674ACD /* HelpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1362763EC9D00674ACD /* HelpPresenter.swift */; };
+		3BDAB13D2763EC9D00674ACD /* HelpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1372763EC9D00674ACD /* HelpRouter.swift */; };
+		3BDAB13E2763EC9D00674ACD /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1382763EC9D00674ACD /* HelpViewController.swift */; };
+		3BDAB13F2763EC9D00674ACD /* HelpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1392763EC9D00674ACD /* HelpProtocols.swift */; };
+		3BDAB1402763EC9D00674ACD /* HelpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB13A2763EC9D00674ACD /* HelpInteractor.swift */; };
+		3BDAB1412763EC9D00674ACD /* HelpContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB13B2763EC9D00674ACD /* HelpContainer.swift */; };
+		3BDAB1482763ECAB00674ACD /* AppSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1422763ECAB00674ACD /* AppSettingsPresenter.swift */; };
+		3BDAB1492763ECAB00674ACD /* AppSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1432763ECAB00674ACD /* AppSettingsRouter.swift */; };
+		3BDAB14A2763ECAB00674ACD /* AppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1442763ECAB00674ACD /* AppSettingsViewController.swift */; };
+		3BDAB14B2763ECAB00674ACD /* AppSettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1452763ECAB00674ACD /* AppSettingsProtocols.swift */; };
+		3BDAB14C2763ECAB00674ACD /* AppSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1462763ECAB00674ACD /* AppSettingsInteractor.swift */; };
+		3BDAB14D2763ECAB00674ACD /* AppSettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1472763ECAB00674ACD /* AppSettingsContainer.swift */; };
 		3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */; };
 		4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D76273839B0005631D6 /* AppDelegate.swift */; };
 		4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D78273839B0005631D6 /* SceneDelegate.swift */; };
@@ -72,6 +84,18 @@
 		3BB986E6275CC05B005BC87A /* ScoresInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresInteractor.swift; sourceTree = "<group>"; };
 		3BB986E7275CC05B005BC87A /* ScoresContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresContainer.swift; sourceTree = "<group>"; };
 		3BB986EF275CC14E005BC87A /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		3BDAB1362763EC9D00674ACD /* HelpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPresenter.swift; sourceTree = "<group>"; };
+		3BDAB1372763EC9D00674ACD /* HelpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRouter.swift; sourceTree = "<group>"; };
+		3BDAB1382763EC9D00674ACD /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		3BDAB1392763EC9D00674ACD /* HelpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpProtocols.swift; sourceTree = "<group>"; };
+		3BDAB13A2763EC9D00674ACD /* HelpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpInteractor.swift; sourceTree = "<group>"; };
+		3BDAB13B2763EC9D00674ACD /* HelpContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpContainer.swift; sourceTree = "<group>"; };
+		3BDAB1422763ECAB00674ACD /* AppSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsPresenter.swift; sourceTree = "<group>"; };
+		3BDAB1432763ECAB00674ACD /* AppSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsRouter.swift; sourceTree = "<group>"; };
+		3BDAB1442763ECAB00674ACD /* AppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewController.swift; sourceTree = "<group>"; };
+		3BDAB1452763ECAB00674ACD /* AppSettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsProtocols.swift; sourceTree = "<group>"; };
+		3BDAB1462763ECAB00674ACD /* AppSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsInteractor.swift; sourceTree = "<group>"; };
+		3BDAB1472763ECAB00674ACD /* AppSettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsContainer.swift; sourceTree = "<group>"; };
 		3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		4CE42D73273839B0005631D6 /* Vary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE42D76273839B0005631D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +173,32 @@
 			path = Scores;
 			sourceTree = "<group>";
 		};
+		3BDAB1342763EC8000674ACD /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				3BDAB1422763ECAB00674ACD /* AppSettingsPresenter.swift */,
+				3BDAB1432763ECAB00674ACD /* AppSettingsRouter.swift */,
+				3BDAB1442763ECAB00674ACD /* AppSettingsViewController.swift */,
+				3BDAB1452763ECAB00674ACD /* AppSettingsProtocols.swift */,
+				3BDAB1462763ECAB00674ACD /* AppSettingsInteractor.swift */,
+				3BDAB1472763ECAB00674ACD /* AppSettingsContainer.swift */,
+			);
+			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		3BDAB1352763EC8E00674ACD /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				3BDAB1362763EC9D00674ACD /* HelpPresenter.swift */,
+				3BDAB1372763EC9D00674ACD /* HelpRouter.swift */,
+				3BDAB1382763EC9D00674ACD /* HelpViewController.swift */,
+				3BDAB1392763EC9D00674ACD /* HelpProtocols.swift */,
+				3BDAB13A2763EC9D00674ACD /* HelpInteractor.swift */,
+				3BDAB13B2763EC9D00674ACD /* HelpContainer.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 		4CE42D6A273839B0005631D6 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +218,8 @@
 		4CE42D75273839B0005631D6 /* Vary */ = {
 			isa = PBXGroup;
 			children = (
+				3BDAB1352763EC8E00674ACD /* Help */,
+				3BDAB1342763EC8000674ACD /* AppSettings */,
 				72E0FA872741548F00B01C26 /* Utils */,
 				4CF9FF912739D2C600F5F0CA /* Settings */,
 				4CF9FF902739D2B400F5F0CA /* Teams */,
@@ -341,25 +393,32 @@
 				722A9933276266410055A8B4 /* UserDefaultKeys.swift in Sources */,
 				4CF9FF9D2739D2EE00F5F0CA /* TeamsContainer.swift in Sources */,
 				4CF9FFA62739D38B00F5F0CA /* SettingsRouter.swift in Sources */,
+				3BDAB1482763ECAB00674ACD /* AppSettingsPresenter.swift in Sources */,
 				3BB986ED275CC05B005BC87A /* ScoresContainer.swift in Sources */,
 				3BB800C1275D35940061D2F6 /* ResultsProtocols.swift in Sources */,
 				3BB986EC275CC05B005BC87A /* ScoresInteractor.swift in Sources */,
 				3BB986E8275CC05B005BC87A /* ScoresPresenter.swift in Sources */,
+				3BDAB1402763EC9D00674ACD /* HelpInteractor.swift in Sources */,
 				3BB800BE275D35940061D2F6 /* ResultsPresenter.swift in Sources */,
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
+				3BDAB14A2763ECAB00674ACD /* AppSettingsViewController.swift in Sources */,
 				3BB986EB275CC05B005BC87A /* ScoresProtocols.swift in Sources */,
 				3BB986EA275CC05B005BC87A /* ScoresViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
 				3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */,
 				72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */,
 				72454EAF2760CC4500ED5D1E /* VaryColors.swift in Sources */,
+				3BDAB13C2763EC9D00674ACD /* HelpPresenter.swift in Sources */,
 				4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */,
 				3BB800BF275D35940061D2F6 /* ResultsRouter.swift in Sources */,
+				3BDAB14C2763ECAB00674ACD /* AppSettingsInteractor.swift in Sources */,
 				4CE42D9227383B88005631D6 /* StartRouter.swift in Sources */,
 				72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */,
+				3BDAB14D2763ECAB00674ACD /* AppSettingsContainer.swift in Sources */,
 				4CE42D9527383B88005631D6 /* StartInteractor.swift in Sources */,
 				4CF9FF982739D2EE00F5F0CA /* TeamsPresenter.swift in Sources */,
 				4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */,
+				3BDAB1412763EC9D00674ACD /* HelpContainer.swift in Sources */,
 				3BB986F0275CC14E005BC87A /* ScoreTableViewCell.swift in Sources */,
 				4CF9FF9C2739D2EE00F5F0CA /* TeamsInteractor.swift in Sources */,
 				72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */,
@@ -368,13 +427,18 @@
 				3BB800C0275D35940061D2F6 /* ResultsViewController.swift in Sources */,
 				722E79AF275FE687009432A6 /* UserDefaultsManager.swift in Sources */,
 				72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */,
+				3BDAB13F2763EC9D00674ACD /* HelpProtocols.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
 				72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */,
 				3BB800C3275D35940061D2F6 /* ResultsContainer.swift in Sources */,
+				3BDAB14B2763ECAB00674ACD /* AppSettingsProtocols.swift in Sources */,
+				3BDAB1492763ECAB00674ACD /* AppSettingsRouter.swift in Sources */,
+				3BDAB13D2763EC9D00674ACD /* HelpRouter.swift in Sources */,
 				4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */,
 				3BB986E9275CC05B005BC87A /* ScoresRouter.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
+				3BDAB13E2763EC9D00674ACD /* HelpViewController.swift in Sources */,
 				4CF9FF9B2739D2EE00F5F0CA /* TeamsProtocols.swift in Sources */,
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
 				72BD781E2753EE7400CF4F8D /* Network.swift in Sources */,
