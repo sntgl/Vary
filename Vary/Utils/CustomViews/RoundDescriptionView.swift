@@ -88,8 +88,8 @@ class RoundDescriptionView: UIView {
         NSLayoutConstraint.activate([
             roundImage.topAnchor.constraint(equalTo: topAnchor),
             roundImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            roundImage.widthAnchor.constraint(equalToConstant: 75),
-            roundImage.heightAnchor.constraint(equalToConstant: 75),
+            roundImage.widthAnchor.constraint(equalToConstant: 100),
+            roundImage.heightAnchor.constraint(equalToConstant: 100),
 //            roundImage.bottomAnchor.constraint(equalTo: roundDescriptionLabel.topAnchor),
             
             roundDescriptionLabel.topAnchor.constraint(equalTo: roundImage.bottomAnchor),
@@ -99,7 +99,7 @@ class RoundDescriptionView: UIView {
             tipMessageLabel.topAnchor.constraint(equalTo: roundDescriptionLabel.bottomAnchor),
             tipMessageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             tipMessageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
-            tipMessageLabel.heightAnchor.constraint(equalToConstant: 10),
+            tipMessageLabel.heightAnchor.constraint(equalToConstant: 15),
         ])
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.viewTouched))

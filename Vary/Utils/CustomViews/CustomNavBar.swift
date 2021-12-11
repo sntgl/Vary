@@ -23,53 +23,42 @@ class CustomNavigationController: UINavigationController{
     private let additionalColor = VaryColors.additionalColor
     private let textColor = VaryColors.textColor
     
-//
-//    private var title: String = ""
-//    private var navBar : UINavigationBar?
-//
-//    init(title label: String) {
-//        super.init(frame: .zero)
-//        self.title = label
-//        self.navBar = navBar
-//        self.setupNavController()
-//    }
-    override init(rootViewController: UIViewController) {
-        super.init(rootViewController: rootViewController)
-        self.setupNavController()
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.setupNavController()
-    }
     
     var myTitleButton: UIButton?
+//    var timerLabel: UILabel?
     
     var myTitle: String? {
-        
         didSet{
             guard let btn = myTitleButton else{
                 return
             }
             btn.setTitle(myTitle, for: .normal)
-//            newValue
         }
     }
     
+//    var timerString: String? {
+//        didSet{
+//            guard let lbl = timerLabel else{
+//                return
+//            }
+//            lbl.text = timerString
+//        }
+//    }
+    
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        self.setupNavController()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupNavController()
+    }
+
+    
+    
+    
     func setupNavController(){
-//
-//        guard let navBar = self.navBar else{
-//            return
-//        }
-//
-//        for views in navBar.subviews {
-//            views.removeFromSuperview()
-//        }
-//
-//        guard let navController = self.navigationController else {
-//            return
-//        }
 
         var navBarButtonConf = UIButton.Configuration.filled()
         navBarButtonConf.buttonSize = .large
@@ -86,7 +75,7 @@ class CustomNavigationController: UINavigationController{
         navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         navBarLabelButton.titleLabel?.textColor = textColor
         // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
-        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
+//        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
         myTitleButton = navBarLabelButton
         
         // navBar SubView
@@ -95,6 +84,7 @@ class CustomNavigationController: UINavigationController{
         NSLayoutConstraint.activate([
             navBarLabelButton.topAnchor.constraint(equalTo: self.navigationBar.topAnchor),
             navBarLabelButton.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor),
+            navBarLabelButton.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor),
             ])
 
         // Send button to back
@@ -103,4 +93,21 @@ class CustomNavigationController: UINavigationController{
         navBarLabelButton.isUserInteractionEnabled = false
 
     }
+    
+//    func addTimerLabel(){
+//
+//        let timerLabel = UILabel()
+//        timerLabel.text = "01:00"
+//        self.navigationBar.addSubview(timerLabel)
+//        NSLayoutConstraint.activate([
+//            self.navigationBar.heightAnchor.constraint(equalToConstant: 35),
+//            ])
+//
+//        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            timerLabel.topAnchor.constraint(equalTo: self.myTitleButton!.bottomAnchor),
+//            timerLabel.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor),
+////            timerLabel.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor),
+//            ])    }
+    
 }

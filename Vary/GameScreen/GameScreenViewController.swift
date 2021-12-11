@@ -23,6 +23,9 @@ final class GameScreenViewController: UIViewController {
     private var buttonConf = UIButton.Configuration.filled()
     
     private var roundDesciptionView: RoundDescriptionView = RoundDescriptionView()
+    
+    private var timerButton = UIButton()
+    
     // End Views
     
     var gameInfo: GameInfo?
@@ -86,11 +89,11 @@ final class GameScreenViewController: UIViewController {
         
         
         guessedLabel.textColor = VaryColors.primaryColor
-        guessedLabel.font = guessedLabel.font.withSize(15)
+        guessedLabel.font = guessedLabel.font.withSize(20)
         
         
         wordsMissedLabel.textColor = VaryColors.additionalColor
-        wordsMissedLabel.font = wordsMissedLabel.font.withSize(15)
+        wordsMissedLabel.font = wordsMissedLabel.font.withSize(20)
         
         roundScoreLabel.textColor = VaryColors.textColor
         roundScoreLabel.font = roundScoreLabel.font.withSize(25)
@@ -99,6 +102,41 @@ final class GameScreenViewController: UIViewController {
         roundSubDescriptionLabel.textColor = VaryColors.textColor
         roundSubDescriptionLabel.font = roundSubDescriptionLabel.font.withSize(25)
         
+        setupTimerButtonStyle()
+    }
+    
+    func setupTimerButtonStyle(){
+        
+        var timerButtonConf = UIButton.Configuration.filled()
+        timerButtonConf.buttonSize = .large
+        timerButtonConf.baseBackgroundColor = VaryColors.primaryColor
+
+        timerButton.configuration = timerButtonConf
+//        navBarLabelButton.setTitle(title, for: .normal)
+        timerButton.isEnabled = true
+        timerButton.layer.cornerRadius = 0
+        timerButton.backgroundColor = VaryColors.primaryColor
+        timerButton.clipsToBounds = true
+        timerButton.layer.cornerRadius = 10
+        timerButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        timerButton.titleLabel?.textColor = VaryColors.textColor
+        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
+//        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
+//        myTitleButton = navBarLabelButton
+        timerButton.setTitle("01:00", for: .normal)
+
+        
+    }
+    
+    func setupSubTimerButton(){
+        // navBar SubView
+        view.addSubview(timerButton)
+        timerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            timerButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            timerButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            ])
         
     }
     
@@ -136,9 +174,9 @@ final class GameScreenViewController: UIViewController {
         
         roundButtonElements.forEach({v in roundInfoButton.addSubview(v)})
         roundButtonElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
-        
+        setupSubTimerButton()
         setupConstraints()
-    
+        
     }
     
     
@@ -149,7 +187,7 @@ final class GameScreenViewController: UIViewController {
             
             guessedLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             guessedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            guessedLabel.heightAnchor.constraint(equalToConstant: 10),
+            guessedLabel.heightAnchor.constraint(equalToConstant: 20),
             
 //            roundDesciptionView.topAnchor.constraint(equalTo: guessedLabel.bottomAnchor, constant: 25),
             roundDesciptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
