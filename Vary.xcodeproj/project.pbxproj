@@ -304,6 +304,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		72BB7CAB2764AC5200E74012 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				72BB7CA92764938500E74012 /* RoundTypeDescription.swift */,
+				72BD781F2753EEF000CF4F8D /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		72BD781C2753EB5700CF4F8D /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +333,7 @@
 		72E0FA702741328A00B01C26 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				72E0FA71274132BE00B01C26 /* SliderView.swift */,
 				72E0FA852741534500B01C26 /* DropDownMenu.swift */,
 				72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */,
@@ -336,15 +346,13 @@
 		72E0FA872741548F00B01C26 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				72BB7CAB2764AC5200E74012 /* Models */,
 				72E0FA702741328A00B01C26 /* CustomViews */,
 				72BD7821275407B200CF4F8D /* Storage */,
 				72BD781C2753EB5700CF4F8D /* Network */,
-				72BD781F2753EEF000CF4F8D /* Models.swift */,
 				72454EAE2760CC4500ED5D1E /* VaryColors.swift */,
 				72E0FA88274154EF00B01C26 /* View+anchors.swift */,
-				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				722A9932276266410055A8B4 /* UserDefaultKeys.swift */,
-				72BB7CA92764938500E74012 /* RoundTypeDescription.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

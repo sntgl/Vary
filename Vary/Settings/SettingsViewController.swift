@@ -68,6 +68,8 @@ final class SettingsViewController: UIViewController {
         return view
     }()
     
+    
+    var teamsInfo: AllTeams?
     // END SubViews
     
     
@@ -199,6 +201,8 @@ final class SettingsViewController: UIViewController {
             return DropDownMenu(menuContent: ["Случайная"])
         }
         // Получим опционал, но из опционала ты знаешь как вытаскивать
+        
+        self.teamsInfo = allTeams
         
         var allTeamsNames: [String] = []
         

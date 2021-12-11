@@ -38,9 +38,17 @@ struct Team: Codable{
 }
 
 
-struct CurrentGameInfo: Codable{
+struct GameInfo: Codable{
     
-    let cardsForGame: [Card]
+    
+    let allTeamsInfo: AllTeams
+    let cardsForGame: Dictionary
+    let gameSettings: GameSettings
+    
+    var currentTeam: Int
+    var currentRoundType: RoundType
+    
+
     var guessedCardsIndex: [Int]
     var notGuessedCardsIndex: [Int]
     

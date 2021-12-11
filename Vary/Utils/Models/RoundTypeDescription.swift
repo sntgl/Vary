@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum RoundType{
+enum RoundType: Codable{
     case describe
     case show
     case oneWord
