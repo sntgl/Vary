@@ -67,6 +67,8 @@
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */; };
 		72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F37274D11C5003F32D0 /* RadioButton.swift */; };
+		72BB7CA827648DFA00E74012 /* RoundDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */; };
+		72BB7CAA2764938500E74012 /* RoundTypeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB7CA92764938500E74012 /* RoundTypeDescription.swift */; };
 		72BD781E2753EE7400CF4F8D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781D2753EE7400CF4F8D /* Network.swift */; };
 		72BD78202753EEF000CF4F8D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781F2753EEF000CF4F8D /* Models.swift */; };
 		72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD7822275407DE00CF4F8D /* StorageManager.swift */; };
@@ -138,6 +140,8 @@
 		72454EB02760D6E300ED5D1E /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroupView.swift; sourceTree = "<group>"; };
 		72AE6F37274D11C5003F32D0 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDescriptionView.swift; sourceTree = "<group>"; };
+		72BB7CA92764938500E74012 /* RoundTypeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTypeDescription.swift; sourceTree = "<group>"; };
 		72BD781D2753EE7400CF4F8D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		72BD781F2753EEF000CF4F8D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		72BD7822275407DE00CF4F8D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -243,10 +247,10 @@
 		4CE42D75273839B0005631D6 /* Vary */ = {
 			isa = PBXGroup;
 			children = (
+				72E0FA872741548F00B01C26 /* Utils */,
 				3BDAB14E2763F10100674ACD /* GameScreen */,
 				3BDAB1352763EC8E00674ACD /* Help */,
 				3BDAB1342763EC8000674ACD /* AppSettings */,
-				72E0FA872741548F00B01C26 /* Utils */,
 				4CF9FF912739D2C600F5F0CA /* Settings */,
 				4CF9FF902739D2B400F5F0CA /* Teams */,
 				4CE42D8A27383B68005631D6 /* Start */,
@@ -324,6 +328,7 @@
 				72E0FA852741534500B01C26 /* DropDownMenu.swift */,
 				72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */,
 				72AE6F37274D11C5003F32D0 /* RadioButton.swift */,
+				72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				72E0FA88274154EF00B01C26 /* View+anchors.swift */,
 				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				722A9932276266410055A8B4 /* UserDefaultKeys.swift */,
+				72BB7CA92764938500E74012 /* RoundTypeDescription.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				3BDAB1492763ECAB00674ACD /* AppSettingsRouter.swift in Sources */,
 				3BDAB13D2763EC9D00674ACD /* HelpRouter.swift in Sources */,
 				4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */,
+				72BB7CAA2764938500E74012 /* RoundTypeDescription.swift in Sources */,
 				3BB986E9275CC05B005BC87A /* ScoresRouter.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				3BDAB13E2763EC9D00674ACD /* HelpViewController.swift in Sources */,
@@ -476,6 +483,7 @@
 				3BDAB15A2763F13700674ACD /* GameScreenContainer.swift in Sources */,
 				3BDAB1552763F13700674ACD /* GameScreenPresenter.swift in Sources */,
 				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
+				72BB7CA827648DFA00E74012 /* RoundDescriptionView.swift in Sources */,
 				72454EB12760D6E300ED5D1E /* CustomNavBar.swift in Sources */,
 				3BB800C5275D35A50061D2F6 /* ResultTableViewCell.swift in Sources */,
 				3BDAB1582763F13700674ACD /* GameScreenProtocols.swift in Sources */,

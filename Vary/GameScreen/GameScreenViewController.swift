@@ -11,6 +11,20 @@ import UIKit
 final class GameScreenViewController: UIViewController {
 	private let output: GameScreenViewOutput
 
+    // Views
+    
+    private let timerLabel = UILabel()
+    private let guessedLabel = UILabel()
+    private let wordsMissedLabel = UILabel()
+    private let roundScoreLabel = UILabel()
+    private let roundSubDescriptionLabel = UILabel()
+    
+    private let roundDesciptionView: RoundDescriptionView = RoundDescriptionView()
+    // End Views
+    
+    
+    
+    
     init(output: GameScreenViewOutput) {
         self.output = output
 
@@ -22,8 +36,19 @@ final class GameScreenViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navController = self.navigationController as? CustomNavigationController else {
+                  print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
+                  return
+              }
+        navController.myTitle = "Настройки игры"
+    }
+    
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
+//        setupSubviews()
+//        setupStyle()
 	}
 }
 
