@@ -31,11 +31,11 @@ extension SettingsRouter: SettingsRouterInput {
         
         saveAllGameInfo()
         
-        let context: ScoresContext = ScoresContext()
-        let container: ScoresContainer = ScoresContainer.assemble(with: context)
-        let scoresViewController: UIViewController = container.viewController
+        let context: GameScreenContext = GameScreenContext()
+        let container: GameScreenContainer = GameScreenContainer.assemble(with: context)
+        let gameScreenController: UIViewController = container.viewController
         
-        navController.pushViewController(scoresViewController, animated: true)
+        navController.pushViewController(gameScreenController, animated: true)
     }
     
     func saveAllGameInfo() {

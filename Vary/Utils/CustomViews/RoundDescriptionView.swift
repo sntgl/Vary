@@ -27,6 +27,7 @@ class RoundDescriptionView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
         view.textColor = VaryColors.secondaryColor
+        view.font = view.font.withSize(25)
         return view
     }()
     
@@ -34,7 +35,8 @@ class RoundDescriptionView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = VaryColors.additionalColor
+        view.textColor = VaryColors.textColor
+        view.font = view.font.withSize(15)
         return view
     }()
     
@@ -64,26 +66,40 @@ class RoundDescriptionView: UIView {
         addSubview(roundDescriptionLabel)
         addSubview(tipMessageLabel)
         
-        let roundIcon = roundType.getIcon()
-        let roundImage = UIImageView(image: roundIcon)
+        let roundIcon = roundType.getIcon()!
+        let roundImage = UIImageView()
+        let templateImage = roundIcon.withRenderingMode(.alwaysTemplate)
+        roundImage.image = templateImage
+        roundImage.tintColor = VaryColors.primaryColor
+
+        
+
         addSubview(roundImage)
         
         
         roundDescriptionLabel.text = roundType.getRoundDesciption()
         roundImage.translatesAutoresizingMaskIntoConstraints = false
         
+        
+        roundImage.tintColor = VaryColors.primaryColor
+        
+        tipMessageLabel.text = tipMessage
+        
         NSLayoutConstraint.activate([
             roundImage.topAnchor.constraint(equalTo: topAnchor),
             roundImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            roundImage.bottomAnchor.constraint(equalTo: roundDescriptionLabel.topAnchor),
+            roundImage.widthAnchor.constraint(equalToConstant: 75),
+            roundImage.heightAnchor.constraint(equalToConstant: 75),
+//            roundImage.bottomAnchor.constraint(equalTo: roundDescriptionLabel.topAnchor),
             
-            roundDescriptionLabel.topAnchor.constraint(equalTo: roundImage.topAnchor),
+            roundDescriptionLabel.topAnchor.constraint(equalTo: roundImage.bottomAnchor),
             roundDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             roundDescriptionLabel.bottomAnchor.constraint(equalTo: tipMessageLabel.topAnchor),
             
             tipMessageLabel.topAnchor.constraint(equalTo: roundDescriptionLabel.bottomAnchor),
             tipMessageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            tipMessageLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tipMessageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
+            tipMessageLabel.heightAnchor.constraint(equalToConstant: 10),
         ])
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.viewTouched))

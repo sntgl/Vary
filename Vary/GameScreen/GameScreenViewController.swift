@@ -19,7 +19,10 @@ final class GameScreenViewController: UIViewController {
     private let roundScoreLabel = UILabel()
     private let roundSubDescriptionLabel = UILabel()
     
-    private let roundDesciptionView: RoundDescriptionView = RoundDescriptionView()
+    private let roundInfoButton = UIButton()
+    private var buttonConf = UIButton.Configuration.filled()
+    
+    private var roundDesciptionView: RoundDescriptionView = RoundDescriptionView()
     // End Views
     
     var gameInfo: GameInfo?
@@ -53,37 +56,139 @@ final class GameScreenViewController: UIViewController {
         guard let gameInfo = gameInfo else {
             return
         }
-        navController.myTitle = gameInfo.teamList.teamsList[game]
+        navController.myTitle = gameInfo.allTeamsInfo.teamsList[gameInfo.currentTeam].name
     }
     
 
     
+	override func viewDidLoad() {
+		super.viewDidLoad()
+        setupStyle()
+        setupSubviews()
+
+	}
+
+    func setupStyle() {
+        view.backgroundColor = VaryColors.surfaceColor
+        
+        
+        buttonConf.buttonSize = .large
+        buttonConf.baseBackgroundColor = VaryColors.additionalColor
+        
+        roundInfoButton.configuration = buttonConf
+        roundInfoButton.isEnabled = false
+        roundInfoButton.backgroundColor = VaryColors.additionalColor
+        roundInfoButton.clipsToBounds = true
+        roundInfoButton.layer.cornerRadius = 10
+        roundInfoButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        roundInfoButton.titleLabel?.textColor = VaryColors.textColor
+        roundInfoButton.titleLabel?.font =  roundInfoButton.titleLabel?.font.withSize(25)
+        
+        
+        guessedLabel.textColor = VaryColors.primaryColor
+        guessedLabel.font = guessedLabel.font.withSize(15)
+        
+        
+        wordsMissedLabel.textColor = VaryColors.additionalColor
+        wordsMissedLabel.font = wordsMissedLabel.font.withSize(15)
+        
+        roundScoreLabel.textColor = VaryColors.textColor
+        roundScoreLabel.font = roundScoreLabel.font.withSize(25)
+        
+        
+        roundSubDescriptionLabel.textColor = VaryColors.textColor
+        roundSubDescriptionLabel.font = roundSubDescriptionLabel.font.withSize(25)
+        
+        
+    }
     
-    func createNewDropDown() -> DropDownMenu{
-        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
-        let myUserDefault = UserDefaultsManager().userDefaults
-        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
-            return DropDownMenu(menuContent: ["Случайная"])
+    func setupSubviews() {
+        guard let gameInfo = gameInfo else {
+            return
         }
-        // Получим опционал, но из опционала ты знаешь как вытаскивать
+        roundDesciptionView = RoundDescriptionView(roundType: gameInfo.currentRoundType)
+        roundSubDescriptionLabel.text = gameInfo.currentRoundType.getRoundSubDesciption()
+        roundScoreLabel.text = "0"
+        guessedLabel.text = "ОТГАДАНО"
+        wordsMissedLabel.text = "ПРОПУЩЕНО"
+        let allElements = [
+
+//            timerLabel,
+            guessedLabel,
+            
+            roundDesciptionView,
+            
+            wordsMissedLabel,
+            
+            roundInfoButton,
+        ]
+
         
-        var allTeamsNames: [String] = []
+        allElements.forEach({v in view.addSubview(v)})
+        allElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
         
-        for team in allTeams.teamsList{
-            allTeamsNames.append(team.name)
-        }
         
-        return DropDownMenu(menuContent: allTeamsNames)
+        let roundButtonElements = [
+            
+            roundScoreLabel,
+            roundSubDescriptionLabel,
+        ]
+        
+        roundButtonElements.forEach({v in roundInfoButton.addSubview(v)})
+        roundButtonElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
+        
+        setupConstraints()
+    
     }
     
     
-	override func viewDidLoad() {
-		super.viewDidLoad()
-//        setupSubviews()
-//        setupStyle()
-	}
+    func setupConstraints() {
+
+
+        NSLayoutConstraint.activate([
+            
+            guessedLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            guessedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            guessedLabel.heightAnchor.constraint(equalToConstant: 10),
+            
+//            roundDesciptionView.topAnchor.constraint(equalTo: guessedLabel.bottomAnchor, constant: 25),
+            roundDesciptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            roundDesciptionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            roundDesciptionView.heightAnchor.constraint(equalToConstant: 150),
+            roundDesciptionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            
+            wordsMissedLabel.topAnchor.constraint(equalTo: roundInfoButton.topAnchor, constant: -20),
+            wordsMissedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            wordsMissedLabel.widthAnchor.constraint(equalToConstant: 300),
+            wordsMissedLabel.bottomAnchor.constraint(equalTo: roundInfoButton.topAnchor),
+            
+//            roundInfoButton.topAnchor.constraint(equalTo: wordsMissedLabel.bottomAnchor, constant: 10),
+            roundInfoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            roundInfoButton.heightAnchor.constraint(equalTo: roundSubDescriptionLabel.heightAnchor, constant: 30),
+            roundInfoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            roundInfoButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            
+            roundScoreLabel.topAnchor.constraint(equalTo: roundInfoButton.topAnchor, constant: 5),
+            roundScoreLabel.centerXAnchor.constraint(equalTo: roundInfoButton.centerXAnchor),
+//            roundScoreLabel.widthAnchor.constraint(equalTo: roundInfoButton.widthAnchor),
+            
+            roundSubDescriptionLabel.topAnchor.constraint(equalTo: roundScoreLabel.bottomAnchor, constant: 5),
+            roundSubDescriptionLabel.centerXAnchor.constraint(equalTo: roundInfoButton.centerXAnchor),
+//            roundSubDescriptionLabel.widthAnchor.constraint(equalTo: roundInfoButton.widthAnchor),
+            roundSubDescriptionLabel.bottomAnchor.constraint(equalTo: roundInfoButton.bottomAnchor),
+  
+        ])
+        
+    }
+
+
 }
+
+
 
 extension GameScreenViewController: GameScreenViewInput {
 }
