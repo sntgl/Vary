@@ -21,7 +21,7 @@ final class TeamsContainer {
 
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
-
+        
         interactor.output = presenter
         router.viewController = viewController
 
