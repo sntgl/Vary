@@ -53,7 +53,7 @@ final class SettingsViewController: UIViewController {
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private let dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
+    private var dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
     private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
     
     private let numberOfCartsView: SliderView = {
@@ -190,7 +190,27 @@ final class SettingsViewController: UIViewController {
         
     }
     
+    
+    func createNewDropDown() -> DropDownMenu{
+        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
+        let myUserDefault = UserDefaultsManager().userDefaults
+        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
+        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
+            return DropDownMenu(menuContent: ["Случайная"])
+        }
+        // Получим опционал, но из опционала ты знаешь как вытаскивать
+        
+        var allTeamsNames: [String] = []
+        
+        for team in allTeams.teamsList{
+            allTeamsNames.append(team.name)
+        }
+        
+        return DropDownMenu(menuContent: allTeamsNames)
+    }
+    
     func setupSubviews() {
+        dropDownTeam = createNewDropDown()
         
         allElements = [
 
