@@ -38,8 +38,9 @@ final class GameScreenViewController: UIViewController {
     
     var gameInfo: GameInfo?
     var currentWordIndex: Int = 0
-    
-    
+    var scoreForWord: Int = 10
+    var currentRoundType: RoundType?
+    var initialCircleCoord: CGFloat?
     // End util vars
     
     // Inits
@@ -65,14 +66,12 @@ final class GameScreenViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        guard var gameInfo = gameInfo else {
-            return
-        }
+    
         
+        self.gameInfo!.currentRoundTeams = self.gameInfo!.formTeamList()
         
-        gameInfo.formTeamList()
-        
-        navController.myTitle = gameInfo.currentRoundTeams[gameInfo.currentTeam].name
+        navController.myTitle = self.gameInfo?.currentRoundTeams[self.gameInfo?.currentTeam ?? 0].name
+        currentRoundType = roundDesciptionView.roundType
     }
     
 
@@ -315,6 +314,8 @@ final class GameScreenViewController: UIViewController {
   
         ])
         
+        self.initialCircleCoord = self.wordCircleButton.center.y
+        
     }
     
     
@@ -329,7 +330,9 @@ final class GameScreenViewController: UIViewController {
 
     
     @objc func swipeHandler(gester: UISwipeGestureRecognizer) {
-        let initialCircleCoord = self.wordCircleButton.center.y
+        guard let initialCircleCoord = self.initialCircleCoord else {
+            return
+        }
         let moveCoord = initialCircleCoord - self.guessedLabel.center.y - self.wordCicleButtonHeight/2 + 15
 //        let downCoord = self.wordsMissedLabel.center.y - self.wordCicleButtonHeight/2 - 15
 
@@ -340,6 +343,7 @@ final class GameScreenViewController: UIViewController {
                 self.wordCircleButton.center.y += moveCoord
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
+                self.updateScore(wordGuessed: true)
             }
 
         case .down:
@@ -348,17 +352,23 @@ final class GameScreenViewController: UIViewController {
                 self.wordCircleButton.center.y -= moveCoord
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
+                self.updateScore(wordGuessed: false)
             }
         default:
             break
         }
         
-        let currentCardWord: String = self.gameInfo?.cardsForGame.cards[self.currentWordIndex].name ?? "Not found"
-        wordCircleButton.setTitle(currentCardWord, for: .normal)
-        self.currentWordIndex += 1
+        showNextCard()
     }
 
-
+    func showNextCard(){
+        guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
+            return
+        }
+        wordCircleButton.setTitle(wordCard.name, for: .normal)
+        self.currentWordIndex += 1
+    }
+    
 
     func getGameInfo() -> GameInfo?{
         // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
@@ -371,17 +381,54 @@ final class GameScreenViewController: UIViewController {
     @objc func updateCounter() {
         //example functionality
         
-        guard var time = self.countdownTime, let timer = self.timer else{
-            return
-        }
-        if time > 0 {
-            time -= 1
-            timerButton.setTitle(String(time), for: .normal)
+//        guard var time = self.countdownTime, let timer = self.timer else{
+//            return
+//        }
+        if self.countdownTime! > 0 {
+            self.countdownTime! -= 1
+            timerButton.setTitle(String(self.countdownTime!), for: .normal)
             
         }
-//        else{
-//            timer.invalidate()
-//        }
+        else{
+            self.timer!.invalidate()
+        }
+    }
+    
+    
+    
+    func updateScore(wordGuessed:Bool){
+
+        if wordGuessed{
+            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
+        }else{
+            
+            switch gameInfo!.gameSettings.penaltyForPass {
+            case .No:
+                return
+            case .LosePoints:
+                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
+            case .TaskFromPlayers:
+                self.showTaskFromPlayers()
+            }
+            
+        }
+        updateScoreLabel()
+    }
+    
+    
+    func updateScoreLabel(){
+        guard let gameInfo = gameInfo else {
+            return
+        }
+        roundScoreLabel.text = String(gameInfo.currentRoundTeams[gameInfo.currentTeam].score)
+    }
+    
+    func showTaskFromPlayers(){
+        self.timer?.invalidate()
+        roundDesciptionView.changeRoundType(toType: .taskFromPlayers)
+        wordCircleButton.isHidden = true
+        roundDesciptionView.isHidden = false
+
     }
     
 }
@@ -390,14 +437,10 @@ final class GameScreenViewController: UIViewController {
 extension GameScreenViewController: RoundDescriptionViewDelegagate{
     func viewTouched() {
 
-//        DispatchQueue.main.async(execute: { () -> Void in
             roundDesciptionView.isHidden = true
             wordCircleButton.isHidden = false
-            
-//        guard let timer = self.timer else {
-//            return
-//        }
-        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     
 
 

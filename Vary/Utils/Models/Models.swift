@@ -34,7 +34,7 @@ struct AllTeams: Codable{
 struct Team: Codable{
     let id: Int
     let name: String
-    let score: Int
+    var score: Int
 }
 
 
@@ -53,26 +53,31 @@ struct GameInfo: Codable{
     var guessedCardsIndex: [Int]
     var notGuessedCardsIndex: [Int]
     
-    mutating func formTeamList() {
-        currentRoundTeams = allTeamsInfo.teamsList
+    func formTeamList() -> [Team] {
+        var resultTeamList = NSArray(array:allTeamsInfo.teamsList, copyItems: true) as! [Team]
+//        allTeamsInfo.teamsList.map { $0.copy() }
         
         if gameSettings.beginningTeam == 0 {
-            currentRoundTeams.shuffle()
-            return
+            return resultTeamList.shuffled()
         } else {
             let firstTeamIndex = gameSettings.beginningTeam - 1
             
             if firstTeamIndex <= (allTeamsInfo.teamsList.count-1){
-                let element = currentRoundTeams.remove(at: firstTeamIndex)
-                currentRoundTeams.insert(element, at: 0)
+                let element = resultTeamList.remove(at: firstTeamIndex)
+                resultTeamList.insert(element, at: 0)
+                return resultTeamList
             }
         }
       
+        return resultTeamList
     
-
     }
     
-    func switchRound(){
+    func getNextCard(byIndex index:Int) -> Card?{
+        if index < cardsForGame.cards.count {
+            return cardsForGame.cards[index]
+        }
+        return nil
         
     }
 }

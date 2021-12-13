@@ -40,6 +40,13 @@ class RoundDescriptionView: UIView {
         return view
     }()
     
+    private let roundImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = VaryColors.primaryColor
+        return view
+    }()
+    
 
     init() {
         super.init(frame: .zero)
@@ -58,32 +65,29 @@ class RoundDescriptionView: UIView {
         setupConstrains()
     }
     
-    
-    private func setupConstrains() {
+    private func setupSubViewsInfo(){
         guard let roundType = roundType else {
             return
         }
-        addSubview(roundDescriptionLabel)
-        addSubview(tipMessageLabel)
-        
         let roundIcon = roundType.getIcon()!
-        let roundImage = UIImageView()
         let templateImage = roundIcon.withRenderingMode(.alwaysTemplate)
         roundImage.image = templateImage
         roundImage.tintColor = VaryColors.primaryColor
-
-        
-
-        addSubview(roundImage)
-        
         
         roundDescriptionLabel.text = roundType.getRoundDesciption()
-        roundImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        roundImage.tintColor = VaryColors.primaryColor
         
         tipMessageLabel.text = tipMessage
+        
+    }
+    
+    
+    private func setupConstrains() {
+  
+        addSubview(roundDescriptionLabel)
+        addSubview(tipMessageLabel)
+        addSubview(roundImage)
+        
+        setupSubViewsInfo()
         
         NSLayoutConstraint.activate([
             roundImage.topAnchor.constraint(equalTo: topAnchor),
@@ -110,8 +114,13 @@ class RoundDescriptionView: UIView {
     
     
     @objc func viewTouched(sender : UITapGestureRecognizer) {
-        print("TOUCHED!")
+//        print("TOUCHED!")
         delegate?.viewTouched()
+    }
+    
+    func changeRoundType(toType type:RoundType){
+        self.roundType = type
+        setupSubViewsInfo()
     }
 
 }
