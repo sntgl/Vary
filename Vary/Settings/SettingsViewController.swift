@@ -159,7 +159,7 @@ final class SettingsViewController: UIViewController {
         
         self.teamsInfo = allTeams
         
-        var allTeamsNames: [String] = []
+        var allTeamsNames: [String] = ["Случайная"]
         
         for team in allTeams.teamsList{
             allTeamsNames.append(team.name)

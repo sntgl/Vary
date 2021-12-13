@@ -29,9 +29,18 @@ final class GameScreenViewController: UIViewController {
     private var wordCircleButton = UIButton()
     private var wordCicleButtonHeight = CGFloat(200)
     
+    var timer: Timer?
+    var countdownTime: Int?
+    
     // End Views
     
+    // Utils vars
+    
     var gameInfo: GameInfo?
+    var currentWordIndex: Int = 0
+    
+    
+    // End util vars
     
     // Inits
     
@@ -39,9 +48,7 @@ final class GameScreenViewController: UIViewController {
         self.output = output
         super.init(nibName: nil, bundle: nil)
         self.gameInfo = getGameInfo()
-        print("GOT")
-        print(self.gameInfo?.gameSettings.cardNumber)
-        print(self.gameInfo?.cardsForGame.cards.count)
+        self.countdownTime = gameInfo?.gameSettings.roundTime
     }
     
     @available(*, unavailable)
@@ -58,10 +65,14 @@ final class GameScreenViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        guard let gameInfo = gameInfo else {
+        guard var gameInfo = gameInfo else {
             return
         }
-        navController.myTitle = gameInfo.allTeamsInfo.teamsList[gameInfo.currentTeam].name
+        
+        
+        gameInfo.formTeamList()
+        
+        navController.myTitle = gameInfo.currentRoundTeams[gameInfo.currentTeam].name
     }
     
 
@@ -145,7 +156,11 @@ final class GameScreenViewController: UIViewController {
         // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
 //        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
 //        myTitleButton = navBarLabelButton
-        timerButton.setTitle("01:00", for: .normal)
+        timerButton.isUserInteractionEnabled = false
+        guard let time = self.countdownTime else{
+            return
+        }
+        timerButton.setTitle(String(time), for: .normal)
     }
     
     
@@ -156,6 +171,12 @@ final class GameScreenViewController: UIViewController {
         wordCircleButton.clipsToBounds = true
         wordCircleButton.backgroundColor = VaryColors.secondaryColor
         wordCircleButton.isHidden = true
+        wordCircleButton.tintColor = VaryColors.textColor
+        
+        let currentCardWord: String = self.gameInfo?.cardsForGame.cards[self.currentWordIndex].name ?? "Not found"
+        wordCircleButton.setTitle(currentCardWord, for: .normal)
+        self.currentWordIndex += 1
+        
     }
     
     
@@ -194,6 +215,8 @@ final class GameScreenViewController: UIViewController {
     
     func setupSubviews() {
         
+        setupSubViewsInfo()
+        
         let allElements = [
 
 //            timerLabel,
@@ -222,7 +245,7 @@ final class GameScreenViewController: UIViewController {
         roundButtonElements.forEach({v in roundInfoButton.addSubview(v)})
         roundButtonElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
         
-        setupSubViewsInfo()
+        
         setupSubTimerButton()
         setupConstraints()
         
@@ -311,14 +334,10 @@ final class GameScreenViewController: UIViewController {
 //        let downCoord = self.wordsMissedLabel.center.y - self.wordCicleButtonHeight/2 - 15
 
         switch gester.direction {
-        case .right:
-            print("Right swipe was recognized")
-        case .left:
-            print("Left swipe was recognized")
         case .up:
             print("Up swipe was recognized")
             UIView.animate(withDuration: 0.5) {
-                self.wordCircleButton.center.y -= moveCoord
+                self.wordCircleButton.center.y += moveCoord
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
             }
@@ -326,13 +345,17 @@ final class GameScreenViewController: UIViewController {
         case .down:
             print("Down swipe was recognpaized")
             UIView.animate(withDuration: 0.5) {
-                self.wordCircleButton.center.y += moveCoord
+                self.wordCircleButton.center.y -= moveCoord
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
             }
         default:
             break
         }
+        
+        let currentCardWord: String = self.gameInfo?.cardsForGame.cards[self.currentWordIndex].name ?? "Not found"
+        wordCircleButton.setTitle(currentCardWord, for: .normal)
+        self.currentWordIndex += 1
     }
 
 
@@ -344,6 +367,23 @@ final class GameScreenViewController: UIViewController {
         return try? myUserDefault.get(objectType: GameInfo.self, forKey: UserDefaultKeys.gameInfo)
     }
 
+    
+    @objc func updateCounter() {
+        //example functionality
+        
+        guard var time = self.countdownTime, let timer = self.timer else{
+            return
+        }
+        if time > 0 {
+            time -= 1
+            timerButton.setTitle(String(time), for: .normal)
+            
+        }
+//        else{
+//            timer.invalidate()
+//        }
+    }
+    
 }
 
 
@@ -353,6 +393,14 @@ extension GameScreenViewController: RoundDescriptionViewDelegagate{
 //        DispatchQueue.main.async(execute: { () -> Void in
             roundDesciptionView.isHidden = true
             wordCircleButton.isHidden = false
+            
+//        guard let timer = self.timer else {
+//            return
+//        }
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+    
+
+
 
         
     }
