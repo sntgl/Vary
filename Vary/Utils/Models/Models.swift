@@ -13,7 +13,7 @@ struct Dictionary: Codable {
     let name: String
     let version: Int
     let accessLevel: Int
-    let cards: [Card]
+    var cards: [Card]
     
 }
 
@@ -45,6 +45,7 @@ struct GameInfo: Codable{
     let cardsForGame: Dictionary
     let gameSettings: GameSettings
     
+    var currentRoundTeams: [Team]
     var currentTeam: Int
     var currentRoundType: RoundType
     
@@ -52,6 +53,28 @@ struct GameInfo: Codable{
     var guessedCardsIndex: [Int]
     var notGuessedCardsIndex: [Int]
     
+    mutating func formTeamList() {
+        currentRoundTeams = allTeamsInfo.teamsList
+        
+        if gameSettings.beginningTeam == 0 {
+            currentRoundTeams.shuffle()
+            return
+        } else {
+            let firstTeamIndex = gameSettings.beginningTeam - 1
+            
+            if firstTeamIndex <= (allTeamsInfo.teamsList.count-1){
+                let element = currentRoundTeams.remove(at: firstTeamIndex)
+                currentRoundTeams.insert(element, at: 0)
+            }
+        }
+      
+    
+
+    }
+    
+    func switchRound(){
+        
+    }
 }
 
 
@@ -80,7 +103,7 @@ struct GameSettings: Codable {
     }
     
     let lastCommonWord: Bool
-    let beginningTeam: Int // -1 - random
+    let beginningTeam: Int // 0 - random
     let chosenDeck : Deck
     
     enum Deck: Codable{
@@ -109,5 +132,6 @@ struct GameSettings: Codable {
         self.beginningTeam = beginningTeam
         self.chosenDeck = Deck(option:chosenDeck)
     }
+    
     
 }

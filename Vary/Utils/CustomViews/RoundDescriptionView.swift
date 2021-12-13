@@ -110,6 +110,7 @@ class RoundDescriptionView: UIView {
     
     
     @objc func viewTouched(sender : UITapGestureRecognizer) {
+        print("TOUCHED!")
         delegate?.viewTouched()
     }
 

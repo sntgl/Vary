@@ -26,31 +26,33 @@ final class GameScreenViewController: UIViewController {
     
     private var timerButton = UIButton()
     
+    private var wordCircleButton = UIButton()
+    private var wordCicleButtonHeight = CGFloat(200)
+    
     // End Views
     
     var gameInfo: GameInfo?
     
+    // Inits
     
     init(output: GameScreenViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
         self.gameInfo = getGameInfo()
-
+        print("GOT")
+        print(self.gameInfo?.gameSettings.cardNumber)
+        print(self.gameInfo?.cardsForGame.cards.count)
     }
     
-    
-    func getGameInfo() -> GameInfo?{
-        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
-        let myUserDefault = UserDefaultsManager().userDefaults
-        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        return try? myUserDefault.get(objectType: GameInfo.self, forKey: UserDefaultKeys.gameInfo)
-    }
-
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // End inits
+    
+    
+    // LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         guard let navController = self.navigationController as? CustomNavigationController else {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
@@ -70,7 +72,24 @@ final class GameScreenViewController: UIViewController {
         setupSubviews()
 
 	}
+    
+    
+    // End Lifecycle
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Additional functions
 
+    
+    
+    // Style
+    
     func setupStyle() {
         view.backgroundColor = VaryColors.surfaceColor
         
@@ -102,6 +121,9 @@ final class GameScreenViewController: UIViewController {
         roundSubDescriptionLabel.textColor = VaryColors.textColor
         roundSubDescriptionLabel.font = roundSubDescriptionLabel.font.withSize(25)
         
+        setupWordCircleStyle()
+
+        
         setupTimerButtonStyle()
     }
     
@@ -124,37 +146,62 @@ final class GameScreenViewController: UIViewController {
 //        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
 //        myTitleButton = navBarLabelButton
         timerButton.setTitle("01:00", for: .normal)
-
-        
     }
     
-    func setupSubTimerButton(){
-        // navBar SubView
-        view.addSubview(timerButton)
-        timerButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            timerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            timerButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            timerButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            ])
-        
+    
+    func setupWordCircleStyle(){
+        wordCircleButton = UIButton(type: .custom)
+        wordCircleButton.frame = CGRect(x: 160, y: 100, width: wordCicleButtonHeight, height: wordCicleButtonHeight)
+        wordCircleButton.layer.cornerRadius = 0.5 * wordCircleButton.bounds.size.width
+        wordCircleButton.clipsToBounds = true
+        wordCircleButton.backgroundColor = VaryColors.secondaryColor
+        wordCircleButton.isHidden = true
     }
     
-    func setupSubviews() {
+    
+    
+    // End Style setup
+    
+    
+    
+    
+    
+    
+    
+    
+    // SubViews Setup
+    
+    func setupSubViewsInfo(){
         guard let gameInfo = gameInfo else {
             return
         }
         roundDesciptionView = RoundDescriptionView(roundType: gameInfo.currentRoundType)
+        roundDesciptionView.delegate = self
+        
         roundSubDescriptionLabel.text = gameInfo.currentRoundType.getRoundSubDesciption()
         roundScoreLabel.text = "0"
         guessedLabel.text = "ОТГАДАНО"
         wordsMissedLabel.text = "ПРОПУЩЕНО"
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
+        swipeUp.direction = .up
+        wordCircleButton.addGestureRecognizer(swipeUp)
+
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
+        swipeDown.direction = .down
+        wordCircleButton.addGestureRecognizer(swipeDown)
+    }
+    
+    func setupSubviews() {
+        
         let allElements = [
 
 //            timerLabel,
             guessedLabel,
             
             roundDesciptionView,
+            
+            wordCircleButton,
             
             wordsMissedLabel,
             
@@ -174,18 +221,36 @@ final class GameScreenViewController: UIViewController {
         
         roundButtonElements.forEach({v in roundInfoButton.addSubview(v)})
         roundButtonElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
+        
+        setupSubViewsInfo()
         setupSubTimerButton()
         setupConstraints()
         
     }
     
     
+    func setupSubTimerButton(){
+        // navBar SubView
+        view.addSubview(timerButton)
+        timerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            timerButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            timerButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            ])
+        
+    }
+    
+    
+    
+    // Constraints
+    
     func setupConstraints() {
 
 
         NSLayoutConstraint.activate([
             
-            guessedLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            guessedLabel.topAnchor.constraint(equalTo: timerButton.bottomAnchor, constant: 10),
             guessedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guessedLabel.heightAnchor.constraint(equalToConstant: 20),
             
@@ -195,7 +260,13 @@ final class GameScreenViewController: UIViewController {
             roundDesciptionView.heightAnchor.constraint(equalToConstant: 150),
             roundDesciptionView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
-            wordsMissedLabel.topAnchor.constraint(equalTo: roundInfoButton.topAnchor, constant: -20),
+            wordCircleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            wordCircleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            wordCircleButton.heightAnchor.constraint(equalToConstant: wordCicleButtonHeight),
+            wordCircleButton.widthAnchor.constraint(equalToConstant: wordCicleButtonHeight),
+            
+            
+            wordsMissedLabel.topAnchor.constraint(equalTo: roundInfoButton.topAnchor, constant: -30),
             wordsMissedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 //            wordsMissedLabel.widthAnchor.constraint(equalToConstant: 300),
             wordsMissedLabel.bottomAnchor.constraint(equalTo: roundInfoButton.topAnchor),
@@ -222,11 +293,72 @@ final class GameScreenViewController: UIViewController {
         ])
         
     }
+    
+    
+    // End Constraints
+    
+    // End SubViews setup
+        
+    
+    
+    
+    // Utils functions
 
+    
+    @objc func swipeHandler(gester: UISwipeGestureRecognizer) {
+        let initialCircleCoord = self.wordCircleButton.center.y
+        let moveCoord = initialCircleCoord - self.guessedLabel.center.y - self.wordCicleButtonHeight/2 + 15
+//        let downCoord = self.wordsMissedLabel.center.y - self.wordCicleButtonHeight/2 - 15
+
+        switch gester.direction {
+        case .right:
+            print("Right swipe was recognized")
+        case .left:
+            print("Left swipe was recognized")
+        case .up:
+            print("Up swipe was recognized")
+            UIView.animate(withDuration: 0.5) {
+                self.wordCircleButton.center.y -= moveCoord
+            } completion: { rez in
+                self.wordCircleButton.center.y = initialCircleCoord
+            }
+
+        case .down:
+            print("Down swipe was recognpaized")
+            UIView.animate(withDuration: 0.5) {
+                self.wordCircleButton.center.y += moveCoord
+            } completion: { rez in
+                self.wordCircleButton.center.y = initialCircleCoord
+            }
+        default:
+            break
+        }
+    }
+
+
+
+    func getGameInfo() -> GameInfo?{
+        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
+        let myUserDefault = UserDefaultsManager().userDefaults
+        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
+        return try? myUserDefault.get(objectType: GameInfo.self, forKey: UserDefaultKeys.gameInfo)
+    }
 
 }
 
 
+extension GameScreenViewController: RoundDescriptionViewDelegagate{
+    func viewTouched() {
+
+//        DispatchQueue.main.async(execute: { () -> Void in
+            roundDesciptionView.isHidden = true
+            wordCircleButton.isHidden = false
+
+        
+    }
+    
+    
+}
 
 extension GameScreenViewController: GameScreenViewInput {
 }

@@ -48,10 +48,10 @@ extension SettingsRouter: SettingsRouterInput {
         let teamsInfo = settingsViewController.teamsInfo ?? AllTeams(teamsList: [])
         
         let storageManager = StorageManager(userDefaultManager: userDef)
-        let loadedCards = storageManager.loadCards() ?? Dictionary(name: "Not Found", version: 0, accessLevel: 0, cards: [])
+        let loadedCards = storageManager.loadCards(numberOfCards: currentGameSettings.cardNumber) ?? Dictionary(name: "Not Found", version: 0, accessLevel: 0, cards: [])
     
         
-        let gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings, currentTeam: 0, currentRoundType: .describe, guessedCardsIndex: [], notGuessedCardsIndex: [])
+        let gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings, currentRoundTeams: [], currentTeam: 0, currentRoundType: .describe, guessedCardsIndex: [], notGuessedCardsIndex: [])
         
         try? userDef.userDefaults.set(object:gameInfo, forKey: UserDefaultKeys.gameInfo)
         
