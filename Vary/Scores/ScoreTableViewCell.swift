@@ -16,7 +16,7 @@ class ScoreTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(wordLabel)
         wordLabel.text = "слово"
-        wordLabel.textColor = .white
+        wordLabel.textColor = VaryColors.textColor
         
     }
 
@@ -33,7 +33,7 @@ class ScoreTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+    
         // Configure the view for the selected state
     }
 
@@ -43,7 +43,7 @@ class ScoreTableViewCell: UITableViewCell {
 //            wordLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             wordLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             wordLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9),
-            wordLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.95),
+            wordLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9),
             wordLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ].forEach({constraint in constraint.isActive = true})
     }

@@ -14,10 +14,12 @@ final class ScoresViewController: UIViewController {
     private let scoresTableView = UITableView()
 
     private let container = UIView()
+    
+    var gameInfo: GameInfo?
 
     init(output: ScoresViewOutput) {
         self.output = output
-
+//        self.gameInfo = gameInfo
         super.init(nibName: nil, bundle: nil)
 //        title = "Набранные баллы"
 
@@ -31,7 +33,7 @@ final class ScoresViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        view.backgroundColor        = Colors.primaryColor
+        view.backgroundColor        = VaryColors.primaryColor
         
         scoresTableView.register(ScoreTableViewCell.self, forCellReuseIdentifier: "Cell")
         scoresTableView.delegate = self
@@ -39,20 +41,19 @@ final class ScoresViewController: UIViewController {
 
 
         scoresTableView.alwaysBounceVertical             = false;
-        scoresTableView.backgroundColor = Colors.surfaceColor
-        scoresTableView.tintColor = Colors.surfaceColor
-        
-
-        container.backgroundColor = Colors.surfaceColor
-
-        view.addSubview(container)
-        container.addSubview(scoresTableView)
-        container.backgroundColor = Colors.surfaceColor
-
-        setupConstraints()
+        scoresTableView.backgroundColor = VaryColors.surfaceColor
+        scoresTableView.tintColor = VaryColors.surfaceColor
         scoresTableView.separatorColor = .black
         scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         scoresTableView.separatorStyle = .singleLine
+        scoresTableView.separatorColor = VaryColors.secondaryColor
+
+        view.addSubview(container)
+        container.addSubview(scoresTableView)
+        container.backgroundColor = VaryColors.surfaceColor
+
+        setupConstraints()
+
         
 //        setupNavController(navTitle: "SCores")
     
@@ -71,51 +72,6 @@ final class ScoresViewController: UIViewController {
     
     
     
-    func setupNavController(navTitle title:String){
-        guard let navController = self.navigationController else {
-            print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
-            return
-        }
-        
-        navController.setNavigationBarHidden(false, animated: true)
-
-        for views in navController.navigationBar.subviews {
-            views.removeFromSuperview()
-        }
-
-
-        // Add Button to NavBar
-        var navBarButtonConf = UIButton.Configuration.filled()
-        navBarButtonConf.buttonSize = .large
-        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
-
-        let navBarLabelButton = UIButton()
-        navBarLabelButton.configuration = navBarButtonConf
-        navBarLabelButton.setTitle(title, for: .normal)
-        navBarLabelButton.isEnabled = true
-        navBarLabelButton.layer.cornerRadius = 0
-        navBarLabelButton.backgroundColor = VaryColors.primaryColor
-        navBarLabelButton.clipsToBounds = true
-        navBarLabelButton.layer.cornerRadius = 10
-        navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navBarLabelButton.titleLabel?.textColor = VaryColors.textColor
-        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
-        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
-
-        // navBar SubView
-        navController.navigationBar.addSubview(navBarLabelButton)
-        navBarLabelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            navBarLabelButton.topAnchor.constraint(equalTo: navController.navigationBar.topAnchor),
-            navBarLabelButton.widthAnchor.constraint(equalTo: navController.navigationBar.widthAnchor),
-            ])
-
-        // Send button to back
-        navController.navigationBar.sendSubviewToBack(navBarLabelButton)
-        navBarLabelButton.layer.zPosition = -1;
-        navBarLabelButton.isUserInteractionEnabled = false
-
-    }
 
     func setupConstraints(){
 
@@ -149,9 +105,9 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ScoreTableViewCell
-
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
+        cell.selectionStyle = .blue
+//        cell.backgroundColor = .clear
+//        cell.selectionStyle = .none
 
 //        cell.nameLabel.text = teamsArray[indexPath.row]
 //
@@ -166,6 +122,8 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
+    
+//    override func tablec
 //    @objc
 //    func nameLabelTapped(_ sender: UITapGestureRecognizer){
 //        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
@@ -198,9 +156,6 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 private extension ScoresViewController {
-    enum Colors {
-        static let primaryColor = UIColor(named: "Primary")!
-        static let surfaceColor = UIColor(named: "Surface")!
-    }
+  
 }
 
