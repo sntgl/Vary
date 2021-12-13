@@ -21,7 +21,7 @@ final class GameScreenContainer {
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-
+        router.viewController = viewController
 		interactor.output = presenter
 
         return GameScreenContainer(view: viewController, input: presenter, router: router)

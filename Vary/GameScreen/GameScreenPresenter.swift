@@ -25,6 +25,10 @@ extension GameScreenPresenter: GameScreenModuleInput {
 }
 
 extension GameScreenPresenter: GameScreenViewOutput {
+    func goToScrollView() {
+        self.router.goToScrollView()
+    }
+    
 }
 
 extension GameScreenPresenter: GameScreenInteractorOutput {

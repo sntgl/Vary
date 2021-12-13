@@ -362,11 +362,18 @@ final class GameScreenViewController: UIViewController {
     }
 
     func showNextCard(){
-        guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
-            return
+        
+        if self.currentWordIndex >= self.gameInfo!.cardsForGame.cards.count {
+            goToScoreView()
+        } else{
+            guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
+                return
+            }
+            wordCircleButton.setTitle(wordCard.name, for: .normal)
+            self.currentWordIndex += 1
         }
-        wordCircleButton.setTitle(wordCard.name, for: .normal)
-        self.currentWordIndex += 1
+
+
     }
     
 
@@ -391,6 +398,7 @@ final class GameScreenViewController: UIViewController {
         }
         else{
             self.timer!.invalidate()
+            goToScoreView()
         }
     }
     
@@ -400,8 +408,9 @@ final class GameScreenViewController: UIViewController {
 
         if wordGuessed{
             gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
+            gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
         }else{
-            
+            gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
             switch gameInfo!.gameSettings.penaltyForPass {
             case .No:
                 return
@@ -430,6 +439,11 @@ final class GameScreenViewController: UIViewController {
         roundDesciptionView.isHidden = false
 
     }
+    
+    func goToScoreView(){
+        self.output.goToScrollView()
+    }
+    
     
 }
 

@@ -19,6 +19,7 @@ protocol GameScreenViewInput: AnyObject {
 }
 
 protocol GameScreenViewOutput: AnyObject {
+    func goToScrollView()
 }
 
 protocol GameScreenInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol GameScreenInteractorOutput: AnyObject {
 }
 
 protocol GameScreenRouterInput: AnyObject {
+    func goToScrollView()
 }
