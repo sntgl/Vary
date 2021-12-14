@@ -13,15 +13,15 @@ final class ResultsContainer {
 	let viewController: UIViewController
 	private(set) weak var router: ResultsRouterInput!
 
-	class func assemble(with context: ResultsContext) -> ResultsContainer {
+    class func assemble(with context: ResultsContext, gameInfo info:GameInfo) -> ResultsContainer {
         let router = ResultsRouter()
         let interactor = ResultsInteractor()
         let presenter = ResultsPresenter(router: router, interactor: interactor)
-		let viewController = ResultsViewController(output: presenter)
+        let viewController = ResultsViewController(output: presenter, gameInfo: info)
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-
+        
 		interactor.output = presenter
 
         return ResultsContainer(view: viewController, input: presenter, router: router)

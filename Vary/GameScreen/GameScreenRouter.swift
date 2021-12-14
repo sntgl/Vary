@@ -22,8 +22,8 @@ extension GameScreenRouter: GameScreenRouterInput {
         let gameScreenViewController: GameScreenViewController = viewController as! GameScreenViewController
         
         let context: ScoresContext = ScoresContext()
-        let container: ScoresContainer = ScoresContainer.assemble(with: context)
-//         let container: ScoresContainer = ScoresContainer.assemble(with: context, gameInfo: gameScreenViewController.gameInfo!)
+//        let container: ScoresContainer = ScoresContainer.assemble(with: context)
+         let container: ScoresContainer = ScoresContainer.assemble(with: context, gameInfo: gameScreenViewController.gameInfo!)
         let scoreScreenController: UIViewController = container.viewController
         
         navController.pushViewController(scoreScreenController, animated: true)

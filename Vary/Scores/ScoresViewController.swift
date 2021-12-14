@@ -19,14 +19,15 @@ final class ScoresViewController: UIViewController {
     private var buttonConf = UIButton.Configuration.filled()
     private let tipLable = UILabel()
     
-    var gameInfo = ["аббревиатура", "абитуриент", "абонемент", "аборт", "абракадабра", "абсент", "авария", "авгур", "автокефалия", "агальма", "агломерат", "аграф", "адепт", "адмирал", "ажиотаж", "азарт", "акант", "аквилон", "аккламация", "акколада", "аккордеон", "акрибия", "акробатика", "акростих", "аксиология", "акупунктура", "акут", "акушер", "алеаторика", "алембик", "алиби", "алкоголь", "аллергия"]
-
-    var guessedCardsIndex = [2,3,4,5]
+//    var gameInfo = ["аббревиатура", "абитуриент", "абонемент", "аборт", "абракадабра", "абсент", "авария", "авгур", "автокефалия", "агальма", "агломерат", "аграф", "адепт", "адмирал", "ажиотаж", "азарт", "акант", "аквилон", "аккламация", "акколада", "аккордеон", "акрибия", "акробатика", "акростих", "аксиология", "акупунктура", "акут", "акушер", "алеаторика", "алембик", "алиби", "алкоголь", "аллергия"]
+    var gameInfo: GameInfo?
+    
+//    var guessedCardsIndex = [2,3,4,10]
     
     
-    init(output: ScoresViewOutput) {
+    init(output: ScoresViewOutput, gameInfo: GameInfo) {
         self.output = output
-//        self.gameInfo = gameInfo
+        self.gameInfo = gameInfo
         super.init(nibName: nil, bundle: nil)
 //        title = "Набранные баллы"
 
@@ -55,7 +56,7 @@ final class ScoresViewController: UIViewController {
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         nextButton.titleLabel?.textColor = VaryColors.textColor
         nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
-//        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         tipLable.textColor = VaryColors.textColor
         tipLable.text =  "Нажмите на слово, чтобы изменить его результат"
@@ -71,9 +72,6 @@ final class ScoresViewController: UIViewController {
         scoresTableView.alwaysBounceVertical             = false;
         scoresTableView.backgroundColor = VaryColors.surfaceColor
         scoresTableView.tintColor = VaryColors.surfaceColor
-        scoresTableView.separatorColor = .black
-        scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        scoresTableView.separatorStyle = .singleLine
         scoresTableView.allowsMultipleSelection = true
         
 
@@ -100,15 +98,14 @@ final class ScoresViewController: UIViewController {
                   return
               }
         navController.myTitle = "Набранные баллы"
+       
 //        selectGuessedWords()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        selectGuessedWords()
+        
         
     }
-    
-    
 
     func setupConstraints(){
 
@@ -146,22 +143,46 @@ final class ScoresViewController: UIViewController {
     }
     
     
-    func selectGuessedWords(){
-        
-//        for guessedWordIndex in self.gameInfo!.guessedCardsIndex {
-        for guessedWordIndex in self.guessedCardsIndex {
-            let indexPath = IndexPath(row: guessedWordIndex, section: 0)
-            scoresTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            scoresTableView.delegate?.tableView!(scoresTableView, didSelectRowAt: indexPath)
+    @IBAction func onNextButtonClicked() {
+        self.reCalculateScore()
+        self.output.goToResultsView()
+    }
+    
+    
+    func reCalculateScore(){
+        let scoreForWord: Int = 10
+        let scoreForGuessed =  self.gameInfo!.guessedCardsIndex.count * scoreForWord
+        var scoreForNotGuessed = 0
+        switch gameInfo!.gameSettings.penaltyForPass {
+        case .No:
+            break
+        case .LosePoints:
+            scoreForNotGuessed =  self.gameInfo!.notGuessedCardsIndex.count * scoreForWord * (-1)
+//                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
+        case .TaskFromPlayers:
+            break
         }
-//        var values : [Int] = []
-//        let selected_indexPaths = scoresTableView.indexPathsForSelectedRows
-//        for indexPath in selected_indexPaths! {
-//            let cell = scoresTableView.cellForRow(at: indexPath)
-//            values.append(indexPath.row)
+        self.gameInfo!.scoreOfLastRound = scoreForGuessed + scoreForNotGuessed
+        self.gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.gameInfo!.scoreOfLastRound
+    
+    }
+//        if dawd {
+//            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
+//            gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
+//        }else{
+//            gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
+//            switch gameInfo!.gameSettings.penaltyForPass {
+//            case .No:
+//                return
+//            case .LosePoints:
+//                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
+//            case .TaskFromPlayers:
+//                self.showTaskFromPlayers()
+//            }
+//
 //        }
 //
-    }
+//    }
     
 }
 
@@ -170,8 +191,8 @@ extension ScoresViewController: ScoresViewInput {
 
 extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.gameInfo!.cardsForGame.cards.count
-        return self.gameInfo.count
+        return self.gameInfo!.cardsForGame.cards.count
+//        return self.gameInfo.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -183,54 +204,49 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 //        cell.selectionStyle = .none
         
 //        cell.wordLabel.text = self.gameInfo!.cardsForGame.cards[indexPath.row].name
-        cell.wordLabel.text = self.gameInfo[indexPath.row]
-        if self.guessedCardsIndex.contains(indexPath.row){
+        print("Created Cell ")
+        print("Row = \(indexPath.row) and Section = \(indexPath.section)")
+        cell.wordLabel.text = self.gameInfo?.cardsForGame.cards[indexPath.row].name
+        if self.gameInfo!.guessedCardsIndex.contains(indexPath.row){
+            print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
+            print("--------------------------------")
             cell.wordLabel.textColor = VaryColors.primaryColor
-          
+//            cell.setSelected(true, animated: false)
+//            cell.isSelected = true
+        }else{
+            cell.wordLabel.textColor = VaryColors.textColor
         }
-
-//        cell.cross.tag = indexPath.row
-//        cell.cross.addTarget(self, action: #selector(removeRowButtonClicked), for: .touchUpInside)
-//
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
-//        cell.addGestureRecognizer(tapGesture)
-//        cell.isUserInteractionEnabled = true
-//        cell.tag = indexPath.row;
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
-//            if indexPath == lastVisibleIndexPath {
-//                // do here...
-//            }
-//        }
-        if self.guessedCardsIndex.contains(indexPath.row){
-    
-            cell.setSelected(true, animated: false)
-        }
-//
-//        if self.guessedCardsIndex.contains(indexPath.row) {
-//            self.tableView(tableView, didSelectRowAt: indexPath)
-//        }
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ScoreTableViewCell
 //        cell.tintColor = VaryColors.secondaryColor
-        print(String(indexPath.section))
-        let cell = tableView.cellForRow(at: indexPath) as! ScoreTableViewCell
-        if cell.isSelected{
+        print("Selected Cell ")
+        print("Row = \(indexPath.row) and Section = \(indexPath.section)")
+//
+//        print(String(indexPath.section))
+        let cell = scoresTableView.cellForRow(at: indexPath) as! ScoreTableViewCell
+        if cell.wordLabel.textColor == VaryColors.primaryColor{
+            print("Cell was Selected")
             cell.wordLabel.textColor = VaryColors.textColor
-            cell.setSelected(false, animated: false)
-        }else{
+            if let index = self.gameInfo?.guessedCardsIndex.firstIndex(of: indexPath.row) {
+                self.gameInfo?.guessedCardsIndex.remove(at: index)
+            }
+            self.gameInfo?.notGuessedCardsIndex.append(indexPath.row)
+            
+        }else if cell.wordLabel.textColor == VaryColors.textColor {
+            print("Cell was not Selected")
             cell.wordLabel.textColor = VaryColors.primaryColor
-            cell.setSelected(true, animated: false)
-        }
-        
-        
+            self.gameInfo?.guessedCardsIndex.append(indexPath.row)
+            if let index = self.gameInfo?.notGuessedCardsIndex.firstIndex(of: indexPath.row) {
+                self.gameInfo?.notGuessedCardsIndex.remove(at: index)
+            }
      
     }
     
@@ -243,8 +259,9 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
         true
     }
 }
-
-private extension ScoresViewController {
-  
 }
+
+//private extension ScoresViewController {
+//
+//}
 

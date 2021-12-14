@@ -174,7 +174,7 @@ final class GameScreenViewController: UIViewController {
         
         let currentCardWord: String = self.gameInfo?.cardsForGame.cards[self.currentWordIndex].name ?? "Not found"
         wordCircleButton.setTitle(currentCardWord, for: .normal)
-        self.currentWordIndex += 1
+//        self.currentWordIndex += 1
         
     }
     
@@ -330,29 +330,38 @@ final class GameScreenViewController: UIViewController {
 
     
     @objc func swipeHandler(gester: UISwipeGestureRecognizer) {
-        guard let initialCircleCoord = self.initialCircleCoord else {
-            return
-        }
+//        guard let initialCircleCoord = self.initialCircleCoord else {
+//            return
+//        }
+        let initialCircleCoord = self.wordCircleButton.center.y
         let moveCoord = initialCircleCoord - self.guessedLabel.center.y - self.wordCicleButtonHeight/2 + 15
 //        let downCoord = self.wordsMissedLabel.center.y - self.wordCicleButtonHeight/2 - 15
-
+        print("Initial coord: \(initialCircleCoord)")
         switch gester.direction {
         case .up:
             print("Up swipe was recognized")
-            UIView.animate(withDuration: 0.5) {
-                self.wordCircleButton.center.y += moveCoord
+            self.updateScore(wordGuessed: true)
+            UIView.animate(withDuration: 0.7) {
+//                print("Start from: \(self.wordCircleButton.center.y )")
+                self.wordCircleButton.center.y += 150
+//                self.wordCircleButton.center.y = initialCircleCoord
+//                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
-                self.updateScore(wordGuessed: true)
+                
             }
 
         case .down:
             print("Down swipe was recognpaized")
-            UIView.animate(withDuration: 0.5) {
-                self.wordCircleButton.center.y -= moveCoord
+            self.updateScore(wordGuessed: false)
+            UIView.animate(withDuration: 0.7) {
+//                print("Start from: \(self.wordCircleButton.center.y )")
+                self.wordCircleButton.center.y -= 150
+//                self.wordCircleButton.center.y = initialCircleCoord
+//                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
-                self.updateScore(wordGuessed: false)
+                
             }
         default:
             break
@@ -363,7 +372,7 @@ final class GameScreenViewController: UIViewController {
 
     func showNextCard(){
         
-        if self.currentWordIndex >= self.gameInfo!.cardsForGame.cards.count {
+        if self.currentWordIndex >= self.gameInfo!.cardsForGame.cards.count - 1 {
             goToScoreView()
         } else{
             guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
@@ -407,7 +416,8 @@ final class GameScreenViewController: UIViewController {
     func updateScore(wordGuessed:Bool){
 
         if wordGuessed{
-            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
+            gameInfo!.scoreOfLastRound  += self.scoreForWord
+//            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
             gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
         }else{
             gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
@@ -415,7 +425,8 @@ final class GameScreenViewController: UIViewController {
             case .No:
                 return
             case .LosePoints:
-                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
+                gameInfo!.scoreOfLastRound  += self.scoreForWord
+//                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
             case .TaskFromPlayers:
                 self.showTaskFromPlayers()
             }
@@ -429,7 +440,7 @@ final class GameScreenViewController: UIViewController {
         guard let gameInfo = gameInfo else {
             return
         }
-        roundScoreLabel.text = String(gameInfo.currentRoundTeams[gameInfo.currentTeam].score)
+        roundScoreLabel.text = String(gameInfo.scoreOfLastRound)
     }
     
     func showTaskFromPlayers(){

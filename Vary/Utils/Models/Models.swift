@@ -48,10 +48,24 @@ struct GameInfo: Codable{
     var currentRoundTeams: [Team]
     var currentTeam: Int
     var currentRoundType: RoundType
-    
+    var scoreOfLastRound: Int
 
     var guessedCardsIndex: [Int]
     var notGuessedCardsIndex: [Int]
+    
+    init(allTeamsInfo: AllTeams, cardsForGame:Dictionary, gameSettings: GameSettings){
+        self.allTeamsInfo = allTeamsInfo
+        self.cardsForGame = cardsForGame
+        self.gameSettings = gameSettings
+        
+        self.currentRoundTeams = []
+        self.currentTeam = 0
+        self.currentRoundType = .describe
+        self.scoreOfLastRound = 0
+        self.guessedCardsIndex = []
+        self.notGuessedCardsIndex = []
+    }
+    
     
     func formTeamList() -> [Team] {
         var resultTeamList = NSArray(array:allTeamsInfo.teamsList, copyItems: true) as! [Team]

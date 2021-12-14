@@ -13,17 +13,17 @@ final class ScoresContainer {
 	let viewController: UIViewController
 	private(set) weak var router: ScoresRouterInput!
 
-//    class func assemble(with context: ScoresContext, gameInfo info: GameInfo) -> ScoresContainer {
-    class func assemble(with context: ScoresContext) -> ScoresContainer {
+    class func assemble(with context: ScoresContext, gameInfo info: GameInfo) -> ScoresContainer {
+//    class func assemble(with context: ScoresContext) -> ScoresContainer {
         let router = ScoresRouter()
         let interactor = ScoresInteractor()
         let presenter = ScoresPresenter(router: router, interactor: interactor)
-//		let viewController = ScoresViewController(output: presenter, gameInfo: info)
-        let viewController = ScoresViewController(output: presenter)
+		let viewController = ScoresViewController(output: presenter, gameInfo: info)
+//        let viewController = ScoresViewController(output: presenter)
         
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-
+        router.viewController = viewController
 		interactor.output = presenter
 
         return ScoresContainer(view: viewController, input: presenter, router: router)

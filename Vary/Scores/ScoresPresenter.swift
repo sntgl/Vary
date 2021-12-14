@@ -25,6 +25,10 @@ extension ScoresPresenter: ScoresModuleInput {
 }
 
 extension ScoresPresenter: ScoresViewOutput {
+    func goToResultsView() {
+        self.router.goToResultsView()
+    }
+    
 }
 
 extension ScoresPresenter: ScoresInteractorOutput {
