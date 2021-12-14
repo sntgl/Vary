@@ -15,8 +15,15 @@ final class ScoresViewController: UIViewController {
 
     private let container = UIView()
     
-    var gameInfo: GameInfo?
+    private let nextButton = UIButton()
+    private var buttonConf = UIButton.Configuration.filled()
+    private let tipLable = UILabel()
+    
+    var gameInfo = ["аббревиатура", "абитуриент", "абонемент", "аборт", "абракадабра", "абсент", "авария", "авгур", "автокефалия", "агальма", "агломерат", "аграф", "адепт", "адмирал", "ажиотаж", "азарт", "акант", "аквилон", "аккламация", "акколада", "аккордеон", "акрибия", "акробатика", "акростих", "аксиология", "акупунктура", "акут", "акушер", "алеаторика", "алембик", "алиби", "алкоголь", "аллергия"]
 
+    var guessedCardsIndex = [2,3,4,5]
+    
+    
     init(output: ScoresViewOutput) {
         self.output = output
 //        self.gameInfo = gameInfo
@@ -35,6 +42,27 @@ final class ScoresViewController: UIViewController {
 		super.viewDidLoad()
         view.backgroundColor        = VaryColors.primaryColor
         
+        buttonConf.buttonSize = .large
+        buttonConf.baseBackgroundColor = VaryColors.primaryColor
+        
+        nextButton.configuration = buttonConf
+        nextButton.setTitle("Готово", for: .normal)
+        nextButton.isEnabled = true
+        nextButton.layer.cornerRadius = 0
+        nextButton.backgroundColor = VaryColors.primaryColor
+        nextButton.clipsToBounds = true
+        nextButton.layer.cornerRadius = 10
+        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        nextButton.titleLabel?.textColor = VaryColors.textColor
+        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
+//        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
+        
+        tipLable.textColor = VaryColors.textColor
+        tipLable.text =  "Нажмите на слово, чтобы изменить его результат"
+        tipLable.numberOfLines = 1
+        tipLable.font = tipLable.font.withSize(12)
+        tipLable.textAlignment = .center;
+        
         scoresTableView.register(ScoreTableViewCell.self, forCellReuseIdentifier: "Cell")
         scoresTableView.delegate = self
         scoresTableView.dataSource = self
@@ -46,14 +74,18 @@ final class ScoresViewController: UIViewController {
         scoresTableView.separatorColor = .black
         scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         scoresTableView.separatorStyle = .singleLine
-        scoresTableView.separatorColor = VaryColors.secondaryColor
+        scoresTableView.allowsMultipleSelection = true
+        
 
         view.addSubview(container)
         container.addSubview(scoresTableView)
+        container.addSubview(nextButton)
+        container.addSubview(tipLable)
+        
         container.backgroundColor = VaryColors.surfaceColor
 
         setupConstraints()
-
+       
         
 //        setupNavController(navTitle: "SCores")
     
@@ -68,8 +100,13 @@ final class ScoresViewController: UIViewController {
                   return
               }
         navController.myTitle = "Набранные баллы"
+//        selectGuessedWords()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        selectGuessedWords()
+        
+    }
     
     
 
@@ -86,13 +123,46 @@ final class ScoresViewController: UIViewController {
         ].forEach({constraint in constraint.isActive = true})
 
         scoresTableView.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        tipLable.translatesAutoresizingMaskIntoConstraints = false
+        
         [
             scoresTableView.topAnchor.constraint(equalTo:  container.topAnchor, constant: 20),
-            scoresTableView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+            scoresTableView.bottomAnchor.constraint(equalTo: tipLable.topAnchor, constant: -10),
             scoresTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scoresTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            tipLable.topAnchor.constraint(equalTo: scoresTableView.bottomAnchor),
+            tipLable.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -10),
+            tipLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tipLable.widthAnchor.constraint(equalTo: nextButton.widthAnchor),
+            
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            
+            
         ].forEach({constraint in constraint.isActive = true})
     }
+    
+    
+    func selectGuessedWords(){
+        
+//        for guessedWordIndex in self.gameInfo!.guessedCardsIndex {
+        for guessedWordIndex in self.guessedCardsIndex {
+            let indexPath = IndexPath(row: guessedWordIndex, section: 0)
+            scoresTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            scoresTableView.delegate?.tableView!(scoresTableView, didSelectRowAt: indexPath)
+        }
+//        var values : [Int] = []
+//        let selected_indexPaths = scoresTableView.indexPathsForSelectedRows
+//        for indexPath in selected_indexPaths! {
+//            let cell = scoresTableView.cellForRow(at: indexPath)
+//            values.append(indexPath.row)
+//        }
+//
+    }
+    
 }
 
 extension ScoresViewController: ScoresViewInput {
@@ -100,17 +170,25 @@ extension ScoresViewController: ScoresViewInput {
 
 extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+//        return self.gameInfo!.cardsForGame.cards.count
+        return self.gameInfo.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ScoreTableViewCell
-        cell.selectionStyle = .blue
+       
+//        self.tableView.separatorStyle = UITableViewSeparatorStyleNone;
+
 //        cell.backgroundColor = .clear
 //        cell.selectionStyle = .none
+        
+//        cell.wordLabel.text = self.gameInfo!.cardsForGame.cards[indexPath.row].name
+        cell.wordLabel.text = self.gameInfo[indexPath.row]
+        if self.guessedCardsIndex.contains(indexPath.row){
+            cell.wordLabel.textColor = VaryColors.primaryColor
+          
+        }
 
-//        cell.nameLabel.text = teamsArray[indexPath.row]
-//
 //        cell.cross.tag = indexPath.row
 //        cell.cross.addTarget(self, action: #selector(removeRowButtonClicked), for: .touchUpInside)
 //
@@ -122,29 +200,40 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    
-//    override func tablec
-//    @objc
-//    func nameLabelTapped(_ sender: UITapGestureRecognizer){
-//        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
-//        alert.addTextField { (textField:UITextField) in
-//            textField.text              = self.teamsArray[sender.view!.tag]
-//            textField.keyboardType      = .default
-//        }
-//
-//        let okAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (action) -> Void in
-//            if alert.textFields![0].text == "" {
-//                self.teamsArray[sender.view!.tag] = "Название"
-//            } else {
-//                self.teamsArray[sender.view!.tag] = (alert.textFields?[0].text)!
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+//            if indexPath == lastVisibleIndexPath {
+//                // do here...
 //            }
-//            self.teamsTableView.reloadData()
-//        } )
-//        let returnAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
-//        alert.addAction(returnAction)
-//        alert.addAction(okAction)
-//        self.present(alert, animated: true, completion: nil)
-//    }
+//        }
+        if self.guessedCardsIndex.contains(indexPath.row){
+    
+            cell.setSelected(true, animated: false)
+        }
+//
+//        if self.guessedCardsIndex.contains(indexPath.row) {
+//            self.tableView(tableView, didSelectRowAt: indexPath)
+//        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ScoreTableViewCell
+//        cell.tintColor = VaryColors.secondaryColor
+        print(String(indexPath.section))
+        let cell = tableView.cellForRow(at: indexPath) as! ScoreTableViewCell
+        if cell.isSelected{
+            cell.wordLabel.textColor = VaryColors.textColor
+            cell.setSelected(false, animated: false)
+        }else{
+            cell.wordLabel.textColor = VaryColors.primaryColor
+            cell.setSelected(true, animated: false)
+        }
+        
+        
+     
+    }
+    
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         75

@@ -18,7 +18,7 @@ final class ScoresContainer {
         let router = ScoresRouter()
         let interactor = ScoresInteractor()
         let presenter = ScoresPresenter(router: router, interactor: interactor)
-//		let viewController = ScoresViewController(output: presenter, gameInfo: GameInfo)
+//		let viewController = ScoresViewController(output: presenter, gameInfo: info)
         let viewController = ScoresViewController(output: presenter)
         
 		presenter.view = viewController
