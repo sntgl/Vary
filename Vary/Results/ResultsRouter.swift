@@ -19,7 +19,11 @@ extension ResultsRouter: ResultsRouterInput {
             return
         }
         let container = StartContainer.assemble(with: StartContext())
-        navController.pushViewController(container.viewController, animated: true)
+//        navController.pushViewController(container.viewController, animated: true)
+        
+        container.viewController.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+        self.viewController?.present(container.viewController, animated: true, completion: nil)
+        
     }
     
     func goToGameView() {
@@ -33,9 +37,14 @@ extension ResultsRouter: ResultsRouterInput {
         let context: GameScreenContext = GameScreenContext()
 //        let container: ScoresContainer = ScoresContainer.assemble(with: context)
          let container: GameScreenContainer = GameScreenContainer.assemble(with: context, gameInfo: resultsViewController.gameInfo!)
-        let resultsScreenController: UIViewController = container.viewController
+        let gameScreenController: UIViewController = container.viewController
         
-        navController.pushViewController(resultsScreenController, animated: true)
+//        gameScreenController.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+//        self.viewController?.present(gameScreenController, animated: true, completion: nil)
+        
+        navController.pushViewController(gameScreenController, animated: true)
+//        self.viewController?.present(resultsScreenController, animated: true, completion: nil)
+//        self.viewController?.presentedViewController(resultsScreenController, animated: true)
     }
     
 }

@@ -51,8 +51,9 @@ final class GameScreenViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 //        self.gameInfo = getGameInfo()
         self.countdownTime = self.gameInfo?.gameSettings.roundTime
-        
-        print("Team play order: \(self.gameInfo!.currentRoundTeams)")
+        print("GAMESCREEN INITIALISED")
+        print("COUNTDOWN TIME \(self.countdownTime)")
+//        print("Team play order: \(self.gameInfo!.currentRoundTeams)")
         
     }
     
@@ -72,7 +73,11 @@ final class GameScreenViewController: UIViewController {
               }
     
         
-        
+        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+        let temp = navigationArray.last
+        navigationArray.removeAll()
+        navigationArray.append(temp!) //To remove all previous UIViewController except the last one
+        self.navigationController?.viewControllers = navigationArray
         
         navController.myTitle = self.gameInfo?.currentRoundTeams[self.gameInfo?.currentTeam ?? 0].name
         currentRoundType = roundDesciptionView.roundType
@@ -377,6 +382,7 @@ final class GameScreenViewController: UIViewController {
     func showNextCard(){
         
         if self.currentWordIndex >= self.gameInfo!.currentCards.count - 1 {
+            self.timer!.invalidate()
             goToScoreView()
         } else{
             guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
@@ -404,6 +410,7 @@ final class GameScreenViewController: UIViewController {
 //        guard var time = self.countdownTime, let timer = self.timer else{
 //            return
 //        }
+        print("COUNTDOWN LEFT - \(self.countdownTime!)")
         if self.countdownTime! > 0 {
             self.countdownTime! -= 1
             timerButton.setTitle(String(self.countdownTime!), for: .normal)
@@ -435,7 +442,7 @@ final class GameScreenViewController: UIViewController {
             case .No:
                 return
             case .LosePoints:
-                gameInfo!.scoreOfLastRound  += self.scoreForWord
+                gameInfo!.scoreOfLastRound  -= self.scoreForWord
 //                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
             case .TaskFromPlayers:
                 self.showTaskFromPlayers()

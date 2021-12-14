@@ -97,13 +97,13 @@ final class ScoresViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Набранные баллы"
+        navController.myTitle = "Перепроверка"
        
 //        selectGuessedWords()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+ 
         
     }
 

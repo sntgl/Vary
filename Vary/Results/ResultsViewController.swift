@@ -50,8 +50,14 @@ final class ResultsViewController: UIViewController {
                   return
               }
         navController.myTitle = "Набранные баллы"
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("Appeared")
+        
+    }
+
     
 
     override func viewDidLoad() {
