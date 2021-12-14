@@ -45,6 +45,7 @@ struct GameInfo: Codable{
     let cardsForGame: Dictionary
     let gameSettings: GameSettings
     
+    var currentCards: [Card]
     var currentRoundTeams: [Team]
     var currentTeam: Int
     var currentRoundType: RoundType
@@ -58,9 +59,11 @@ struct GameInfo: Codable{
         self.cardsForGame = cardsForGame
         self.gameSettings = gameSettings
         
+        self.currentCards = cardsForGame.cards
         self.currentRoundTeams = []
         self.currentTeam = 0
         self.currentRoundType = .describe
+        
         self.scoreOfLastRound = 0
         self.guessedCardsIndex = []
         self.notGuessedCardsIndex = []
@@ -88,12 +91,35 @@ struct GameInfo: Codable{
     }
     
     func getNextCard(byIndex index:Int) -> Card?{
-        if index < cardsForGame.cards.count {
-            return cardsForGame.cards[index]
+        if index < currentCards.count {
+            return currentCards[index]
         }
         return nil
         
     }
+    
+    func getNextRoundType() -> RoundType? {
+        switch currentRoundType{
+        case .describe:
+                return .show
+        case .show:
+                return .oneWord
+        case .oneWord:
+                return nil
+        case .taskFromPlayers:
+                return nil
+        }
+        
+    }
+    
+    func getNextTeamId() -> Int{
+        if self.currentTeam == self.allTeamsInfo.teamsList.count-1 {
+            return 0
+        }
+        return self.currentTeam+1
+        
+    }
+    
 }
 
 

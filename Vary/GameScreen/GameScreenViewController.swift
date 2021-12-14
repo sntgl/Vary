@@ -45,11 +45,15 @@ final class GameScreenViewController: UIViewController {
     
     // Inits
     
-    init(output: GameScreenViewOutput) {
+    init(output: GameScreenViewOutput, gameInfo: GameInfo) {
         self.output = output
+        self.gameInfo = gameInfo
         super.init(nibName: nil, bundle: nil)
-        self.gameInfo = getGameInfo()
-        self.countdownTime = gameInfo?.gameSettings.roundTime
+//        self.gameInfo = getGameInfo()
+        self.countdownTime = self.gameInfo?.gameSettings.roundTime
+        
+        print("Team play order: \(self.gameInfo!.currentRoundTeams)")
+        
     }
     
     @available(*, unavailable)
@@ -68,7 +72,7 @@ final class GameScreenViewController: UIViewController {
               }
     
         
-        self.gameInfo!.currentRoundTeams = self.gameInfo!.formTeamList()
+        
         
         navController.myTitle = self.gameInfo?.currentRoundTeams[self.gameInfo?.currentTeam ?? 0].name
         currentRoundType = roundDesciptionView.roundType
@@ -172,7 +176,7 @@ final class GameScreenViewController: UIViewController {
         wordCircleButton.isHidden = true
         wordCircleButton.tintColor = VaryColors.textColor
         
-        let currentCardWord: String = self.gameInfo?.cardsForGame.cards[self.currentWordIndex].name ?? "Not found"
+        let currentCardWord: String = self.gameInfo?.currentCards[self.currentWordIndex].name ?? "Not found"
         wordCircleButton.setTitle(currentCardWord, for: .normal)
 //        self.currentWordIndex += 1
         
@@ -372,7 +376,7 @@ final class GameScreenViewController: UIViewController {
 
     func showNextCard(){
         
-        if self.currentWordIndex >= self.gameInfo!.cardsForGame.cards.count - 1 {
+        if self.currentWordIndex >= self.gameInfo!.currentCards.count - 1 {
             goToScoreView()
         } else{
             guard let wordCard = self.gameInfo?.getNextCard(byIndex: self.currentWordIndex) else {
@@ -407,10 +411,16 @@ final class GameScreenViewController: UIViewController {
         }
         else{
             self.timer!.invalidate()
+            markLeftWordsAsUnGuessed()
             goToScoreView()
         }
     }
     
+    func markLeftWordsAsUnGuessed(){
+        for index in self.currentWordIndex..<self.gameInfo!.currentCards.count{
+            self.gameInfo!.notGuessedCardsIndex.append(index)
+        }
+    }
     
     
     func updateScore(wordGuessed:Bool){

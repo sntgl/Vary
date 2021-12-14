@@ -21,7 +21,7 @@ final class ResultsContainer {
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-        
+        router.viewController = viewController
 		interactor.output = presenter
 
         return ResultsContainer(view: viewController, input: presenter, router: router)

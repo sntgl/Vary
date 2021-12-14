@@ -13,11 +13,11 @@ final class GameScreenContainer {
 	let viewController: UIViewController
 	private(set) weak var router: GameScreenRouterInput!
 
-	class func assemble(with context: GameScreenContext) -> GameScreenContainer {
+    class func assemble(with context: GameScreenContext, gameInfo info: GameInfo) -> GameScreenContainer {
         let router = GameScreenRouter()
         let interactor = GameScreenInteractor()
         let presenter = GameScreenPresenter(router: router, interactor: interactor)
-		let viewController = GameScreenViewController(output: presenter)
+		let viewController = GameScreenViewController(output: presenter, gameInfo: info)
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput

@@ -15,6 +15,9 @@ final class ResultsViewController: UIViewController {
 
     private let container = UIView()
     
+    private let nextButton = UIButton()
+    private var buttonConf = UIButton.Configuration.filled()
+    
     var gameInfo: GameInfo?
     
     private var teamList: [Team]?
@@ -24,7 +27,7 @@ final class ResultsViewController: UIViewController {
         self.gameInfo = gameInfo
         
         super.init(nibName: nil, bundle: nil)
-        self.teamList = self.sortList(listToSort: gameInfo.currentRoundTeams)
+        self.teamList = self.sortList(listToSort: self.gameInfo!.currentRoundTeams)
 
 
     }
@@ -67,8 +70,25 @@ final class ResultsViewController: UIViewController {
 
         container.backgroundColor = Colors.surfaceColor
 
+        buttonConf.buttonSize = .large
+        buttonConf.baseBackgroundColor = VaryColors.primaryColor
+        
+        nextButton.configuration = buttonConf
+        nextButton.setTitle("Следующий раунд", for: .normal)
+        nextButton.isEnabled = true
+        nextButton.layer.cornerRadius = 0
+        nextButton.backgroundColor = VaryColors.primaryColor
+        nextButton.clipsToBounds = true
+        nextButton.layer.cornerRadius = 10
+        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        nextButton.titleLabel?.textColor = VaryColors.textColor
+        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
+        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
+        
+        
         view.addSubview(container)
         container.addSubview(resultTableView)
+        container.addSubview(nextButton)
         container.backgroundColor = Colors.surfaceColor
 
         setupConstraints()
@@ -88,14 +108,67 @@ final class ResultsViewController: UIViewController {
 
 
         ].forEach({constraint in constraint.isActive = true})
-
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
         resultTableView.translatesAutoresizingMaskIntoConstraints = false
         [
             resultTableView.topAnchor.constraint(equalTo:  container.topAnchor, constant: 20),
             resultTableView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
             resultTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resultTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
         ].forEach({constraint in constraint.isActive = true})
+    }
+    
+    @IBAction func onNextButtonClicked() {
+        self.prepareGameInfoForNextRound()
+        self.output.goToGameView()
+    }
+    
+    func prepareGameInfoForNextRound(){
+        deleteGuessedCards()
+        cleanCurrentsVars()
+        decideNextRound()
+    }
+    
+    func deleteGuessedCards(){
+        for index in self.gameInfo!.guessedCardsIndex.reversed() {
+//            if let searched_index = self.gameInfo?.guessedCardsIndex.firstIndex(of: index) {
+                self.gameInfo?.currentCards.remove(at: index)
+//            }
+            
+//            self.gameInfo!.currentCards.remove(at: index)
+        }
+        print("Card left: \(self.gameInfo?.currentCards.first?.name)")
+    }
+    
+    
+    func cleanCurrentsVars(){
+        self.gameInfo!.guessedCardsIndex = []
+        self.gameInfo!.notGuessedCardsIndex = []
+        self.gameInfo!.scoreOfLastRound = 0
+    }
+    
+    
+    func decideNextRound(){
+        if self.gameInfo!.currentCards.count != 0 {
+            self.gameInfo!.currentTeam = self.gameInfo!.getNextTeamId()
+        }else{
+            changeRoundType()
+            self.gameInfo!.currentTeam = self.gameInfo!.getNextTeamId()
+        }
+    }
+    
+    func changeRoundType(){
+        guard let nextRoundType = self.gameInfo!.getNextRoundType() else{
+            self.output.goToStartView()
+            return
+        }
+        self.gameInfo!.currentRoundType = nextRoundType
+        self.gameInfo!.currentCards = self.gameInfo!.cardsForGame.cards
     }
 }
 

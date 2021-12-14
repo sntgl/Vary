@@ -29,10 +29,10 @@ extension SettingsRouter: SettingsRouterInput {
             return
         }
         
-        saveAllGameInfo()
+        var gameInfo: GameInfo = initGameInfo()
         
         let context: GameScreenContext = GameScreenContext()
-        let container: GameScreenContainer = GameScreenContainer.assemble(with: context)
+        let container: GameScreenContainer = GameScreenContainer.assemble(with: context, gameInfo: gameInfo)
         let gameScreenController: UIViewController = container.viewController
         
         navController.pushViewController(gameScreenController, animated: true)
@@ -56,5 +56,23 @@ extension SettingsRouter: SettingsRouterInput {
         try? userDef.userDefaults.set(object:gameInfo, forKey: UserDefaultKeys.gameInfo)
         
     }
+    
+    func initGameInfo() -> GameInfo{
+        let settingsViewController: SettingsViewController = viewController as! SettingsViewController
+        let userDef = UserDefaultsManager()
+//        try? userDef.set(object:settingsViewController.gameSettingsOptions, forKey: UserDefaultKeys.gameSettingsOptionsKey)
+        let currentGameSettings = settingsViewController.gameSettingsOptions!
+        let teamsInfo = settingsViewController.teamsInfo ?? AllTeams(teamsList: [])
+        
+        let storageManager = StorageManager(userDefaultManager: userDef)
+        let loadedCards = storageManager.loadCards(numberOfCards: currentGameSettings.cardNumber) ?? Dictionary(name: "Not Found", version: 0, accessLevel: 0, cards: [])
+    
+        
+        var gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings)
+        gameInfo.currentRoundTeams = gameInfo.formTeamList()
+        
+        return gameInfo
+    }
+    
     
 }

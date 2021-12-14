@@ -191,7 +191,7 @@ extension ScoresViewController: ScoresViewInput {
 
 extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.gameInfo!.cardsForGame.cards.count
+        return self.gameInfo!.currentCards.count
 //        return self.gameInfo.count
     }
 
@@ -206,7 +206,7 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 //        cell.wordLabel.text = self.gameInfo!.cardsForGame.cards[indexPath.row].name
         print("Created Cell ")
         print("Row = \(indexPath.row) and Section = \(indexPath.section)")
-        cell.wordLabel.text = self.gameInfo?.cardsForGame.cards[indexPath.row].name
+        cell.wordLabel.text = self.gameInfo?.currentCards[indexPath.row].name
         if self.gameInfo!.guessedCardsIndex.contains(indexPath.row){
             print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
             print("--------------------------------")
