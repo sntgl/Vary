@@ -11,5 +11,5 @@ import Foundation
 class UserDefaultKeys{
     
     static let gameSettingsOptionsKey: String = "gameSettingsOptions"
-    
+    static let gameInfo: String = "gameInfo"
 }

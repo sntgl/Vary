@@ -24,7 +24,7 @@ final class TeamsViewController: UIViewController {
 
     private let container = UIView()
 
-    private var teamsArray = ["Команда 1", "Команда 2"]
+    var teamsArray = ["Команда 1", "Команда 2"]
 
     init(output: TeamsViewOutput) {
         self.output = output

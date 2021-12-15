@@ -70,6 +70,15 @@ final class StartViewController: UIViewController {
 	}
     
     override func viewDidAppear(_ animated: Bool) {
+        guard let navController = self.navigationController as? CustomNavigationController else {
+                  print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
+                  return
+              }
+        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+        let temp = navigationArray.last
+        navigationArray.removeAll()
+        navigationArray.append(temp!) //To remove all previous UIViewController except the last one
+        self.navigationController?.viewControllers = navigationArray
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     

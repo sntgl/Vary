@@ -33,6 +33,12 @@
 		3BDAB14B2763ECAB00674ACD /* AppSettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1452763ECAB00674ACD /* AppSettingsProtocols.swift */; };
 		3BDAB14C2763ECAB00674ACD /* AppSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1462763ECAB00674ACD /* AppSettingsInteractor.swift */; };
 		3BDAB14D2763ECAB00674ACD /* AppSettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1472763ECAB00674ACD /* AppSettingsContainer.swift */; };
+		3BDAB1552763F13700674ACD /* GameScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB14F2763F13700674ACD /* GameScreenPresenter.swift */; };
+		3BDAB1562763F13700674ACD /* GameScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1502763F13700674ACD /* GameScreenRouter.swift */; };
+		3BDAB1572763F13700674ACD /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1512763F13700674ACD /* GameScreenViewController.swift */; };
+		3BDAB1582763F13700674ACD /* GameScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1522763F13700674ACD /* GameScreenProtocols.swift */; };
+		3BDAB1592763F13700674ACD /* GameScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1532763F13700674ACD /* GameScreenInteractor.swift */; };
+		3BDAB15A2763F13700674ACD /* GameScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAB1542763F13700674ACD /* GameScreenContainer.swift */; };
 		3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */; };
 		4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D76273839B0005631D6 /* AppDelegate.swift */; };
 		4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE42D78273839B0005631D6 /* SceneDelegate.swift */; };
@@ -54,6 +60,7 @@
 		4CF9FFA82739D38B00F5F0CA /* SettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */; };
 		4CF9FFA92739D38B00F5F0CA /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */; };
 		4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */; };
+		722A967B2769ED1A00D14E90 /* VaryVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A967A2769ED1A00D14E90 /* VaryVars.swift */; };
 		722A9933276266410055A8B4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A9932276266410055A8B4 /* UserDefaultKeys.swift */; };
 		722E79AF275FE687009432A6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E79AE275FE687009432A6 /* UserDefaultsManager.swift */; };
 		72454EAF2760CC4500ED5D1E /* VaryColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72454EAE2760CC4500ED5D1E /* VaryColors.swift */; };
@@ -61,6 +68,8 @@
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */; };
 		72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F37274D11C5003F32D0 /* RadioButton.swift */; };
+		72BB7CA827648DFA00E74012 /* RoundDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */; };
+		72BB7CAA2764938500E74012 /* RoundTypeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB7CA92764938500E74012 /* RoundTypeDescription.swift */; };
 		72BD781E2753EE7400CF4F8D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781D2753EE7400CF4F8D /* Network.swift */; };
 		72BD78202753EEF000CF4F8D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD781F2753EEF000CF4F8D /* Models.swift */; };
 		72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BD7822275407DE00CF4F8D /* StorageManager.swift */; };
@@ -96,6 +105,12 @@
 		3BDAB1452763ECAB00674ACD /* AppSettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsProtocols.swift; sourceTree = "<group>"; };
 		3BDAB1462763ECAB00674ACD /* AppSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsInteractor.swift; sourceTree = "<group>"; };
 		3BDAB1472763ECAB00674ACD /* AppSettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsContainer.swift; sourceTree = "<group>"; };
+		3BDAB14F2763F13700674ACD /* GameScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenPresenter.swift; sourceTree = "<group>"; };
+		3BDAB1502763F13700674ACD /* GameScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenRouter.swift; sourceTree = "<group>"; };
+		3BDAB1512763F13700674ACD /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
+		3BDAB1522763F13700674ACD /* GameScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenProtocols.swift; sourceTree = "<group>"; };
+		3BDAB1532763F13700674ACD /* GameScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenInteractor.swift; sourceTree = "<group>"; };
+		3BDAB1542763F13700674ACD /* GameScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenContainer.swift; sourceTree = "<group>"; };
 		3BF23CB5274591B100F9C94F /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		4CE42D73273839B0005631D6 /* Vary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE42D76273839B0005631D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,12 +135,15 @@
 		4CF9FFA22739D38B00F5F0CA /* SettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocols.swift; sourceTree = "<group>"; };
 		4CF9FFA32739D38B00F5F0CA /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		4CF9FFA42739D38B00F5F0CA /* SettingsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContainer.swift; sourceTree = "<group>"; };
+		722A967A2769ED1A00D14E90 /* VaryVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaryVars.swift; sourceTree = "<group>"; };
 		722A9932276266410055A8B4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		722E79AE275FE687009432A6 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		72454EAE2760CC4500ED5D1E /* VaryColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaryColors.swift; sourceTree = "<group>"; };
 		72454EB02760D6E300ED5D1E /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroupView.swift; sourceTree = "<group>"; };
 		72AE6F37274D11C5003F32D0 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDescriptionView.swift; sourceTree = "<group>"; };
+		72BB7CA92764938500E74012 /* RoundTypeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTypeDescription.swift; sourceTree = "<group>"; };
 		72BD781D2753EE7400CF4F8D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		72BD781F2753EEF000CF4F8D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		72BD7822275407DE00CF4F8D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -199,6 +217,19 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
+		3BDAB14E2763F10100674ACD /* GameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3BDAB14F2763F13700674ACD /* GameScreenPresenter.swift */,
+				3BDAB1502763F13700674ACD /* GameScreenRouter.swift */,
+				3BDAB1512763F13700674ACD /* GameScreenViewController.swift */,
+				3BDAB1522763F13700674ACD /* GameScreenProtocols.swift */,
+				3BDAB1532763F13700674ACD /* GameScreenInteractor.swift */,
+				3BDAB1542763F13700674ACD /* GameScreenContainer.swift */,
+			);
+			path = GameScreen;
+			sourceTree = "<group>";
+		};
 		4CE42D6A273839B0005631D6 = {
 			isa = PBXGroup;
 			children = (
@@ -218,9 +249,10 @@
 		4CE42D75273839B0005631D6 /* Vary */ = {
 			isa = PBXGroup;
 			children = (
+				72E0FA872741548F00B01C26 /* Utils */,
+				3BDAB14E2763F10100674ACD /* GameScreen */,
 				3BDAB1352763EC8E00674ACD /* Help */,
 				3BDAB1342763EC8000674ACD /* AppSettings */,
-				72E0FA872741548F00B01C26 /* Utils */,
 				4CF9FF912739D2C600F5F0CA /* Settings */,
 				4CF9FF902739D2B400F5F0CA /* Teams */,
 				4CE42D8A27383B68005631D6 /* Start */,
@@ -274,6 +306,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		72BB7CAB2764AC5200E74012 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				72BB7CA92764938500E74012 /* RoundTypeDescription.swift */,
+				72BD781F2753EEF000CF4F8D /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		72BD781C2753EB5700CF4F8D /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,10 +335,12 @@
 		72E0FA702741328A00B01C26 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				72E0FA71274132BE00B01C26 /* SliderView.swift */,
 				72E0FA852741534500B01C26 /* DropDownMenu.swift */,
 				72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */,
 				72AE6F37274D11C5003F32D0 /* RadioButton.swift */,
+				72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -305,14 +348,14 @@
 		72E0FA872741548F00B01C26 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				72BB7CAB2764AC5200E74012 /* Models */,
 				72E0FA702741328A00B01C26 /* CustomViews */,
 				72BD7821275407B200CF4F8D /* Storage */,
 				72BD781C2753EB5700CF4F8D /* Network */,
-				72BD781F2753EEF000CF4F8D /* Models.swift */,
 				72454EAE2760CC4500ED5D1E /* VaryColors.swift */,
 				72E0FA88274154EF00B01C26 /* View+anchors.swift */,
-				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				722A9932276266410055A8B4 /* UserDefaultKeys.swift */,
+				722A967A2769ED1A00D14E90 /* VaryVars.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -400,11 +443,13 @@
 				3BB986E8275CC05B005BC87A /* ScoresPresenter.swift in Sources */,
 				3BDAB1402763EC9D00674ACD /* HelpInteractor.swift in Sources */,
 				3BB800BE275D35940061D2F6 /* ResultsPresenter.swift in Sources */,
+				3BDAB1562763F13700674ACD /* GameScreenRouter.swift in Sources */,
 				4CF9FF9A2739D2EE00F5F0CA /* TeamsViewController.swift in Sources */,
 				3BDAB14A2763ECAB00674ACD /* AppSettingsViewController.swift in Sources */,
 				3BB986EB275CC05B005BC87A /* ScoresProtocols.swift in Sources */,
 				3BB986EA275CC05B005BC87A /* ScoresViewController.swift in Sources */,
 				4CE42D9627383B88005631D6 /* StartContainer.swift in Sources */,
+				3BDAB1572763F13700674ACD /* GameScreenViewController.swift in Sources */,
 				3BF23CB6274591B100F9C94F /* TeamTableViewCell.swift in Sources */,
 				72BD7823275407DE00CF4F8D /* StorageManager.swift in Sources */,
 				72454EAF2760CC4500ED5D1E /* VaryColors.swift in Sources */,
@@ -430,12 +475,15 @@
 				3BDAB13F2763EC9D00674ACD /* HelpProtocols.swift in Sources */,
 				4CE42D77273839B0005631D6 /* AppDelegate.swift in Sources */,
 				4CE42D9427383B88005631D6 /* StartProtocols.swift in Sources */,
+				3BDAB1592763F13700674ACD /* GameScreenInteractor.swift in Sources */,
+				722A967B2769ED1A00D14E90 /* VaryVars.swift in Sources */,
 				72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */,
 				3BB800C3275D35940061D2F6 /* ResultsContainer.swift in Sources */,
 				3BDAB14B2763ECAB00674ACD /* AppSettingsProtocols.swift in Sources */,
 				3BDAB1492763ECAB00674ACD /* AppSettingsRouter.swift in Sources */,
 				3BDAB13D2763EC9D00674ACD /* HelpRouter.swift in Sources */,
 				4CF9FFA72739D38B00F5F0CA /* SettingsViewController.swift in Sources */,
+				72BB7CAA2764938500E74012 /* RoundTypeDescription.swift in Sources */,
 				3BB986E9275CC05B005BC87A /* ScoresRouter.swift in Sources */,
 				4CE42D79273839B0005631D6 /* SceneDelegate.swift in Sources */,
 				3BDAB13E2763EC9D00674ACD /* HelpViewController.swift in Sources */,
@@ -444,9 +492,13 @@
 				72BD781E2753EE7400CF4F8D /* Network.swift in Sources */,
 				72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */,
 				3BB800C2275D35940061D2F6 /* ResultsInteractor.swift in Sources */,
+				3BDAB15A2763F13700674ACD /* GameScreenContainer.swift in Sources */,
+				3BDAB1552763F13700674ACD /* GameScreenPresenter.swift in Sources */,
 				4CF9FFAA2739D38B00F5F0CA /* SettingsContainer.swift in Sources */,
+				72BB7CA827648DFA00E74012 /* RoundDescriptionView.swift in Sources */,
 				72454EB12760D6E300ED5D1E /* CustomNavBar.swift in Sources */,
 				3BB800C5275D35A50061D2F6 /* ResultTableViewCell.swift in Sources */,
+				3BDAB1582763F13700674ACD /* GameScreenProtocols.swift in Sources */,
 				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
 				72BD78202753EEF000CF4F8D /* Models.swift in Sources */,
 			);

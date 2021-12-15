@@ -25,6 +25,14 @@ extension ResultsPresenter: ResultsModuleInput {
 }
 
 extension ResultsPresenter: ResultsViewOutput {
+    func goToStartView() {
+        router.goToStartView()
+    }
+    
+    func goToGameView() {
+        router.goToGameView()
+    }
+    
 }
 
 extension ResultsPresenter: ResultsInteractorOutput {

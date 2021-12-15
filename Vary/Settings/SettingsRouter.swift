@@ -29,16 +29,50 @@ extension SettingsRouter: SettingsRouterInput {
             return
         }
         
-        //Saving Game Settings
-        let settingsViewController: SettingsViewController = viewController as! SettingsViewController
-        let userDef = UserDefaultsManager().userDefaults         
-        try? userDef.set(object:settingsViewController.gameSettingsOptions, forKey: UserDefaultKeys.gameSettingsOptionsKey)
+        var gameInfo: GameInfo = initGameInfo()
         
-        let context: ScoresContext = ScoresContext()
-        let container: ScoresContainer = ScoresContainer.assemble(with: context)
-        let scoresViewController: UIViewController = container.viewController
+        let context: GameScreenContext = GameScreenContext()
+        let container: GameScreenContainer = GameScreenContainer.assemble(with: context, gameInfo: gameInfo)
+        let gameScreenController: UIViewController = container.viewController
         
-        navController.pushViewController(scoresViewController, animated: true)
+        navController.pushViewController(gameScreenController, animated: true)
     }
+    
+    func saveAllGameInfo() {
+        
+        //Getting Game Settings
+        let settingsViewController: SettingsViewController = viewController as! SettingsViewController
+        let userDef = UserDefaultsManager()
+//        try? userDef.set(object:settingsViewController.gameSettingsOptions, forKey: UserDefaultKeys.gameSettingsOptionsKey)
+        let currentGameSettings = settingsViewController.gameSettingsOptions!
+        let teamsInfo = settingsViewController.teamsInfo ?? AllTeams(teamsList: [])
+        
+        let storageManager = StorageManager(userDefaultManager: userDef)
+        let loadedCards = storageManager.loadCards(numberOfCards: currentGameSettings.cardNumber) ?? Dictionary(name: "Not Found", version: 0, accessLevel: 0, cards: [])
+    
+        
+        let gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings)
+        
+        try? userDef.userDefaults.set(object:gameInfo, forKey: UserDefaultKeys.gameInfo)
+        
+    }
+    
+    func initGameInfo() -> GameInfo{
+        let settingsViewController: SettingsViewController = viewController as! SettingsViewController
+        let userDef = UserDefaultsManager()
+//        try? userDef.set(object:settingsViewController.gameSettingsOptions, forKey: UserDefaultKeys.gameSettingsOptionsKey)
+        let currentGameSettings = settingsViewController.gameSettingsOptions!
+        let teamsInfo = settingsViewController.teamsInfo ?? AllTeams(teamsList: [])
+        
+        let storageManager = StorageManager(userDefaultManager: userDef)
+        let loadedCards = storageManager.loadCards(numberOfCards: currentGameSettings.cardNumber) ?? Dictionary(name: "Not Found", version: 0, accessLevel: 0, cards: [])
+    
+        
+        var gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings)
+        gameInfo.currentRoundTeams = gameInfo.formTeamList()
+        
+        return gameInfo
+    }
+    
     
 }

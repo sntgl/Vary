@@ -10,14 +10,15 @@ import UIKit
 class ResultTableViewCell: UITableViewCell {
 
 
-    private let wordLabel = UILabel()
-
+    let teamLabel = UILabel()
+    let scoreLabel = UILabel()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(wordLabel)
-        wordLabel.text = "слово"
-        wordLabel.textColor = .white
-
+        contentView.addSubview(teamLabel)
+        contentView.addSubview(scoreLabel)
+        teamLabel.textColor = VaryColors.textColor
+        scoreLabel.textColor = VaryColors.textColor
     }
 
     required init?(coder: NSCoder) {
@@ -38,13 +39,22 @@ class ResultTableViewCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
-        wordLabel.translatesAutoresizingMaskIntoConstraints = false
+        teamLabel.translatesAutoresizingMaskIntoConstraints = false
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         [
             //            wordLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            wordLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            wordLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9),
-            wordLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.95),
-            wordLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            teamLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            teamLabel.widthAnchor.constraint(equalToConstant: 15),
+            teamLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9),
+            teamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            teamLabel.trailingAnchor.constraint(equalTo: scoreLabel.leadingAnchor),
+            
+            scoreLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            scoreLabel.widthAnchor.constraint(equalToConstant: 10),
+            scoreLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9),
+            scoreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,  constant: -10),
+            
+//            wordLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ].forEach({constraint in constraint.isActive = true})
     }
 }

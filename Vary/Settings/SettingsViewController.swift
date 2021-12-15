@@ -53,7 +53,7 @@ final class SettingsViewController: UIViewController {
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private let dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
+    private var dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
     private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
     
     private let numberOfCartsView: SliderView = {
@@ -68,6 +68,8 @@ final class SettingsViewController: UIViewController {
         return view
     }()
     
+    
+    var teamsInfo: AllTeams?
     // END SubViews
     
     
@@ -99,51 +101,6 @@ final class SettingsViewController: UIViewController {
 	}
     
     
-    func setupNavController(navTitle title:String){
-        guard let navController = self.navigationController else {
-            print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
-            return
-        }
-        
-        navController.setNavigationBarHidden(false, animated: true)
-
-        for views in navController.navigationBar.subviews {
-            views.removeFromSuperview()
-        }
-
-
-        // Add Button to NavBar
-        var navBarButtonConf = UIButton.Configuration.filled()
-        navBarButtonConf.buttonSize = .large
-        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
-
-        let navBarLabelButton = UIButton()
-        navBarLabelButton.configuration = navBarButtonConf
-        navBarLabelButton.setTitle(title, for: .normal)
-        navBarLabelButton.isEnabled = true
-        navBarLabelButton.layer.cornerRadius = 0
-        navBarLabelButton.backgroundColor = VaryColors.primaryColor
-        navBarLabelButton.clipsToBounds = true
-        navBarLabelButton.layer.cornerRadius = 10
-        navBarLabelButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navBarLabelButton.titleLabel?.textColor = VaryColors.textColor
-        // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
-        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
-
-        // navBar SubView
-        navController.navigationBar.addSubview(navBarLabelButton)
-        navBarLabelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            navBarLabelButton.topAnchor.constraint(equalTo: navController.navigationBar.topAnchor),
-            navBarLabelButton.widthAnchor.constraint(equalTo: navController.navigationBar.widthAnchor),
-            ])
-
-        // Send button to back
-        navController.navigationBar.sendSubviewToBack(navBarLabelButton)
-        navBarLabelButton.layer.zPosition = -1;
-        navBarLabelButton.isUserInteractionEnabled = false
-
-    }
 
     
     func setupStyle() {
@@ -190,7 +147,29 @@ final class SettingsViewController: UIViewController {
         
     }
     
+    
+    func createNewDropDown() -> DropDownMenu{
+        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
+        let myUserDefault = UserDefaultsManager().userDefaults
+        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
+        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
+            return DropDownMenu(menuContent: ["Случайная"])
+        }
+        // Получим опционал, но из опционала ты знаешь как вытаскивать
+        
+        self.teamsInfo = allTeams
+        
+        var allTeamsNames: [String] = ["Случайная"]
+        
+        for team in allTeams.teamsList{
+            allTeamsNames.append(team.name)
+        }
+        
+        return DropDownMenu(menuContent: allTeamsNames)
+    }
+    
     func setupSubviews() {
+        dropDownTeam = createNewDropDown()
         
         allElements = [
 

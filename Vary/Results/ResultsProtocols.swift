@@ -19,6 +19,9 @@ protocol ResultsViewInput: AnyObject {
 }
 
 protocol ResultsViewOutput: AnyObject {
+    
+    func goToStartView()
+    func goToGameView()
 }
 
 protocol ResultsInteractorInput: AnyObject {
@@ -28,4 +31,6 @@ protocol ResultsInteractorOutput: AnyObject {
 }
 
 protocol ResultsRouterInput: AnyObject {
+    func goToStartView()
+    func goToGameView()
 }

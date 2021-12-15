@@ -139,6 +139,7 @@ class StorageManager{
        self.userDefaultManager = userDefaultManager
    }
   
+    
 }
 
 extension StorageManager: StorageManagerProtocol{
@@ -164,6 +165,19 @@ extension StorageManager: StorageManagerProtocol{
     func loadCards() -> Dictionary? {
         if self.fileExists(self.defaultFileName, in: .caches){
             return self.retrieve(self.defaultFileName, from: .caches, as: Dictionary.self)
+        }
+        return nil
+    }
+    
+    
+    func loadCards(numberOfCards num:Int) -> Dictionary? {
+        if self.fileExists(self.defaultFileName, in: .caches){
+            var loadedDict = self.retrieve(self.defaultFileName, from: .caches, as: Dictionary.self)
+            var shuffled_cards: [Card] = loadedDict.cards
+            shuffled_cards.shuffle()
+            shuffled_cards = Array(shuffled_cards[..<num])
+            loadedDict.cards = shuffled_cards
+            return loadedDict
         }
         return nil
     }

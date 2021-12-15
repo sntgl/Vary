@@ -19,6 +19,7 @@ protocol ScoresViewInput: AnyObject {
 }
 
 protocol ScoresViewOutput: AnyObject {
+    func goToResultsView()
 }
 
 protocol ScoresInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol ScoresInteractorOutput: AnyObject {
 }
 
 protocol ScoresRouterInput: AnyObject {
+    func goToResultsView()
 }

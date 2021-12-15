@@ -11,15 +11,23 @@ import UIKit
 final class ResultsViewController: UIViewController {
     private let output: ResultsViewOutput
 
-    private let scoresTableView = UITableView()
+    private let resultTableView = UITableView()
 
     private let container = UIView()
+    
+    private let nextButton = UIButton()
+    private var buttonConf = UIButton.Configuration.filled()
+    
+    var gameInfo: GameInfo?
+    
+    private var teamList: [Team]?
 
-    init(output: ResultsViewOutput) {
+    init(output: ResultsViewOutput, gameInfo: GameInfo) {
         self.output = output
-
+        self.gameInfo = gameInfo
+        
         super.init(nibName: nil, bundle: nil)
-        title = "Набранные баллы"
+        self.teamList = self.sortList(listToSort: self.gameInfo!.currentRoundTeams)
 
 
     }
@@ -29,40 +37,70 @@ final class ResultsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func sortList(listToSort: [Team]) -> [Team] { // should probably be called sort and not filter
+         // sort the fruit by name
+        return listToSort.sorted() { $0.score > $1.score }
+//        fruitList.reloadData(); // notify the table view the data has changed
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         guard let navController = self.navigationController as? CustomNavigationController else {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
         navController.myTitle = "Набранные баллы"
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("Appeared")
+        
+    }
+
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor        = Colors.primaryColor
+        view.backgroundColor = Colors.primaryColor
 
-        scoresTableView.register(ScoreTableViewCell.self, forCellReuseIdentifier: "Cell")
-        scoresTableView.delegate = self
-        scoresTableView.dataSource = self
+        resultTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "ResultCell")
+        resultTableView.delegate = self
+        resultTableView.dataSource = self
 
 
-        scoresTableView.alwaysBounceVertical             = false;
-        scoresTableView.backgroundColor = Colors.surfaceColor
-        scoresTableView.tintColor = Colors.surfaceColor
+        resultTableView.alwaysBounceVertical             = false;
+        resultTableView.backgroundColor = Colors.surfaceColor
+        resultTableView.tintColor = Colors.surfaceColor
 
 
         container.backgroundColor = Colors.surfaceColor
 
+        buttonConf.buttonSize = .large
+        buttonConf.baseBackgroundColor = VaryColors.primaryColor
+        
+        nextButton.configuration = buttonConf
+        nextButton.setTitle("Следующий раунд", for: .normal)
+        nextButton.isEnabled = true
+        nextButton.layer.cornerRadius = 0
+        nextButton.backgroundColor = VaryColors.primaryColor
+        nextButton.clipsToBounds = true
+        nextButton.layer.cornerRadius = 10
+        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        nextButton.titleLabel?.textColor = VaryColors.textColor
+        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
+        nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
+        
+        
         view.addSubview(container)
-        container.addSubview(scoresTableView)
+        container.addSubview(resultTableView)
+        container.addSubview(nextButton)
         container.backgroundColor = Colors.surfaceColor
 
         setupConstraints()
-        scoresTableView.separatorColor = .black
-        scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        scoresTableView.separatorStyle = .singleLine
+//        scoresTableView.separatorColor = .black
+//        scoresTableView.separatorInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+//        scoresTableView.separatorStyle = .singleLine
     }
 
     func setupConstraints(){
@@ -76,14 +114,67 @@ final class ResultsViewController: UIViewController {
 
 
         ].forEach({constraint in constraint.isActive = true})
-
-        scoresTableView.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        resultTableView.translatesAutoresizingMaskIntoConstraints = false
         [
-            scoresTableView.topAnchor.constraint(equalTo:  container.topAnchor, constant: 20),
-            scoresTableView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
-            scoresTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scoresTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            resultTableView.topAnchor.constraint(equalTo:  container.topAnchor, constant: 20),
+            resultTableView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+            resultTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resultTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            
+            
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
         ].forEach({constraint in constraint.isActive = true})
+    }
+    
+    @IBAction func onNextButtonClicked() {
+        self.prepareGameInfoForNextRound()
+        self.output.goToGameView()
+    }
+    
+    func prepareGameInfoForNextRound(){
+        deleteGuessedCards()
+        cleanCurrentsVars()
+        decideNextRound()
+    }
+    
+    func deleteGuessedCards(){
+        for index in self.gameInfo!.guessedCardsIndex.reversed() {
+//            if let searched_index = self.gameInfo?.guessedCardsIndex.firstIndex(of: index) {
+                self.gameInfo?.currentCards.remove(at: index)
+//            }
+            
+//            self.gameInfo!.currentCards.remove(at: index)
+        }
+        print("Card left: \(self.gameInfo?.currentCards.first?.name)")
+    }
+    
+    
+    func cleanCurrentsVars(){
+        self.gameInfo!.guessedCardsIndex = []
+        self.gameInfo!.notGuessedCardsIndex = []
+        self.gameInfo!.scoreOfLastRound = 0
+    }
+    
+    
+    func decideNextRound(){
+        if self.gameInfo!.currentCards.count != 0 {
+            self.gameInfo!.currentTeam = self.gameInfo!.getNextTeamId()
+        }else{
+            changeRoundType()
+            self.gameInfo!.currentTeam = self.gameInfo!.getNextTeamId()
+        }
+    }
+    
+    func changeRoundType(){
+        guard let nextRoundType = self.gameInfo!.getNextRoundType() else{
+            self.output.goToStartView()
+            return
+        }
+        self.gameInfo!.currentRoundType = nextRoundType
+        self.gameInfo!.currentCards = self.gameInfo!.cardsForGame.cards
     }
 }
 
@@ -92,12 +183,13 @@ extension ResultsViewController: ResultsViewInput {
 
 extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        return self.teamList!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ScoreTableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultTableViewCell
+        cell.teamLabel.text = self.teamList![indexPath.row].name
+        cell.scoreLabel.text = String(self.teamList![indexPath.row].score)
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
 
