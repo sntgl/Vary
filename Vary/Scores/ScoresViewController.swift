@@ -68,12 +68,11 @@ final class ScoresViewController: UIViewController {
         scoresTableView.delegate = self
         scoresTableView.dataSource = self
 
-
         scoresTableView.alwaysBounceVertical             = false;
         scoresTableView.backgroundColor = VaryColors.surfaceColor
         scoresTableView.tintColor = VaryColors.surfaceColor
         scoresTableView.allowsMultipleSelection = true
-        
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent;
 
         view.addSubview(container)
         container.addSubview(scoresTableView)

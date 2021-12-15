@@ -26,6 +26,8 @@ final class GameScreenViewController: UIViewController {
     
     private var timerButton = UIButton()
     
+    private let container = UIView()
+    
     private var wordCircleButton = UIButton()
     private var wordCicleButtonHeight = CGFloat(200)
     
@@ -110,7 +112,8 @@ final class GameScreenViewController: UIViewController {
     // Style
     
     func setupStyle() {
-        view.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryColors.primaryColor
+        container.backgroundColor = VaryColors.surfaceColor
         
         
         buttonConf.buttonSize = .large
@@ -239,8 +242,10 @@ final class GameScreenViewController: UIViewController {
             roundInfoButton,
         ]
 
+        view.addSubview(container)
         
-        allElements.forEach({v in view.addSubview(v)})
+        
+        allElements.forEach({v in container.addSubview(v)})
         allElements.forEach({v in v.translatesAutoresizingMaskIntoConstraints = false})
         
         
@@ -262,7 +267,7 @@ final class GameScreenViewController: UIViewController {
     
     func setupSubTimerButton(){
         // navBar SubView
-        view.addSubview(timerButton)
+        container.addSubview(timerButton)
         timerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             timerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -277,36 +282,44 @@ final class GameScreenViewController: UIViewController {
     // Constraints
     
     func setupConstraints() {
-
+        container.translatesAutoresizingMaskIntoConstraints = false
+        [
+            container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            
+            
+        ].forEach({constraint in constraint.isActive = true})
 
         NSLayoutConstraint.activate([
             
             guessedLabel.topAnchor.constraint(equalTo: timerButton.bottomAnchor, constant: 10),
-            guessedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            guessedLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             guessedLabel.heightAnchor.constraint(equalToConstant: 20),
             
 //            roundDesciptionView.topAnchor.constraint(equalTo: guessedLabel.bottomAnchor, constant: 25),
-            roundDesciptionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            roundDesciptionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            roundDesciptionView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            roundDesciptionView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
             roundDesciptionView.heightAnchor.constraint(equalToConstant: 150),
-            roundDesciptionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            roundDesciptionView.widthAnchor.constraint(equalTo: container.widthAnchor),
             
-            wordCircleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            wordCircleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            wordCircleButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            wordCircleButton.centerYAnchor.constraint(equalTo: container.centerYAnchor),
             wordCircleButton.heightAnchor.constraint(equalToConstant: wordCicleButtonHeight),
             wordCircleButton.widthAnchor.constraint(equalToConstant: wordCicleButtonHeight),
             
             
             wordsMissedLabel.topAnchor.constraint(equalTo: roundInfoButton.topAnchor, constant: -30),
-            wordsMissedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            wordsMissedLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
 //            wordsMissedLabel.widthAnchor.constraint(equalToConstant: 300),
             wordsMissedLabel.bottomAnchor.constraint(equalTo: roundInfoButton.topAnchor),
             
 //            roundInfoButton.topAnchor.constraint(equalTo: wordsMissedLabel.bottomAnchor, constant: 10),
-            roundInfoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            roundInfoButton.heightAnchor.constraint(equalTo: roundSubDescriptionLabel.heightAnchor, constant: 30),
-            roundInfoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            roundInfoButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            roundInfoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            roundInfoButton.heightAnchor.constraint(equalTo: roundSubDescriptionLabel.heightAnchor, constant: 60),
+            roundInfoButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            roundInfoButton.widthAnchor.constraint(equalTo: view.widthAnchor),
             
         ])
         
@@ -319,7 +332,7 @@ final class GameScreenViewController: UIViewController {
             roundSubDescriptionLabel.topAnchor.constraint(equalTo: roundScoreLabel.bottomAnchor, constant: 5),
             roundSubDescriptionLabel.centerXAnchor.constraint(equalTo: roundInfoButton.centerXAnchor),
 //            roundSubDescriptionLabel.widthAnchor.constraint(equalTo: roundInfoButton.widthAnchor),
-            roundSubDescriptionLabel.bottomAnchor.constraint(equalTo: roundInfoButton.bottomAnchor),
+//            roundSubDescriptionLabel.bottomAnchor.constraint(equalTo: roundInfoButton.bottomAnchor),
   
         ])
         
@@ -350,9 +363,9 @@ final class GameScreenViewController: UIViewController {
         case .up:
             print("Up swipe was recognized")
             self.updateScore(wordGuessed: true)
-            UIView.animate(withDuration: 0.7) {
+            UIView.animate(withDuration: 0.5) {
 //                print("Start from: \(self.wordCircleButton.center.y )")
-                self.wordCircleButton.center.y += 150
+                self.wordCircleButton.center.y -= 150
 //                self.wordCircleButton.center.y = initialCircleCoord
 //                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in
@@ -363,9 +376,9 @@ final class GameScreenViewController: UIViewController {
         case .down:
             print("Down swipe was recognpaized")
             self.updateScore(wordGuessed: false)
-            UIView.animate(withDuration: 0.7) {
+            UIView.animate(withDuration: 0.5) {
 //                print("Start from: \(self.wordCircleButton.center.y )")
-                self.wordCircleButton.center.y -= 150
+                self.wordCircleButton.center.y += 150
 //                self.wordCircleButton.center.y = initialCircleCoord
 //                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in

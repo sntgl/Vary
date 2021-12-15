@@ -86,7 +86,8 @@ class RoundDescriptionView: UIView {
         addSubview(roundDescriptionLabel)
         addSubview(tipMessageLabel)
         addSubview(roundImage)
-        
+        roundImage.clipsToBounds = false
+        roundImage.contentMode = .scaleAspectFill
         setupSubViewsInfo()
         
         NSLayoutConstraint.activate([
@@ -94,6 +95,7 @@ class RoundDescriptionView: UIView {
             roundImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             roundImage.widthAnchor.constraint(equalToConstant: 100),
             roundImage.heightAnchor.constraint(equalToConstant: 100),
+        
 //            roundImage.bottomAnchor.constraint(equalTo: roundDescriptionLabel.topAnchor),
             
             roundDescriptionLabel.topAnchor.constraint(equalTo: roundImage.bottomAnchor),
