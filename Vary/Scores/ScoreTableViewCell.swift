@@ -16,7 +16,7 @@ class ScoreTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(wordLabel)
         wordLabel.textColor = VaryColors.textColor
-        
+        setSubviews()
     }
 
     required init?(coder: NSCoder) {
@@ -37,7 +37,7 @@ class ScoreTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    override func layoutSubviews() {
+    func setSubviews() {
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         [
 //            wordLabel.topAnchor.constraint(equalTo: contentView.topAnchor),

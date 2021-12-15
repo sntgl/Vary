@@ -72,7 +72,12 @@ final class ResultsViewController: UIViewController {
         resultTableView.alwaysBounceVertical             = false;
         resultTableView.backgroundColor = Colors.surfaceColor
         resultTableView.tintColor = Colors.surfaceColor
+        
 
+        resultTableView.separatorColor = VaryColors.secondaryColor
+        resultTableView.separatorInset = .zero
+        resultTableView.separatorStyle = .singleLine
+        resultTableView.tableHeaderView = UIView()
 
         container.backgroundColor = Colors.surfaceColor
 

@@ -19,10 +19,10 @@ extension ResultsRouter: ResultsRouterInput {
             return
         }
         let container = StartContainer.assemble(with: StartContext())
-//        navController.pushViewController(container.viewController, animated: true)
+        navController.pushViewController(container.viewController, animated: true)
         
-        container.viewController.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
-        self.viewController?.present(container.viewController, animated: true, completion: nil)
+//        container.viewController.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+//        self.viewController?.present(container.viewController, animated: true, completion: nil)
         
     }
     
