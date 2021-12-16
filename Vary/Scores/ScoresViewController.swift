@@ -217,9 +217,11 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
             print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
             print("--------------------------------")
             cell.wordLabel.textColor = VaryColors.primaryColor
+            cell.wordLabel.font = cell.wordLabel.font.withSize(20)
 //            cell.setSelected(true, animated: false)
 //            cell.isSelected = true
         }else{
+            cell.wordLabel.font = cell.wordLabel.font.withSize(20)
             cell.wordLabel.textColor = VaryColors.textColor
         }
 

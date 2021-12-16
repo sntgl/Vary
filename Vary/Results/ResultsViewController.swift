@@ -195,6 +195,8 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultTableViewCell
         cell.teamLabel.text = self.teamList![indexPath.row].name
         cell.scoreLabel.text = String(self.teamList![indexPath.row].score)
+        cell.teamLabel.font = cell.teamLabel.font.withSize(20)
+        cell.scoreLabel.font = cell.scoreLabel.font.withSize(20)
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
 
