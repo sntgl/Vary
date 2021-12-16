@@ -35,10 +35,16 @@ final class HelpViewController: UIViewController {
                                         "Двигай любой частью тела, принимай любые позы, рисуй жестами, но не издавай ни звука, не указывай на какие-либо предметы и не показывай буквы.\nПохожие игры - Крокодил.",
                                         "Ты можешь сказать лишь одно слово, ведь за два раунда все игроки выучили колоду карт. Будь внимателен: это слово нельзя изменить, и исправить свою ошибку можно лишь сбросив карту. Не забывай про запрет на однокоренные и иностранные слова.",
                                         "Побеждает команда, набравшая наибольшее количество очков по итогам всех раундов.\nИгроки могут включить режим общего последнего слова: по истечении времени карточку может отгадать любая команда.\nЗадание от игроков может быть любым, начиная от правды или действия, заканчивая кукареканьем под столом."]
+                                       
     
     init(output: HelpViewOutput) {
         self.output = output
-
+        let arrayOfLabels: [UILabel] = headerText.map {
+            let label = UILabel()
+            label.text = $0
+            return label
+            
+        }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -53,6 +59,12 @@ final class HelpViewController: UIViewController {
         setupSubviews()
         setupStyle()
         setupConstraints()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
 	}
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,14 +120,14 @@ final class HelpViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
+            contentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
             
             
         ].forEach({constraint in constraint.isActive = true})
        
         scrollView.isScrollEnabled = true
-//        self.scrollView.contentSize = self.contentView.bounds.size*2
+//        self.scrollView.contentSize = self.contentView.bounds.size2.0
+        
 //        let testLabel = headerLabelsList[0]
 //
 //        testLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -154,14 +166,14 @@ final class HelpViewController: UIViewController {
                 headerLabelsList[0].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
                 headerLabelsList[0].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
                 headerLabelsList[0].centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-                headerLabelsList[0].widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+//                headerLabelsList[0].widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
 //                headerLabelsList[0].heightAnchor.constraint(equalToConstant: 30).isActive = true
 
                 textLabelsList[0].topAnchor.constraint(equalTo: headerLabelsList[0].bottomAnchor, constant: 15).isActive = true
                 textLabelsList[0].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
                 textLabelsList[0].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
                 textLabelsList[0].centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-                textLabelsList[0].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
+//                textLabelsList[0].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
 //                textLabelsList[0].heightAnchor.constraint(equalToConstant: 30).isActive = true
                 
                 headerLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
@@ -186,14 +198,14 @@ final class HelpViewController: UIViewController {
                 headerLabelsList[i].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
                 headerLabelsList[i].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
                 headerLabelsList[i].centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-                headerLabelsList[i].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
+//                headerLabelsList[i].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
 //                headerLabelsList[0].heightAnchor.constraint(equalToConstant: 30).isActive = true
 
                 textLabelsList[i].topAnchor.constraint(equalTo: headerLabelsList[i].bottomAnchor, constant: 10).isActive = true
                 textLabelsList[i].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
                 textLabelsList[i].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
                 textLabelsList[i].centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-                textLabelsList[i].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
+//                textLabelsList[i].widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -10).isActive = true
                 
                 headerLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
                 headerLabelsList[i].numberOfLines = 1
@@ -208,12 +220,17 @@ final class HelpViewController: UIViewController {
                 textLabelsList[i].font = textLabelsList[i].font.withSize(15)
                 textLabelsList[i].text = labelText[i]
                 textLabelsList[i].textAlignment = .left
+                
+                if i == 4 {
+                    textLabelsList[i].bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+                }
+                
             }
 
 //
         }
-        contentView.frame.size.height += 300
-        scrollView.contentSize = contentView.frame.size
+//        contentView.frame.size.height += 300
+//        scrollView.contentSize = contentView.frame.size
         
         
         

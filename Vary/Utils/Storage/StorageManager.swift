@@ -19,7 +19,7 @@ protocol StorageManagerProtocol {
 class StorageManager{
 
     
-    private let userDefaultManager: UserDefaultsManagerProtocol
+    let userDefaultManager: UserDefaultsManagerProtocol
     private let storageQueue = DispatchQueue(label: "StorageQueue")
     private let defaultFileName = "dictionary.json"
     

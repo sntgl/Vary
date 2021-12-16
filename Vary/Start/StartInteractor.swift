@@ -60,7 +60,9 @@ extension StartInteractor: StartInteractorInput {
                     switch result{
                         case .success(let downloadedCards):
                             self.storageManager?.saveCards(downloadedCards)
+                            self.storageManager?.saveVersion(version: serverVersion)
                             output?.loadedCards(serverVersion)
+                            
                         case .failure(let error):
                             print("Error in Interactor 2: \(error)") // TODO ErrorBox
                         
