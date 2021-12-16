@@ -55,9 +55,19 @@ final class ResultsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         print("Appeared")
+        if checkLastRound() {
+            self.showCongratMessage(message:self.teamList![0].name)
+        }
         
     }
-
+    
+    func showCongratMessage(message: String) {
+        let alert = UIAlertController(title: "Congratulations!", message: message + " win!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            self.output.goToStartView()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
 
     override func viewDidLoad() {
@@ -170,6 +180,14 @@ final class ResultsViewController: UIViewController {
         }else{
             changeRoundType()
             self.gameInfo!.currentTeam = self.gameInfo!.getNextTeamId()
+        }
+    }
+    
+    func checkLastRound() -> Bool{
+        if self.gameInfo!.getNextRoundType()  == nil {
+            return true
+        }else{
+            return false
         }
     }
     
