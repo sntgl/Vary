@@ -65,6 +65,7 @@
 		722E79AF275FE687009432A6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E79AE275FE687009432A6 /* UserDefaultsManager.swift */; };
 		72454EAF2760CC4500ED5D1E /* VaryColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72454EAE2760CC4500ED5D1E /* VaryColors.swift */; };
 		72454EB12760D6E300ED5D1E /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72454EB02760D6E300ED5D1E /* CustomNavBar.swift */; };
+		72601826276A58A1002BDFEC /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72601825276A58A1002BDFEC /* SettingsButton.swift */; };
 		7281957C2744590E009E0FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CE42D7F273839B5005631D6 /* Assets.xcassets */; };
 		72AE6F36274D0FF9003F32D0 /* RadioGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */; };
 		72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AE6F37274D11C5003F32D0 /* RadioButton.swift */; };
@@ -140,6 +141,7 @@
 		722E79AE275FE687009432A6 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		72454EAE2760CC4500ED5D1E /* VaryColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaryColors.swift; sourceTree = "<group>"; };
 		72454EB02760D6E300ED5D1E /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
+		72601825276A58A1002BDFEC /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroupView.swift; sourceTree = "<group>"; };
 		72AE6F37274D11C5003F32D0 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDescriptionView.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				72AE6F35274D0FF9003F32D0 /* RadioGroupView.swift */,
 				72AE6F37274D11C5003F32D0 /* RadioButton.swift */,
 				72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */,
+				72601825276A58A1002BDFEC /* SettingsButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				4CE42D9327383B88005631D6 /* StartViewController.swift in Sources */,
 				72BD781E2753EE7400CF4F8D /* Network.swift in Sources */,
 				72AE6F38274D11C5003F32D0 /* RadioButton.swift in Sources */,
+				72601826276A58A1002BDFEC /* SettingsButton.swift in Sources */,
 				3BB800C2275D35940061D2F6 /* ResultsInteractor.swift in Sources */,
 				3BDAB15A2763F13700674ACD /* GameScreenContainer.swift in Sources */,
 				3BDAB1552763F13700674ACD /* GameScreenPresenter.swift in Sources */,
@@ -635,6 +639,7 @@
 				INFOPLIST_FILE = Vary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -662,6 +667,7 @@
 				INFOPLIST_FILE = Vary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

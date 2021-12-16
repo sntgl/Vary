@@ -25,6 +25,8 @@ protocol StartViewOutput: AnyObject {
     
     func onSettingsButtonClicked()
     
+    func openHelp()
+    
     func viewDidLoad()
 }
 
@@ -43,4 +45,5 @@ protocol StartInteractorOutput: AnyObject {
 protocol StartRouterInput: AnyObject {
     func startNewGame()
     func openSettings()
+    func openHelp()
 }

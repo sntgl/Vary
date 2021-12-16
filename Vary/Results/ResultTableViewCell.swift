@@ -19,6 +19,7 @@ class ResultTableViewCell: UITableViewCell {
         contentView.addSubview(scoreLabel)
         teamLabel.textColor = VaryColors.textColor
         scoreLabel.textColor = VaryColors.textColor
+        setupSubviews()
     }
 
     required init?(coder: NSCoder) {
@@ -38,7 +39,7 @@ class ResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    override func layoutSubviews() {
+    func setupSubviews() {
         teamLabel.translatesAutoresizingMaskIntoConstraints = false
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         [

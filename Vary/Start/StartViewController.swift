@@ -79,8 +79,14 @@ final class StartViewController: UIViewController {
         navigationArray.removeAll()
         navigationArray.append(temp!) //To remove all previous UIViewController except the last one
         self.navigationController?.viewControllers = navigationArray
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -179,6 +185,7 @@ final class StartViewController: UIViewController {
     func setupActions() {
         newGameButton.addTarget(self, action: #selector(onStartNewGameButtonClicked), for: .touchUpInside)
         settingsButton.addTarget(self, action: #selector(onSettingsButtonClicked), for: .touchUpInside)
+        helpButton.addTarget(self, action: #selector(onHelpButtonClicked), for: .touchUpInside)
     }
     
     @IBAction func onStartNewGameButtonClicked() {
@@ -188,7 +195,10 @@ final class StartViewController: UIViewController {
     @IBAction func onSettingsButtonClicked() {
         output.onSettingsButtonClicked()
     }
-
+    
+    @IBAction func onHelpButtonClicked() {
+        output.openHelp()
+    }
 
 }
 

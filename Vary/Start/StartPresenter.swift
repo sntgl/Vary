@@ -25,6 +25,10 @@ extension StartPresenter: StartModuleInput {
 }
 
 extension StartPresenter: StartViewOutput {
+    func openHelp() {
+        router.openHelp()
+    }
+    
     func viewDidLoad() {
         interactor.loadCards()
         

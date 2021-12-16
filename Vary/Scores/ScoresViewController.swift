@@ -72,8 +72,13 @@ final class ScoresViewController: UIViewController {
         scoresTableView.backgroundColor = VaryColors.surfaceColor
         scoresTableView.tintColor = VaryColors.surfaceColor
         scoresTableView.allowsMultipleSelection = true
-        self.navigationController?.navigationBar.barStyle = .blackTranslucent;
-
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
+//        self.navigationController?.navigationBa
+        scoresTableView.separatorColor = VaryColors.secondaryColor
+        scoresTableView.separatorInset = .zero
+        scoresTableView.separatorStyle = .singleLine
+        scoresTableView.tableHeaderView = UIView()
+        
         view.addSubview(container)
         container.addSubview(scoresTableView)
         container.addSubview(nextButton)
@@ -199,20 +204,24 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
        
 //        self.tableView.separatorStyle = UITableViewSeparatorStyleNone;
 
-//        cell.backgroundColor = .clear
-//        cell.selectionStyle = .none
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         
-//        cell.wordLabel.text = self.gameInfo!.cardsForGame.cards[indexPath.row].name
+        
+        //        cell.wordLabel.text = self.gameInfo!.cardsForGame.cards[indexPath.row].name
         print("Created Cell ")
         print("Row = \(indexPath.row) and Section = \(indexPath.section)")
+    
         cell.wordLabel.text = self.gameInfo?.currentCards[indexPath.row].name
         if self.gameInfo!.guessedCardsIndex.contains(indexPath.row){
             print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
             print("--------------------------------")
             cell.wordLabel.textColor = VaryColors.primaryColor
+            cell.wordLabel.font = cell.wordLabel.font.withSize(20)
 //            cell.setSelected(true, animated: false)
 //            cell.isSelected = true
         }else{
+            cell.wordLabel.font = cell.wordLabel.font.withSize(20)
             cell.wordLabel.textColor = VaryColors.textColor
         }
 
@@ -251,12 +260,14 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
     
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        75
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         true
     }
+        
+        
 }
 }
 

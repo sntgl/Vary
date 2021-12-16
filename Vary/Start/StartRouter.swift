@@ -35,10 +35,21 @@ extension StartRouter: StartRouterInput {
             print("no nav controller")
             return
         }
-//        let container = ScoresContainer.assemble(with: ScoresContext())
-//        navController.pushViewController(container.viewController, animated: true)
+        let container = AppSettingsContainer.assemble(with: AppSettingsContext())
+        navController.pushViewController(container.viewController, animated: true)
         
 //                let container = ResultsContainer.assemble(with: ResultsContext())
 //                navController.pushViewController(container.viewController, animated: true)
     }
+    
+    func openHelp(){
+        guard let navController = viewController?.navigationController else {
+            print("no nav controller")
+            return
+        }
+        let container = HelpContainer.assemble(with: HelpContext())
+        navController.pushViewController(container.viewController, animated: true)
+        
+    }
+    
 }
