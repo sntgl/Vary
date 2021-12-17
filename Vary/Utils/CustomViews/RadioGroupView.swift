@@ -82,6 +82,9 @@ extension RadioGroupView: RadioButtonDelegate{
                 if button.id != btn.id{
                     btn.isPressed = false
                     self.currentChecked = button.id
+                }else{
+                    button.isPressed = true
+                    self.currentChecked = button.id
                 }
             }
             
