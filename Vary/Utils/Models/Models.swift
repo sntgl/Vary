@@ -50,7 +50,9 @@ struct GameInfo: Codable{
     var currentTeam: Int
     var currentRoundType: RoundType
     var scoreOfLastRound: Int
-
+    var gameStarted: Bool
+    
+    
     var guessedCardsIndex: [Int]
     var notGuessedCardsIndex: [Int]
     
@@ -63,6 +65,7 @@ struct GameInfo: Codable{
         self.currentRoundTeams = []
         self.currentTeam = 0
         self.currentRoundType = .describe
+        self.gameStarted = true
         
         self.scoreOfLastRound = 0
         self.guessedCardsIndex = []

@@ -74,10 +74,11 @@ final class GameScreenViewController: UIViewController {
                   return
               }
     
-        if !self.checkIfGameStarted() {
-            self.navigationItem.setHidesBackButton(true, animated: true)
-        }else{
+        if self.gameInfo!.gameStarted {
             self.navigationItem.setHidesBackButton(false, animated: true)
+            self.gameInfo!.gameStarted = false
+        }else{
+            self.navigationItem.setHidesBackButton(true, animated: true)
         }
 //        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
 //        let temp = navigationArray[navigationArray.count - 2]
