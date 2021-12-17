@@ -131,7 +131,7 @@ final class StartViewController: UIViewController {
             helpButton,
             settingsButton,
             newGameButton,
-            continueGameButton,
+          //  continueGameButton,
             appNameLabel
         ].forEach({v in container.addSubview(v)})
     }
@@ -168,12 +168,12 @@ final class StartViewController: UIViewController {
             newGameButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
         ].forEach({constraint in constraint.isActive = true})
         
-        continueGameButton.translatesAutoresizingMaskIntoConstraints = false
-        [
-            continueGameButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            continueGameButton.bottomAnchor.constraint(equalTo: newGameButton.topAnchor, constant: -12),
-            continueGameButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
-        ].forEach({constraint in constraint.isActive = true})
+//        continueGameButton.translatesAutoresizingMaskIntoConstraints = false
+//        [
+//            continueGameButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+//            continueGameButton.bottomAnchor.constraint(equalTo: newGameButton.topAnchor, constant: -12),
+//            continueGameButton.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.8),
+//        ].forEach({constraint in constraint.isActive = true})
         
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
         [

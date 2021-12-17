@@ -29,6 +29,9 @@ final class ScoresViewController: UIViewController {
         self.output = output
         self.gameInfo = gameInfo
         super.init(nibName: nil, bundle: nil)
+        
+        
+ 
 //        title = "Набранные баллы"
 
 
@@ -101,8 +104,20 @@ final class ScoresViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
+        
+//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+//        let temp = navigationArray.last
+//        navigationArray.removeAll()
+//        navigationArray.append(temp!) //To remove all previous UIViewController except the last one
+//        self.navigationController?.viewControllers = navigationArray
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         navController.myTitle = "Перепроверка"
-       
+//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+//        let temp = navigationArray[navigationArray.count - 2]
+//        navigationArray.removeAll()
+//        navigationArray.append(temp) //To remove all previous UIViewController except the last one
+//        self.navigationController?.viewControllers = navigationArray
 //        selectGuessedWords()
     }
     

@@ -74,18 +74,41 @@ final class GameScreenViewController: UIViewController {
                   return
               }
     
-        
-        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
-        let temp = navigationArray.last
-        navigationArray.removeAll()
-        navigationArray.append(temp!) //To remove all previous UIViewController except the last one
-        self.navigationController?.viewControllers = navigationArray
+        if !self.checkIfGameStarted() {
+            self.navigationItem.setHidesBackButton(true, animated: true)
+        }else{
+            self.navigationItem.setHidesBackButton(false, animated: true)
+        }
+//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+//        let temp = navigationArray[navigationArray.count - 2]
+//        navigationArray.removeAll()
+//        navigationArray.append(temp) //To remove all previous UIViewController except the last one
+//        self.navigationController?.viewControllers = navigationArray
         
         navController.myTitle = self.gameInfo?.currentRoundTeams[self.gameInfo?.currentTeam ?? 0].name
         currentRoundType = roundDesciptionView.roundType
     }
     
 
+    func checkIfGameStarted() -> Bool{
+        guard let info = self.gameInfo  else {
+                  return true
+        }
+        
+        if (info.currentTeam == 0) && (self.checkLastRound()) {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func checkLastRound() -> Bool{
+        if self.gameInfo!.getNextRoundType()  == RoundType.show {
+            return true
+        }else{
+            return false
+        }
+    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -370,7 +393,7 @@ final class GameScreenViewController: UIViewController {
 //                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
-                
+                self.showNextCard()
             }
 
         case .down:
@@ -383,13 +406,13 @@ final class GameScreenViewController: UIViewController {
 //                print("End from: \(self.wordCircleButton.center.y )")
             } completion: { rez in
                 self.wordCircleButton.center.y = initialCircleCoord
-                
+                self.showNextCard()
             }
         default:
             break
         }
         
-        showNextCard()
+       
     }
 
     func showNextCard(){

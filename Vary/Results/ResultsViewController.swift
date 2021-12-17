@@ -29,7 +29,6 @@ final class ResultsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.teamList = self.sortList(listToSort: self.gameInfo!.currentRoundTeams)
 
-
     }
 
     @available(*, unavailable)
@@ -49,12 +48,28 @@ final class ResultsViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
+//
+//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+//        let temp = navigationArray.last
+//        navigationArray.removeAll()
+//        navigationArray.append(temp!) //To remove all previous UIViewController except the last one
+//        self.navigationController?.viewControllers = navigationArray
+//
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         navController.myTitle = "Набранные баллы"
+//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
+////        let temp = navigationArray[navigationArray.count - 2]
+//        navigationArray.removeAll()
+////        navigationArray.append(temp) //To remove all previous UIViewController except the last one
+//        self.navigationController?.viewControllers = navigationArray
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         print("Appeared")
+        
+        
         if checkLastRound() {
             self.showCongratMessage(message:self.teamList![0].name)
         }
