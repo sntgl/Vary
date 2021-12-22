@@ -136,35 +136,35 @@ final class GameScreenViewController: UIViewController {
     // Style
     
     func setupStyle() {
-        view.backgroundColor = VaryColors.primaryColor
-        container.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
         
         
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryColors.additionalColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.additionalColor
         
         roundInfoButton.configuration = buttonConf
         roundInfoButton.isEnabled = false
-        roundInfoButton.backgroundColor = VaryColors.additionalColor
+        roundInfoButton.backgroundColor = VaryVars.Colors.additionalColor
         roundInfoButton.clipsToBounds = true
         roundInfoButton.layer.cornerRadius = 10
         roundInfoButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        roundInfoButton.titleLabel?.textColor = VaryColors.textColor
+        roundInfoButton.titleLabel?.textColor = VaryVars.Colors.textColor
         roundInfoButton.titleLabel?.font =  roundInfoButton.titleLabel?.font.withSize(25)
         
         
-        guessedLabel.textColor = VaryColors.primaryColor
+        guessedLabel.textColor = VaryVars.Colors.primaryColor
         guessedLabel.font = guessedLabel.font.withSize(20)
         
         
-        wordsMissedLabel.textColor = VaryColors.additionalColor
+        wordsMissedLabel.textColor = VaryVars.Colors.additionalColor
         wordsMissedLabel.font = wordsMissedLabel.font.withSize(20)
         
-        roundScoreLabel.textColor = VaryColors.textColor
+        roundScoreLabel.textColor = VaryVars.Colors.textColor
         roundScoreLabel.font = roundScoreLabel.font.withSize(25)
         
         
-        roundSubDescriptionLabel.textColor = VaryColors.textColor
+        roundSubDescriptionLabel.textColor = VaryVars.Colors.textColor
         roundSubDescriptionLabel.font = roundSubDescriptionLabel.font.withSize(25)
         
         setupWordCircleStyle()
@@ -177,17 +177,17 @@ final class GameScreenViewController: UIViewController {
         
         var timerButtonConf = UIButton.Configuration.filled()
         timerButtonConf.buttonSize = .large
-        timerButtonConf.baseBackgroundColor = VaryColors.primaryColor
+        timerButtonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
 
         timerButton.configuration = timerButtonConf
 //        navBarLabelButton.setTitle(title, for: .normal)
         timerButton.isEnabled = true
         timerButton.layer.cornerRadius = 0
-        timerButton.backgroundColor = VaryColors.primaryColor
+        timerButton.backgroundColor = VaryVars.Colors.primaryColor
         timerButton.clipsToBounds = true
         timerButton.layer.cornerRadius = 10
         timerButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        timerButton.titleLabel?.textColor = VaryColors.textColor
+        timerButton.titleLabel?.textColor = VaryVars.Colors.textColor
         // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
 //        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
 //        myTitleButton = navBarLabelButton
@@ -204,9 +204,9 @@ final class GameScreenViewController: UIViewController {
         wordCircleButton.frame = CGRect(x: 160, y: 100, width: wordCicleButtonHeight, height: wordCicleButtonHeight)
         wordCircleButton.layer.cornerRadius = 0.5 * wordCircleButton.bounds.size.width
         wordCircleButton.clipsToBounds = true
-        wordCircleButton.backgroundColor = VaryColors.secondaryColor
+        wordCircleButton.backgroundColor = VaryVars.Colors.secondaryColor
         wordCircleButton.isHidden = true
-        wordCircleButton.tintColor = VaryColors.textColor
+        wordCircleButton.tintColor = VaryVars.Colors.textColor
         
         let currentCardWord: String = self.gameInfo?.currentCards[self.currentWordIndex].name ?? "Not found"
         wordCircleButton.setTitle(currentCardWord, for: .normal)

@@ -44,24 +44,24 @@ final class ScoresViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        view.backgroundColor        = VaryColors.primaryColor
+        view.backgroundColor        = VaryVars.Colors.primaryColor
         
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryColors.primaryColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
         
         nextButton.configuration = buttonConf
         nextButton.setTitle("Готово", for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = VaryColors.primaryColor
+        nextButton.backgroundColor = VaryVars.Colors.primaryColor
         nextButton.clipsToBounds = true
         nextButton.layer.cornerRadius = 10
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = VaryColors.textColor
+        nextButton.titleLabel?.textColor = VaryVars.Colors.textColor
         nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
-        tipLable.textColor = VaryColors.textColor
+        tipLable.textColor = VaryVars.Colors.textColor
         tipLable.text =  "Нажмите на слово, чтобы изменить его результат"
         tipLable.numberOfLines = 1
         tipLable.font = tipLable.font.withSize(12)
@@ -72,12 +72,12 @@ final class ScoresViewController: UIViewController {
         scoresTableView.dataSource = self
 
         scoresTableView.alwaysBounceVertical             = false;
-        scoresTableView.backgroundColor = VaryColors.surfaceColor
-        scoresTableView.tintColor = VaryColors.surfaceColor
+        scoresTableView.backgroundColor = VaryVars.Colors.surfaceColor
+        scoresTableView.tintColor = VaryVars.Colors.surfaceColor
         scoresTableView.allowsMultipleSelection = true
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
 //        self.navigationController?.navigationBa
-        scoresTableView.separatorColor = VaryColors.secondaryColor
+        scoresTableView.separatorColor = VaryVars.Colors.secondaryColor
         scoresTableView.separatorInset = .zero
         scoresTableView.separatorStyle = .singleLine
         scoresTableView.tableHeaderView = UIView()
@@ -87,7 +87,7 @@ final class ScoresViewController: UIViewController {
         container.addSubview(nextButton)
         container.addSubview(tipLable)
         
-        container.backgroundColor = VaryColors.surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
         setupConstraints()
        
@@ -237,13 +237,13 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
         if self.gameInfo!.guessedCardsIndex.contains(indexPath.row){
             print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
             print("--------------------------------")
-            cell.wordLabel.textColor = VaryColors.primaryColor
+            cell.wordLabel.textColor = VaryVars.Colors.primaryColor
             cell.wordLabel.font = cell.wordLabel.font.withSize(20)
 //            cell.setSelected(true, animated: false)
 //            cell.isSelected = true
         }else{
             cell.wordLabel.font = cell.wordLabel.font.withSize(20)
-            cell.wordLabel.textColor = VaryColors.textColor
+            cell.wordLabel.textColor = VaryVars.Colors.textColor
         }
 
         return cell
@@ -261,17 +261,17 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 //
 //        print(String(indexPath.section))
         let cell = scoresTableView.cellForRow(at: indexPath) as! ScoreTableViewCell
-        if cell.wordLabel.textColor == VaryColors.primaryColor{
+        if cell.wordLabel.textColor == VaryVars.Colors.primaryColor{
             print("Cell was Selected")
-            cell.wordLabel.textColor = VaryColors.textColor
+            cell.wordLabel.textColor = VaryVars.Colors.textColor
             if let index = self.gameInfo?.guessedCardsIndex.firstIndex(of: indexPath.row) {
                 self.gameInfo?.guessedCardsIndex.remove(at: index)
             }
             self.gameInfo?.notGuessedCardsIndex.append(indexPath.row)
             
-        }else if cell.wordLabel.textColor == VaryColors.textColor {
+        }else if cell.wordLabel.textColor == VaryVars.Colors.textColor {
             print("Cell was not Selected")
-            cell.wordLabel.textColor = VaryColors.primaryColor
+            cell.wordLabel.textColor = VaryVars.Colors.primaryColor
             self.gameInfo?.guessedCardsIndex.append(indexPath.row)
             if let index = self.gameInfo?.notGuessedCardsIndex.firstIndex(of: indexPath.row) {
                 self.gameInfo?.notGuessedCardsIndex.remove(at: index)

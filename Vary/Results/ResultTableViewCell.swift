@@ -17,8 +17,8 @@ class ResultTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(teamLabel)
         contentView.addSubview(scoreLabel)
-        teamLabel.textColor = VaryColors.textColor
-        scoreLabel.textColor = VaryColors.textColor
+        teamLabel.textColor = VaryVars.Colors.textColor
+        scoreLabel.textColor = VaryVars.Colors.textColor
         setupSubviews()
     }
 

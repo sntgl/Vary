@@ -26,7 +26,7 @@ class RoundDescriptionView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = VaryColors.secondaryColor
+        view.textColor = VaryVars.Colors.secondaryColor
         view.font = view.font.withSize(25)
         return view
     }()
@@ -35,7 +35,7 @@ class RoundDescriptionView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = VaryColors.textColor
+        view.textColor = VaryVars.Colors.textColor
         view.font = view.font.withSize(15)
         return view
     }()
@@ -43,7 +43,7 @@ class RoundDescriptionView: UIView {
     private let roundImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = VaryColors.primaryColor
+        view.tintColor = VaryVars.Colors.primaryColor
         return view
     }()
     
@@ -72,7 +72,7 @@ class RoundDescriptionView: UIView {
         let roundIcon = roundType.getIcon()!
         let templateImage = roundIcon.withRenderingMode(.alwaysTemplate)
         roundImage.image = templateImage
-        roundImage.tintColor = VaryColors.primaryColor
+        roundImage.tintColor = VaryVars.Colors.primaryColor
         
         roundDescriptionLabel.text = roundType.getRoundDesciption()
         

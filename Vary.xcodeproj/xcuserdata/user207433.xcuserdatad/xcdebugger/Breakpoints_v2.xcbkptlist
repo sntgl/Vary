@@ -46,8 +46,8 @@
             filePath = "Vary/Start/StartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "StartViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -400,8 +400,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
-            landmarkName = "ResultsViewController"
-            landmarkType = "3">
+            landmarkName = "deleteGuessedCards()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -496,8 +496,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "200"
             endingLineNumber = "200"
-            landmarkName = "ResultsViewController"
-            landmarkType = "3">
+            landmarkName = "decideNextRound()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

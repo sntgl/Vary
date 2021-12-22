@@ -15,7 +15,7 @@ class ScoreTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(wordLabel)
-        wordLabel.textColor = VaryColors.textColor
+        wordLabel.textColor = VaryVars.Colors.textColor
         setSubviews()
     }
 

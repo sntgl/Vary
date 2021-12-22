@@ -103,7 +103,7 @@ final class ResultsViewController: UIViewController {
         resultTableView.tintColor = Colors.surfaceColor
         
 
-        resultTableView.separatorColor = VaryColors.secondaryColor
+        resultTableView.separatorColor = VaryVars.Colors.secondaryColor
         resultTableView.separatorInset = .zero
         resultTableView.separatorStyle = .singleLine
         resultTableView.tableHeaderView = UIView()
@@ -111,17 +111,17 @@ final class ResultsViewController: UIViewController {
         container.backgroundColor = Colors.surfaceColor
 
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryColors.primaryColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
         
         nextButton.configuration = buttonConf
         nextButton.setTitle("Следующий раунд", for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = VaryColors.primaryColor
+        nextButton.backgroundColor = VaryVars.Colors.primaryColor
         nextButton.clipsToBounds = true
         nextButton.layer.cornerRadius = 10
         nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = VaryColors.textColor
+        nextButton.titleLabel?.textColor = VaryVars.Colors.textColor
         nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         

@@ -16,11 +16,11 @@ final class SettingsViewController: UIViewController {
     public var gameSettingsOptions: GameSettings?
     
     // Colors
-    private let primaryColor = VaryColors.primaryColor
-    private let surfaceColor = VaryColors.surfaceColor
-    private let secondaryColor = VaryColors.secondaryColor
-    private let additionalColor = VaryColors.additionalColor
-    private let textColor = VaryColors.textColor
+    private let primaryColor = VaryVars.Colors.primaryColor
+    private let surfaceColor = VaryVars.Colors.surfaceColor
+    private let secondaryColor = VaryVars.Colors.secondaryColor
+    private let additionalColor = VaryVars.Colors.additionalColor
+    private let textColor = VaryVars.Colors.textColor
 
     
     // SubViews

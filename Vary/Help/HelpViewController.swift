@@ -99,8 +99,8 @@ final class HelpViewController: UIViewController {
     
     func setupStyle() {
         
-        view.backgroundColor = VaryColors.primaryColor
-        container.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
     }
     
     func setupConstraints() {
@@ -178,14 +178,14 @@ final class HelpViewController: UIViewController {
                 
                 headerLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
                 headerLabelsList[i].numberOfLines = 0
-                headerLabelsList[i].textColor = VaryColors.secondaryColor
+                headerLabelsList[i].textColor = VaryVars.Colors.secondaryColor
                 headerLabelsList[i].font = headerLabelsList[i].font.withSize(30)
                 headerLabelsList[i].text = headerText[i]
                 headerLabelsList[i].textAlignment = .left
                 
                 textLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
                 textLabelsList[i].numberOfLines = 0
-                textLabelsList[i].textColor = VaryColors.textColor
+                textLabelsList[i].textColor = VaryVars.Colors.textColor
                 textLabelsList[i].font = textLabelsList[i].font.withSize(15)
                 textLabelsList[i].text = labelText[i]
                 textLabelsList[i].textAlignment = .left
@@ -209,14 +209,14 @@ final class HelpViewController: UIViewController {
                 
                 headerLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
                 headerLabelsList[i].numberOfLines = 1
-                headerLabelsList[i].textColor = VaryColors.secondaryColor
+                headerLabelsList[i].textColor = VaryVars.Colors.secondaryColor
                 headerLabelsList[i].font = headerLabelsList[i].font.withSize(25)
                 headerLabelsList[i].text = headerText[i]
                 headerLabelsList[i].textAlignment = .left
                 
                 textLabelsList[i].translatesAutoresizingMaskIntoConstraints = false
                 textLabelsList[i].numberOfLines = 0
-                textLabelsList[i].textColor = VaryColors.textColor
+                textLabelsList[i].textColor = VaryVars.Colors.textColor
                 textLabelsList[i].font = textLabelsList[i].font.withSize(15)
                 textLabelsList[i].text = labelText[i]
                 textLabelsList[i].textAlignment = .left

@@ -57,8 +57,8 @@ final class AppSettingsViewController: UIViewController {
     
     func setupStyle() {
         
-        view.backgroundColor = VaryColors.primaryColor
-        container.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
     }
     
     
