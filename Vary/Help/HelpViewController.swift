@@ -72,7 +72,7 @@ final class HelpViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Vary"
+        navController.myTitle = VaryVars.Strings.Vary
     }
     
     

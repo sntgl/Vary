@@ -50,7 +50,7 @@ final class ScoresViewController: UIViewController {
         buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
         
         nextButton.configuration = buttonConf
-        nextButton.setTitle("Готово", for: .normal)
+        nextButton.setTitle(VaryVars.Strings.Ready, for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
         nextButton.backgroundColor = VaryVars.Colors.primaryColor
@@ -62,7 +62,7 @@ final class ScoresViewController: UIViewController {
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         tipLable.textColor = VaryVars.Colors.textColor
-        tipLable.text =  "Нажмите на слово, чтобы изменить его результат"
+        tipLable.text =  VaryVars.Strings.TouchWordToChangeResult
         tipLable.numberOfLines = 1
         tipLable.font = tipLable.font.withSize(12)
         tipLable.textAlignment = .center;
@@ -112,7 +112,7 @@ final class ScoresViewController: UIViewController {
 //        self.navigationController?.viewControllers = navigationArray
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        navController.myTitle = "Перепроверка"
+        navController.myTitle = VaryVars.Strings.ReChecking
 //        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
 //        let temp = navigationArray[navigationArray.count - 2]
 //        navigationArray.removeAll()

@@ -57,7 +57,7 @@ final class ResultsViewController: UIViewController {
 //
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        navController.myTitle = "Набранные баллы"
+        navController.myTitle = VaryVars.Strings.PointsEarned
 //        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
 ////        let temp = navigationArray[navigationArray.count - 2]
 //        navigationArray.removeAll()
@@ -81,7 +81,7 @@ final class ResultsViewController: UIViewController {
     }
     
     func showCongratMessage(message: String) {
-        let alert = UIAlertController(title: "Congratulations!", message: message + " win!", preferredStyle: .alert)
+        let alert = UIAlertController(title: VaryVars.Strings.Winners, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
             self.output.goToStartView()
         }))
@@ -91,7 +91,7 @@ final class ResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.primaryColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
 
         resultTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "ResultCell")
         resultTableView.delegate = self
@@ -99,8 +99,8 @@ final class ResultsViewController: UIViewController {
 
 
         resultTableView.alwaysBounceVertical             = false;
-        resultTableView.backgroundColor = Colors.surfaceColor
-        resultTableView.tintColor = Colors.surfaceColor
+        resultTableView.backgroundColor = VaryVars.Colors.surfaceColor
+        resultTableView.tintColor = VaryVars.Colors.surfaceColor
         
 
         resultTableView.separatorColor = VaryVars.Colors.secondaryColor
@@ -108,13 +108,13 @@ final class ResultsViewController: UIViewController {
         resultTableView.separatorStyle = .singleLine
         resultTableView.tableHeaderView = UIView()
 
-        container.backgroundColor = Colors.surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
         
         nextButton.configuration = buttonConf
-        nextButton.setTitle("Следующий раунд", for: .normal)
+        nextButton.setTitle(VaryVars.Strings.NextRound, for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
         nextButton.backgroundColor = VaryVars.Colors.primaryColor
@@ -129,7 +129,7 @@ final class ResultsViewController: UIViewController {
         view.addSubview(container)
         container.addSubview(resultTableView)
         container.addSubview(nextButton)
-        container.backgroundColor = Colors.surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
         setupConstraints()
 //        scoresTableView.separatorColor = .black
@@ -248,11 +248,3 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
         true
     }
 }
-
-private extension ResultsViewController {
-    enum Colors {
-        static let primaryColor = UIColor(named: "Primary")!
-        static let surfaceColor = UIColor(named: "Surface")!
-    }
-}
-

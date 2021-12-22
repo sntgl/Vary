@@ -36,7 +36,7 @@ final class SettingsViewController: UIViewController {
     
     private let penaltyLabel = UILabel()
     
-    private let radioGroupPenalty = RadioGroupView(titles: ["Нет", "Потеря баллов", "Задание от игроков"], defaultChecked: 0)
+    private let radioGroupPenalty = RadioGroupView(titles: [VaryVars.Strings.None, VaryVars.Strings.LosePoints, VaryVars.Strings.TaskFromPlayers], defaultChecked: 0)
     
     private let commonLastWordLabel = UILabel()
     private let commonLastWordSwitcher = UISwitch()
@@ -53,17 +53,17 @@ final class SettingsViewController: UIViewController {
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private var dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
-    private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
+    private var dropDownTeam = DropDownMenu(menuContent: VaryVars.DefaultTeamChoice)
+    private let dropDownDeck = DropDownMenu(menuContent: VaryVars.DefaultDeckChoice)
     
     private let numberOfCartsView: SliderView = {
-        let view = SliderView(titleLabelString: "Количество карт", valueLabelString: "штук")
+        let view = SliderView(titleLabelString: VaryVars.Strings.DeckNumber, valueLabelString: VaryVars.Strings.Unit)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let roundTimeView: SliderView = {
-       let view = SliderView(titleLabelString: "Время раунда", valueLabelString: "сек")
+        let view = SliderView(titleLabelString: VaryVars.Strings.TimeRound, valueLabelString: VaryVars.Strings.Sec)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -89,7 +89,7 @@ final class SettingsViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Настройки игры"
+        navController.myTitle = VaryVars.Strings.GameSettings
     }
     
 	override func viewDidLoad() {
@@ -116,7 +116,7 @@ final class SettingsViewController: UIViewController {
         commonLastWordSwitcher.thumbTintColor = secondaryColor
         
         nextButton.configuration = buttonConf
-        nextButton.setTitle("Далее", for: .normal)
+        nextButton.setTitle(VaryVars.Strings.Next, for: .normal)
         nextButton.isEnabled = true
         nextButton.layer.cornerRadius = 0
         nextButton.backgroundColor = primaryColor
@@ -132,13 +132,13 @@ final class SettingsViewController: UIViewController {
                       beginningTeamLabel, chooseDeckLabel
         ]
 
-        penaltyLabel.text = "Штраф за пропуск"
-        commonLastWordLabel.text = "Общее последнее слово"
-        beginningTeamLabel.text = "Начинающая команда"
-        chooseDeckLabel.text = "Выбрать колоду"
+        penaltyLabel.text =  VaryVars.Strings.PenaltyForSkip
+        commonLastWordLabel.text =  VaryVars.Strings.CommonLastWord
+        beginningTeamLabel.text =  VaryVars.Strings.BeginningTeam
+        chooseDeckLabel.text = VaryVars.Strings.ChooseDeck
         
-        beginningTeamPullDown.text = "Вместо выпадающего списка"
-        chooseDeckPullDown.text = "Вместо выпадающего списка"
+        beginningTeamPullDown.text = VaryVars.Strings.DefaultPullDownText
+        chooseDeckPullDown.text = VaryVars.Strings.DefaultPullDownText
         
         for label in labelArray{
             label.font = label.font.withSize(20)
@@ -153,13 +153,13 @@ final class SettingsViewController: UIViewController {
         let myUserDefault = UserDefaultsManager().userDefaults
         //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
         guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
-            return DropDownMenu(menuContent: ["Случайная"])
+            return DropDownMenu(menuContent: [VaryVars.Strings.Random])
         }
         // Получим опционал, но из опционала ты знаешь как вытаскивать
         
         self.teamsInfo = allTeams
         
-        var allTeamsNames: [String] = ["Случайная"]
+        var allTeamsNames: [String] = [VaryVars.Strings.Random]
         
         for team in allTeams.teamsList{
             allTeamsNames.append(team.name)

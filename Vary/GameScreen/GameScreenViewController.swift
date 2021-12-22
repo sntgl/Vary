@@ -236,8 +236,8 @@ final class GameScreenViewController: UIViewController {
         
         roundSubDescriptionLabel.text = gameInfo.currentRoundType.getRoundSubDesciption()
         roundScoreLabel.text = "0"
-        guessedLabel.text = "ОТГАДАНО"
-        wordsMissedLabel.text = "ПРОПУЩЕНО"
+        guessedLabel.text = VaryVars.Strings.Guessed.uppercased()
+        wordsMissedLabel.text = VaryVars.Strings.Skipped.uppercased()
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
         swipeUp.direction = .up
@@ -521,9 +521,6 @@ extension GameScreenViewController: RoundDescriptionViewDelegagate{
 
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     
-
-
-
         
     }
     

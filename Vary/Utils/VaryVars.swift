@@ -11,12 +11,12 @@ import UIKit
 class VaryVars{
 
     public enum Strings{
-        static let newGame = "Новая игра"
-        static let continueGame = "Продолжить игру"
-        static let Vary =  "Vary"
-        static let Updated = "Updated"
-        static let UpdatedToVersion  = "Updated to version "
-        static let Teams = "Команды"
+      static let newGame = "Новая игра"
+      static let continueGame = "Продолжить игру"
+      static let Vary =  "Vary"
+      static let Updated = "Updated"
+      static let UpdatedToVersion  = "Updated to version "
+      static let Teams = "Команды"
       static let Next = "Далее"
       static let Back = "< Назад"
       static let Add = "Добавить"
@@ -25,10 +25,40 @@ class VaryVars{
       static let Name = "Название"
       static let Cancel = "Отмена"
       static let Team = "Команда"
-          "Задание от игроков"
       static let None = "Нет"
-      static let LosePoints = "Потеря баллов",
-      static let TaskFromPlayers =
+      static let LosePoints = "Потеря баллов"
+      static let TaskFromPlayers = "Задание от игроков"
+      static let DeckNumber = "Количество карт"
+        static let Unit = "штук"
+      static let TimeRound = "Время раунда"
+        static let Sec = "сек"
+        static let GameSettings = "Настройки игры"
+        static let PenaltyForSkip = "Штраф за пропуск"
+        static let CommonLastWord = "Общее последнее слово"
+        static let BeginningTeam = "Начинающая команда"
+        static let ChooseDeck = "Выбрать колоду"
+        static let DefaultPullDownText = "Вместо выпадающего списка"
+        static let Random = "Случайная"
+              static let Guessed = "Отгадано"
+              static let Skipped = "Пропущено"
+        static let Ready = "Готово"
+        static let TouchWordToChangeResult = "Нажмите на слово, чтобы изменить его результат"
+              static let ReChecking = "Перепроверка"
+        static let PointsEarned = "Набранные баллы"
+              static let Winners = "Победители!"
+        static let NextRound  = "Следующий раунд"
+        static let AppSettings = "Настройки приложения"
+        
+              static let AppSounds = "Звуки в игре"
+              static let CheckUpdates = "Проверять обновления"
+        //      static let
+        //      static let
+        //      static let
+        //      static let
+        //      static let
+        
+        
+        
         
     }
     
@@ -40,10 +70,10 @@ class VaryVars{
         static let textColor = "TextBright"
         static let HelpImg = "HelpImg"
         static let SettingsImg = "SettingsImg"
-        //      static let
-        //      static let
-        //      static let
-        //      static let
+              static let MusicOnIcon = "MusicOnIcon"
+              static let MusicOffIcon = "MusicOffIcon"
+              static let SystemUpdateIcon = "SystemUpdateIcon"
+              static let SystemUpdateOffIcon = "MobileOffIcon"
         //      static let
         //      static let
         //      static let
@@ -61,6 +91,8 @@ class VaryVars{
     public static let iconsSize = CGFloat(60)
     public static let scoreForWord: Int = 10
     public static var juniorDebug: Bool = true
+    public static let DefaultTeamChoice = ["Случайная", "Команда 1", "Команда 2"]
+    public static let DefaultDeckChoice = ["Средние", "Маленькие", "Большие"]
     //      static let
     //      static let
     //      static let
