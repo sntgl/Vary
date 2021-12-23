@@ -20,8 +20,8 @@ class StorageManager{
 
     
     let userDefaultManager: UserDefaultsManagerProtocol
-    private let storageQueue = DispatchQueue(label: "StorageQueue")
-    private let defaultFileName = "dictionary.json"
+    private let storageQueue = DispatchQueue(label: VaryVars.Keys.storageQueueLabel)
+    private let defaultFileName = VaryVars.Keys.defaultFileName
     
     var appVersion: Int {
         storageQueue.sync { userDefaultManager.appVersion }

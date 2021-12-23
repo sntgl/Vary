@@ -44,11 +44,12 @@ class VaryNetwork: NetworkManager{
     
     
     private var requestGetVersion: String {
-        return "http://\(ip)/categories/version"
+        return VaryVars.ServerRequests.requestGetVersion(ip: ip)
     }
   
     private var requestGetCards:String {
-        return "http://\(ip)/categories?version=\(version)"
+        return VaryVars.ServerRequests.requestGetCardsByVersion(ip: ip, version: String(version))
+        
     }
     
     init(appVersion version:Int, serverIp ip:String) {

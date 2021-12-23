@@ -15,7 +15,6 @@ final class GameScreenRouter {
 extension GameScreenRouter: GameScreenRouterInput {
     func goToScrollView() {
         guard let navController = viewController?.navigationController else {
-            print("no nav controller")
             return
         }
         

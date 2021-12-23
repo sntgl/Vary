@@ -13,11 +13,11 @@ final class SettingsContainer {
 	let viewController: UIViewController
 	private(set) weak var router: SettingsRouterInput!
 
-	class func assemble(with context: SettingsContext) -> SettingsContainer {
+    class func assemble(with context: SettingsContext, teamsInfo teams: AllTeams) -> SettingsContainer {
         let router = SettingsRouter()
         let interactor = SettingsInteractor()
         let presenter = SettingsPresenter(router: router, interactor: interactor)
-		let viewController = SettingsViewController(output: presenter)
+        let viewController = SettingsViewController(output: presenter, allTeamsInfo: teams)
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput

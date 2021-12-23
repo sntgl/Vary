@@ -10,6 +10,6 @@ import Foundation
 
 class UserDefaultKeys{
     
-    static let gameSettingsOptionsKey: String = "gameSettingsOptions"
+    static let gameSettingsOptionsKey: String = 
     static let gameInfo: String = "gameInfo"
 }

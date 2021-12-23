@@ -15,7 +15,7 @@ final class ResultsViewController: UIViewController {
 
     private let container = UIView()
     
-    private let nextButton = UIButton()
+    private let nextButton = BottomBigButton(label: VaryVars.Strings.NextRound)
     private var buttonConf = UIButton.Configuration.filled()
     
     var gameInfo: GameInfo?
@@ -57,7 +57,7 @@ final class ResultsViewController: UIViewController {
 //
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        navController.myTitle = "Набранные баллы"
+        navController.myTitle = VaryVars.Strings.PointsEarned
 //        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
 ////        let temp = navigationArray[navigationArray.count - 2]
 //        navigationArray.removeAll()
@@ -81,7 +81,7 @@ final class ResultsViewController: UIViewController {
     }
     
     func showCongratMessage(message: String) {
-        let alert = UIAlertController(title: "Congratulations!", message: message + " win!", preferredStyle: .alert)
+        let alert = UIAlertController(title: VaryVars.Strings.Winners, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
             self.output.goToStartView()
         }))
@@ -91,7 +91,7 @@ final class ResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.primaryColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
 
         resultTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "ResultCell")
         resultTableView.delegate = self
@@ -99,37 +99,24 @@ final class ResultsViewController: UIViewController {
 
 
         resultTableView.alwaysBounceVertical             = false;
-        resultTableView.backgroundColor = Colors.surfaceColor
-        resultTableView.tintColor = Colors.surfaceColor
+        resultTableView.backgroundColor = VaryVars.Colors.surfaceColor
+        resultTableView.tintColor = VaryVars.Colors.surfaceColor
         
 
-        resultTableView.separatorColor = VaryColors.secondaryColor
+        resultTableView.separatorColor = VaryVars.Colors.secondaryColor
         resultTableView.separatorInset = .zero
         resultTableView.separatorStyle = .singleLine
         resultTableView.tableHeaderView = UIView()
 
-        container.backgroundColor = Colors.surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
-        buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryColors.primaryColor
-        
-        nextButton.configuration = buttonConf
-        nextButton.setTitle("Следующий раунд", for: .normal)
-        nextButton.isEnabled = true
-        nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = VaryColors.primaryColor
-        nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 10
-        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = VaryColors.textColor
-        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         
         view.addSubview(container)
         container.addSubview(resultTableView)
         container.addSubview(nextButton)
-        container.backgroundColor = Colors.surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
         setupConstraints()
 //        scoresTableView.separatorColor = .black
@@ -169,22 +156,12 @@ final class ResultsViewController: UIViewController {
     }
     
     func prepareGameInfoForNextRound(){
-        deleteGuessedCards()
+//        deleteGuessedCards()
         cleanCurrentsVars()
         decideNextRound()
     }
     
-    func deleteGuessedCards(){
-        for index in self.gameInfo!.guessedCardsIndex.reversed() {
-//            if let searched_index = self.gameInfo?.guessedCardsIndex.firstIndex(of: index) {
-                self.gameInfo?.currentCards.remove(at: index)
-//            }
-            
-//            self.gameInfo!.currentCards.remove(at: index)
-        }
-        print("Card left: \(self.gameInfo?.currentCards.first?.name)")
-    }
-    
+
     
     func cleanCurrentsVars(){
         self.gameInfo!.guessedCardsIndex = []
@@ -203,7 +180,7 @@ final class ResultsViewController: UIViewController {
     }
     
     func checkLastRound() -> Bool{
-        if self.gameInfo!.getNextRoundType()  == nil {
+        if (self.gameInfo!.getNextRoundType()  == nil) && (self.gameInfo!.currentCards.count == 0) {
             return true
         }else{
             return false
@@ -248,11 +225,3 @@ extension ResultsViewController: UITableViewDataSource, UITableViewDelegate {
         true
     }
 }
-
-private extension ResultsViewController {
-    enum Colors {
-        static let primaryColor = UIColor(named: "Primary")!
-        static let surfaceColor = UIColor(named: "Surface")!
-    }
-}
-

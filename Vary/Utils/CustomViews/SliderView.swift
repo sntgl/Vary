@@ -29,7 +29,7 @@ class SliderView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = UIColor(named: "Primary")!
+        view.textColor = VaryVars.Colors.primaryColor
         return view
     }()
     
@@ -37,14 +37,14 @@ class SliderView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = UIColor(named: "Primary")!
+        view.textColor = VaryVars.Colors.primaryColor
         return view
     }()
     
     private let sliderStep: Float = 10
     
     private let slider: UISlider = {
-       let secondaryColor = UIColor(named: "Secondary")!
+       let secondaryColor = VaryVars.Colors.secondaryColor
        let view = UISlider()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.maximumValue = 100

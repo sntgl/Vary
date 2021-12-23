@@ -13,7 +13,7 @@ final class TeamsViewController: UIViewController {
 
     private let teamsTableView = UITableView()
 
-    private let continueButton = UIButton()
+    private let continueButton = BottomBigButton(label: VaryVars.Strings.Next)
 
     private let backButton = UIButton()
     private let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
@@ -62,7 +62,7 @@ final class TeamsViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Команды"
+        navController.myTitle = VaryVars.Strings.Teams
     }
 
     
@@ -77,24 +77,24 @@ final class TeamsViewController: UIViewController {
     }
 
     func setupStyle(){
-        view.backgroundColor = Colors.primaryColor
-        container.backgroundColor = Colors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
 
-        continueButton.setTitle("Далее", for: .normal)
+        continueButton.setTitle(VaryVars.Strings.Next, for: .normal)
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = Colors.primaryColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
 
 //        backButton.setImage(UIImage(systemName: "arrowtriangle.backward.fill"), for: .normal)
-        backButton.setTitle("< Назад", for: .normal)
-        backButton.tintColor = Colors.surfaceColor
+        backButton.setTitle(VaryVars.Strings.Back, for: .normal)
+        backButton.tintColor = VaryVars.Colors.surfaceColor
         backButton.addTarget(self, action: #selector(backToStartViewController), for: .touchUpInside)
 
         addButton.configuration = buttonConf
-        addButton.setTitle("Добавить", for: .normal)
+        addButton.setTitle(VaryVars.Strings.Add, for: .normal)
 //        addButton.setImage(UIImage(systemName: "cross"), for: .normal)
         addButton.addTarget(self, action: #selector(addRowButtonClicked), for: .touchUpInside)
 
-        teamsTableView.backgroundColor = Colors.surfaceColor
+        teamsTableView.backgroundColor = VaryVars.Colors.surfaceColor
         teamsTableView.alwaysBounceVertical = false;
         teamsTableView.tableFooterView = addButton
 
@@ -104,20 +104,12 @@ final class TeamsViewController: UIViewController {
         teamsLabel.textAlignment = .center
         teamsLabel.isEnabled = true
         teamsLabel.layer.cornerRadius = 0
-        teamsLabel.backgroundColor = Colors.primaryColor
+        teamsLabel.backgroundColor = VaryVars.Colors.primaryColor
         teamsLabel.clipsToBounds = true
 
         teamsLabel.layer.cornerRadius = 20
         teamsLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
-        continueButton.configuration = buttonConf
-        continueButton.setTitle("Далее", for: .normal)
-        continueButton.backgroundColor = Colors.primaryColor
-        continueButton.isEnabled = true
-        continueButton.layer.cornerRadius = 0
-        continueButton.clipsToBounds = true
-        continueButton.layer.cornerRadius = 30
-        continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         continueButton.addTarget(self, action: #selector(goToSettingsView), for: .touchUpInside)
     }
 
@@ -188,21 +180,21 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
 
     @objc
     func nameLabelTapped(_ sender: UITapGestureRecognizer){
-        let alert = UIAlertController(title: "Название команды", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: VaryVars.Strings.TeamName, message: nil, preferredStyle: .alert)
         alert.addTextField { (textField:UITextField) in
             textField.text = self.teamsArray[sender.view!.tag]
             textField.keyboardType = .default
         }
 
-        let okAction = UIAlertAction(title: "Сохранить", style: .default, handler: { (action) -> Void in
+        let okAction = UIAlertAction(title: VaryVars.Strings.Save, style: .default, handler: { (action) -> Void in
             if alert.textFields![0].text == "" {
-                self.teamsArray[sender.view!.tag] = "Название"
+                self.teamsArray[sender.view!.tag] = VaryVars.Strings.Name
             } else {
                 self.teamsArray[sender.view!.tag] = (alert.textFields?[0].text)!
             }
             self.teamsTableView.reloadData()
         } )
-        let returnAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+        let returnAction = UIAlertAction(title: VaryVars.Strings.Cancel, style: .default, handler: nil)
         alert.addAction(returnAction)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
@@ -224,15 +216,7 @@ extension TeamsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     @objc func addRowButtonClicked(sender : UIButton!) {
-        teamsArray.append("Команда \(teamsArray.count + 1)")
+        teamsArray.append(VaryVars.Strings.Team + " \(teamsArray.count + 1)")
         self.teamsTableView.reloadData()
     }
 }
-
-private extension TeamsViewController {
-    enum Colors {
-        static let primaryColor = UIColor(named: "Primary")!
-        static let surfaceColor = UIColor(named: "Surface")!
-    }
-}
-

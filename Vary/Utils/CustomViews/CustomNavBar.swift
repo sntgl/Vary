@@ -17,11 +17,11 @@ class CustomNavigationController: UINavigationController{
     }
     */
     // Colors
-    private let primaryColor = VaryColors.primaryColor
-    private let surfaceColor = VaryColors.surfaceColor
-    private let secondaryColor = VaryColors.secondaryColor
-    private let additionalColor = VaryColors.additionalColor
-    private let textColor = VaryColors.textColor
+    private let primaryColor = VaryVars.Colors.primaryColor
+    private let surfaceColor = VaryVars.Colors.surfaceColor
+    private let secondaryColor = VaryVars.Colors.secondaryColor
+    private let additionalColor = VaryVars.Colors.additionalColor
+    private let textColor = VaryVars.Colors.textColor
     
     
     var myTitleButton: UIButton?
@@ -62,7 +62,7 @@ class CustomNavigationController: UINavigationController{
 
         var navBarButtonConf = UIButton.Configuration.filled()
         navBarButtonConf.buttonSize = .large
-        navBarButtonConf.baseBackgroundColor = VaryColors.primaryColor
+        navBarButtonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
 
         let navBarLabelButton = UIButton()
         navBarLabelButton.configuration = navBarButtonConf
@@ -94,20 +94,5 @@ class CustomNavigationController: UINavigationController{
 
     }
     
-//    func addTimerLabel(){
-//
-//        let timerLabel = UILabel()
-//        timerLabel.text = "01:00"
-//        self.navigationBar.addSubview(timerLabel)
-//        NSLayoutConstraint.activate([
-//            self.navigationBar.heightAnchor.constraint(equalToConstant: 35),
-//            ])
-//
-//        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            timerLabel.topAnchor.constraint(equalTo: self.myTitleButton!.bottomAnchor),
-//            timerLabel.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor),
-////            timerLabel.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor),
-//            ])    }
     
 }

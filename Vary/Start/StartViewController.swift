@@ -11,23 +11,15 @@ import UIKit
 final class StartViewController: UIViewController {
 	private let output: StartViewOutput
     
-    private let primaryColor = UIColor(named: "Primary")!
-    private let surfaceColor = UIColor(named: "Surface")!
-    private let secondaryColor = UIColor(named: "Secondary")!
-    private let additionalColor = UIColor(named: "Additional")!
-    private let textColor = UIColor(named: "TextBright")!
-    
-    private let iconsSize = CGFloat(60)
-    
     private let container = UIView()
     
     private let appNameLabel = UILabel()
     
     private let helpButton = UIButton(type: .custom)
-    private var helpImage = UIImage(named: "HelpImg")!
+    private var helpImage = UIImage(named: VaryVars.ResNames.HelpImg)!
     
     private let settingsButton = UIButton(type: .custom)
-    private var settingsImage = UIImage(named: "SettingsImg")!
+    private var settingsImage = UIImage(named: VaryVars.ResNames.SettingsImg)!
     
     private var buttonConf = UIButton.Configuration.filled()
     private var disabledButtonConf = UIButton.Configuration.filled()
@@ -52,20 +44,9 @@ final class StartViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         setupStyle()
+        setupConstraints()
         setupActions()
         output.viewDidLoad()
-//        let network = VaryNetwork(appVersion: 0, serverIp: "")
-//        network.getLastVersionAsync { result in
-//            switch result {
-//            case .success(let version):
-//                DispatchQueue.main.async {
-//                    // update UI
-//                }
-//                break
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
         
 	}
     
@@ -79,50 +60,42 @@ final class StartViewController: UIViewController {
         navigationArray.removeAll()
         navigationArray.append(temp!) //To remove all previous UIViewController except the last one
         self.navigationController?.viewControllers = navigationArray
-//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
-
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupConstraints()
-    }
     
     func setupStyle() {
-        view.backgroundColor = primaryColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
         
-        container.backgroundColor = surfaceColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
         
-        helpImage = helpImage.withTintColor(primaryColor)
+        helpImage = helpImage.withTintColor(VaryVars.Colors.primaryColor)
         helpButton.setImage(helpImage, for: .normal)
         
-        settingsImage = settingsImage.withTintColor(primaryColor)
+        settingsImage = settingsImage.withTintColor(VaryVars.Colors.primaryColor)
         settingsButton.setImage(settingsImage, for: .normal)
         
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = primaryColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
 
         disabledButtonConf.buttonSize = .large
-        disabledButtonConf.baseBackgroundColor = additionalColor
+        disabledButtonConf.baseBackgroundColor = VaryVars.Colors.additionalColor
         
         newGameButton.configuration = buttonConf
-        newGameButton.setTitle("Новая игра", for: .normal)
-        newGameButton.titleLabel?.textColor = textColor
+        newGameButton.setTitle(VaryVars.Strings.newGame, for: .normal)
+        newGameButton.titleLabel?.textColor = VaryVars.Colors.textColor
         
         continueGameButton.configuration = buttonConf
-        continueGameButton.setTitle("Продолжить игру", for: .normal)
+        continueGameButton.setTitle(VaryVars.Strings.continueGame, for: .normal)
         continueGameButton.isEnabled = true
-        continueGameButton.titleLabel?.textColor = textColor
+        continueGameButton.titleLabel?.textColor = VaryVars.Colors.textColor
         
-        appNameLabel.text = "Vary"
+        appNameLabel.text = VaryVars.Strings.Vary
         appNameLabel.font = appNameLabel.font.withSize(40) //TODO поменять шрифт
-        appNameLabel.textColor = textColor
+        appNameLabel.textColor = VaryVars.Colors.textColor
     }
     
     func setupSubviews() {
@@ -149,16 +122,16 @@ final class StartViewController: UIViewController {
         [
             helpButton.topAnchor.constraint(equalTo: container.topAnchor, constant: 12),
             helpButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
-            helpButton.widthAnchor.constraint(equalToConstant: iconsSize),
-            helpButton.heightAnchor.constraint(equalToConstant: iconsSize)
+            helpButton.widthAnchor.constraint(equalToConstant: VaryVars.iconsSize),
+            helpButton.heightAnchor.constraint(equalToConstant: VaryVars.iconsSize)
         ].forEach({constraint in constraint.isActive = true})
         
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         [
             settingsButton.topAnchor.constraint(equalTo: container.topAnchor, constant: 12),
             settingsButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
-            settingsButton.widthAnchor.constraint(equalToConstant: iconsSize),
-            settingsButton.heightAnchor.constraint(equalToConstant: iconsSize)
+            settingsButton.widthAnchor.constraint(equalToConstant: VaryVars.iconsSize),
+            settingsButton.heightAnchor.constraint(equalToConstant: VaryVars.iconsSize)
         ].forEach({constraint in constraint.isActive = true})
         
         newGameButton.translatesAutoresizingMaskIntoConstraints = false
@@ -204,7 +177,7 @@ final class StartViewController: UIViewController {
 
 extension StartViewController: StartViewInput {
     func showInfoMessage(message: String) {
-        let alert = UIAlertController(title: "Updated", message: "Updated to version " + message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: VaryVars.Strings.Updated, message: VaryVars.Strings.UpdatedToVersion + message, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

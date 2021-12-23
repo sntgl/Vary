@@ -19,7 +19,7 @@ class DropDownMenu: UITextField  {
     private let teamLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = UIColor(named: "Primary")!
+        view.textColor = VaryVars.Colors.primaryColor
         return view
     }()
 

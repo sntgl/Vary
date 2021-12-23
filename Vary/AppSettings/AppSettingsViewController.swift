@@ -14,9 +14,9 @@ final class AppSettingsViewController: UIViewController {
     
     private let container = UIView()
     
-    private let soundSettingsButton = SettingsButton(labelText: "Звуки в игре", imageOn: UIImage(named: "MusicOnIcon")!, imageOff: UIImage(named: "MusicOffIcon")!)
+    private let soundSettingsButton = SettingsButton(labelText: VaryVars.Strings.AppSounds, imageOn: UIImage(named: VaryVars.ResNames.MusicOnIcon)!, imageOff: UIImage(named: VaryVars.ResNames.MusicOffIcon)!)
     
-    private let updateSettingsButton = SettingsButton(labelText: "Проверять обновления", imageOn: UIImage(named: "SystemUpdateIcon")!, imageOff: UIImage(named: "MobileOffIcon")!)
+    private let updateSettingsButton = SettingsButton(labelText:  VaryVars.Strings.CheckUpdates, imageOn: UIImage(named: VaryVars.ResNames.SystemUpdateIcon)!, imageOff: UIImage(named: VaryVars.ResNames.SystemUpdateOffIcon)!)
     
     init(output: AppSettingsViewOutput) {
         self.output = output
@@ -43,7 +43,7 @@ final class AppSettingsViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Settings"
+        navController.myTitle = VaryVars.Strings.AppSettings
     }
     
     func setupSubviews() {
@@ -57,8 +57,8 @@ final class AppSettingsViewController: UIViewController {
     
     func setupStyle() {
         
-        view.backgroundColor = VaryColors.primaryColor
-        container.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
     }
     
     

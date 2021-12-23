@@ -13,7 +13,7 @@ protocol UserDefaultsManagerProtocol: AnyObject {
 
 class UserDefaultsManager: UserDefaultsManagerProtocol {
     let userDefaults = UserDefaults()
-    private let appVersionKey = "appVersionKey"
+    private let appVersionKey = VaryVars.Keys.appVersionKey
     
     var appVersion: Int {
         get {

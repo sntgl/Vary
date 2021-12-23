@@ -15,7 +15,7 @@ class SettingsButton: UIView{
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = VaryColors.textColor
+        view.textColor = VaryVars.Colors.textColor
         view.font = view.font.withSize(25)
         return view
     }()
@@ -23,7 +23,7 @@ class SettingsButton: UIView{
     private let settingsImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = VaryColors.primaryColor
+        view.tintColor = VaryVars.Colors.primaryColor
         return view
     }()
     
@@ -60,7 +60,7 @@ class SettingsButton: UIView{
         
         let templateImage = imageOn!.withRenderingMode(.alwaysTemplate)
         settingsImage.image = templateImage
-        settingsImage.tintColor = VaryColors.primaryColor
+        settingsImage.tintColor = VaryVars.Colors.primaryColor
         settingsImage.clipsToBounds = false
         settingsImage.contentMode = .scaleAspectFill
         
@@ -94,7 +94,7 @@ class SettingsButton: UIView{
   
         }
         settingsImage.image = templateImage!
-        settingsImage.tintColor = VaryColors.primaryColor
+        settingsImage.tintColor = VaryVars.Colors.primaryColor
         settingsImage.clipsToBounds = false
         settingsImage.contentMode = .scaleAspectFill
     }

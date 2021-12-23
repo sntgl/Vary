@@ -40,7 +40,7 @@ final class GameScreenViewController: UIViewController {
     
     var gameInfo: GameInfo?
     var currentWordIndex: Int = 0
-    var scoreForWord: Int = 10
+    var scoreForWord: Int = VaryVars.scoreForWord
     var currentRoundType: RoundType?
     var initialCircleCoord: CGFloat?
     // End util vars
@@ -51,11 +51,8 @@ final class GameScreenViewController: UIViewController {
         self.output = output
         self.gameInfo = gameInfo
         super.init(nibName: nil, bundle: nil)
-//        self.gameInfo = getGameInfo()
+
         self.countdownTime = self.gameInfo?.gameSettings.roundTime
-        print("GAMESCREEN INITIALISED")
-        print("COUNTDOWN TIME \(self.countdownTime)")
-//        print("Team play order: \(self.gameInfo!.currentRoundTeams)")
         
     }
     
@@ -73,43 +70,13 @@ final class GameScreenViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-    
-        if self.gameInfo!.gameStarted {
-            self.navigationItem.setHidesBackButton(false, animated: true)
-            self.gameInfo!.gameStarted = false
-        }else{
-            self.navigationItem.setHidesBackButton(true, animated: true)
-        }
-//        var navigationArray = navController.viewControllers // To get all UIViewController stack as Array
-//        let temp = navigationArray[navigationArray.count - 2]
-//        navigationArray.removeAll()
-//        navigationArray.append(temp) //To remove all previous UIViewController except the last one
-//        self.navigationController?.viewControllers = navigationArray
+
+        showNavBackButon()
         
         navController.myTitle = self.gameInfo?.currentRoundTeams[self.gameInfo?.currentTeam ?? 0].name
         currentRoundType = roundDesciptionView.roundType
     }
-    
 
-    func checkIfGameStarted() -> Bool{
-        guard let info = self.gameInfo  else {
-                  return true
-        }
-        
-        if (info.currentTeam == 0) && (self.checkLastRound()) {
-            return true
-        }else{
-            return false
-        }
-    }
-    
-    func checkLastRound() -> Bool{
-        if self.gameInfo!.getNextRoundType()  == RoundType.show {
-            return true
-        }else{
-            return false
-        }
-    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -122,13 +89,6 @@ final class GameScreenViewController: UIViewController {
     // End Lifecycle
     
     
-    
-    
-    
-    
-    
-    
-    
     // Additional functions
 
     
@@ -136,35 +96,35 @@ final class GameScreenViewController: UIViewController {
     // Style
     
     func setupStyle() {
-        view.backgroundColor = VaryColors.primaryColor
-        container.backgroundColor = VaryColors.surfaceColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
+        container.backgroundColor = VaryVars.Colors.surfaceColor
         
         
         buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryColors.additionalColor
+        buttonConf.baseBackgroundColor = VaryVars.Colors.additionalColor
         
         roundInfoButton.configuration = buttonConf
         roundInfoButton.isEnabled = false
-        roundInfoButton.backgroundColor = VaryColors.additionalColor
+        roundInfoButton.backgroundColor = VaryVars.Colors.additionalColor
         roundInfoButton.clipsToBounds = true
         roundInfoButton.layer.cornerRadius = 10
         roundInfoButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        roundInfoButton.titleLabel?.textColor = VaryColors.textColor
+        roundInfoButton.titleLabel?.textColor = VaryVars.Colors.textColor
         roundInfoButton.titleLabel?.font =  roundInfoButton.titleLabel?.font.withSize(25)
         
         
-        guessedLabel.textColor = VaryColors.primaryColor
+        guessedLabel.textColor = VaryVars.Colors.primaryColor
         guessedLabel.font = guessedLabel.font.withSize(20)
         
         
-        wordsMissedLabel.textColor = VaryColors.additionalColor
+        wordsMissedLabel.textColor = VaryVars.Colors.additionalColor
         wordsMissedLabel.font = wordsMissedLabel.font.withSize(20)
         
-        roundScoreLabel.textColor = VaryColors.textColor
+        roundScoreLabel.textColor = VaryVars.Colors.textColor
         roundScoreLabel.font = roundScoreLabel.font.withSize(25)
         
         
-        roundSubDescriptionLabel.textColor = VaryColors.textColor
+        roundSubDescriptionLabel.textColor = VaryVars.Colors.textColor
         roundSubDescriptionLabel.font = roundSubDescriptionLabel.font.withSize(25)
         
         setupWordCircleStyle()
@@ -177,17 +137,17 @@ final class GameScreenViewController: UIViewController {
         
         var timerButtonConf = UIButton.Configuration.filled()
         timerButtonConf.buttonSize = .large
-        timerButtonConf.baseBackgroundColor = VaryColors.primaryColor
+        timerButtonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
 
         timerButton.configuration = timerButtonConf
 //        navBarLabelButton.setTitle(title, for: .normal)
         timerButton.isEnabled = true
         timerButton.layer.cornerRadius = 0
-        timerButton.backgroundColor = VaryColors.primaryColor
+        timerButton.backgroundColor = VaryVars.Colors.primaryColor
         timerButton.clipsToBounds = true
         timerButton.layer.cornerRadius = 10
         timerButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        timerButton.titleLabel?.textColor = VaryColors.textColor
+        timerButton.titleLabel?.textColor = VaryVars.Colors.textColor
         // bigSettingsLabelButton.titleLabel?.font =  bigSettingsLabelButton.titleLabel?.font.withSize(45)
 //        navBarLabelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Light", size: 45)
 //        myTitleButton = navBarLabelButton
@@ -195,7 +155,7 @@ final class GameScreenViewController: UIViewController {
         guard let time = self.countdownTime else{
             return
         }
-        timerButton.setTitle(String(time), for: .normal)
+        timerButton.setTitle(getTimeStringPresentation(timerCountDown: time), for: .normal)
     }
     
     
@@ -204,9 +164,9 @@ final class GameScreenViewController: UIViewController {
         wordCircleButton.frame = CGRect(x: 160, y: 100, width: wordCicleButtonHeight, height: wordCicleButtonHeight)
         wordCircleButton.layer.cornerRadius = 0.5 * wordCircleButton.bounds.size.width
         wordCircleButton.clipsToBounds = true
-        wordCircleButton.backgroundColor = VaryColors.secondaryColor
+        wordCircleButton.backgroundColor = VaryVars.Colors.secondaryColor
         wordCircleButton.isHidden = true
-        wordCircleButton.tintColor = VaryColors.textColor
+        wordCircleButton.tintColor = VaryVars.Colors.textColor
         
         let currentCardWord: String = self.gameInfo?.currentCards[self.currentWordIndex].name ?? "Not found"
         wordCircleButton.setTitle(currentCardWord, for: .normal)
@@ -236,8 +196,8 @@ final class GameScreenViewController: UIViewController {
         
         roundSubDescriptionLabel.text = gameInfo.currentRoundType.getRoundSubDesciption()
         roundScoreLabel.text = "0"
-        guessedLabel.text = "ОТГАДАНО"
-        wordsMissedLabel.text = "ПРОПУЩЕНО"
+        guessedLabel.text = VaryVars.Strings.Guessed.uppercased()
+        wordsMissedLabel.text = VaryVars.Strings.Skipped.uppercased()
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
         swipeUp.direction = .up
@@ -380,7 +340,7 @@ final class GameScreenViewController: UIViewController {
 //            return
 //        }
         let initialCircleCoord = self.wordCircleButton.center.y
-        let moveCoord = initialCircleCoord - self.guessedLabel.center.y - self.wordCicleButtonHeight/2 + 15
+//        let moveCoord = initialCircleCoord - self.guessedLabel.center.y - self.wordCicleButtonHeight/2 + 15
 //        let downCoord = self.wordsMissedLabel.center.y - self.wordCicleButtonHeight/2 - 15
         print("Initial coord: \(initialCircleCoord)")
         switch gester.direction {
@@ -433,24 +393,13 @@ final class GameScreenViewController: UIViewController {
     }
     
 
-    func getGameInfo() -> GameInfo?{
-        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
-        let myUserDefault = UserDefaultsManager().userDefaults
-        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        return try? myUserDefault.get(objectType: GameInfo.self, forKey: UserDefaultKeys.gameInfo)
-    }
-
     
     @objc func updateCounter() {
-        //example functionality
-        
-//        guard var time = self.countdownTime, let timer = self.timer else{
-//            return
-//        }
+
         print("COUNTDOWN LEFT - \(self.countdownTime!)")
         if self.countdownTime! > 0 {
             self.countdownTime! -= 1
-            timerButton.setTitle(String(self.countdownTime!), for: .normal)
+            timerButton.setTitle(getTimeStringPresentation(timerCountDown: self.countdownTime!), for: .normal)
             
         }
         else{
@@ -462,8 +411,22 @@ final class GameScreenViewController: UIViewController {
     
     func markLeftWordsAsUnGuessed(){
         for index in self.currentWordIndex..<self.gameInfo!.currentCards.count{
-            self.gameInfo!.notGuessedCardsIndex.append(index)
+            self.gameInfo!.notGuessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
         }
+    }
+    
+    func convertDexTime(time: Int) -> String{
+        if time >= 10{
+            return String(time)
+        }else {
+            return "0\(time)"
+        }
+    }
+    
+    func getTimeStringPresentation(timerCountDown: Int) -> String{
+        let minutesLeft = convertDexTime(time: timerCountDown / 60)
+        let secondsLeft = convertDexTime(time: timerCountDown % 60)
+        return "\(minutesLeft):\(secondsLeft)"
     }
     
     
@@ -472,9 +435,9 @@ final class GameScreenViewController: UIViewController {
         if wordGuessed{
             gameInfo!.scoreOfLastRound  += self.scoreForWord
 //            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
-            gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
+            gameInfo!.guessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
         }else{
-            gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
+            gameInfo!.notGuessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
             switch gameInfo!.gameSettings.penaltyForPass {
             case .No:
                 return
@@ -497,6 +460,37 @@ final class GameScreenViewController: UIViewController {
         roundScoreLabel.text = String(gameInfo.scoreOfLastRound)
     }
     
+    
+    func showNavBackButon(){
+        if self.gameInfo!.gameStarted {
+            self.navigationItem.setHidesBackButton(false, animated: true)
+            self.gameInfo!.gameStarted = false
+        }else{
+            self.navigationItem.setHidesBackButton(true, animated: true)
+        }
+    }
+    
+
+    func checkIfGameStarted() -> Bool{
+        guard let info = self.gameInfo  else {
+                  return true
+        }
+        
+        if (info.currentTeam == 0) && (self.checkLastRound()) {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func checkLastRound() -> Bool{
+        if self.gameInfo!.getNextRoundType()  == RoundType.show {
+            return true
+        }else{
+            return false
+        }
+    }
+    
     func showTaskFromPlayers(){
         self.timer?.invalidate()
         roundDesciptionView.changeRoundType(toType: .taskFromPlayers)
@@ -509,6 +503,7 @@ final class GameScreenViewController: UIViewController {
         self.output.goToScrollView()
     }
     
+
     
 }
 
@@ -521,9 +516,6 @@ extension GameScreenViewController: RoundDescriptionViewDelegagate{
 
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     
-
-
-
         
     }
     

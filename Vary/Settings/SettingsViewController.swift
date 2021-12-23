@@ -16,11 +16,11 @@ final class SettingsViewController: UIViewController {
     public var gameSettingsOptions: GameSettings?
     
     // Colors
-    private let primaryColor = VaryColors.primaryColor
-    private let surfaceColor = VaryColors.surfaceColor
-    private let secondaryColor = VaryColors.secondaryColor
-    private let additionalColor = VaryColors.additionalColor
-    private let textColor = VaryColors.textColor
+    private let primaryColor = VaryVars.Colors.primaryColor
+    private let surfaceColor = VaryVars.Colors.surfaceColor
+    private let secondaryColor = VaryVars.Colors.secondaryColor
+    private let additionalColor = VaryVars.Colors.additionalColor
+    private let textColor = VaryVars.Colors.textColor
 
     
     // SubViews
@@ -36,7 +36,7 @@ final class SettingsViewController: UIViewController {
     
     private let penaltyLabel = UILabel()
     
-    private let radioGroupPenalty = RadioGroupView(titles: ["Нет", "Потеря баллов", "Задание от игроков"], defaultChecked: 0)
+    private let radioGroupPenalty = RadioGroupView(titles: [VaryVars.Strings.None, VaryVars.Strings.LosePoints, VaryVars.Strings.TaskFromPlayers], defaultChecked: 0)
     
     private let commonLastWordLabel = UILabel()
     private let commonLastWordSwitcher = UISwitch()
@@ -47,23 +47,23 @@ final class SettingsViewController: UIViewController {
     private let chooseDeckLabel = UILabel()
     private let chooseDeckPullDown = UILabel()
     
-    private let nextButton = UIButton()
+    private let nextButton = BottomBigButton(label: VaryVars.Strings.Next)
     private var buttonConf = UIButton.Configuration.filled()
     
     private var labelArray: [UILabel] = []
     private var allElements: [UIView] = []
     
-    private var dropDownTeam = DropDownMenu(menuContent: ["Случайная", "Команда 1", "Команда 2"])
-    private let dropDownDeck = DropDownMenu(menuContent: ["Средние", "Маленькие", "Большие"])
+    private var dropDownTeam = DropDownMenu(menuContent: VaryVars.DefaultTeamChoice)
+    private let dropDownDeck = DropDownMenu(menuContent: VaryVars.DefaultDeckChoice)
     
     private let numberOfCartsView: SliderView = {
-        let view = SliderView(titleLabelString: "Количество карт", valueLabelString: "штук")
+        let view = SliderView(titleLabelString: VaryVars.Strings.DeckNumber, valueLabelString: VaryVars.Strings.Unit)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let roundTimeView: SliderView = {
-       let view = SliderView(titleLabelString: "Время раунда", valueLabelString: "сек")
+        let view = SliderView(titleLabelString: VaryVars.Strings.TimeRound, valueLabelString: VaryVars.Strings.Sec)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,8 +73,9 @@ final class SettingsViewController: UIViewController {
     // END SubViews
     
     
-    init(output: SettingsViewOutput) {
+    init(output: SettingsViewOutput, allTeamsInfo: AllTeams) {
         self.output = output
+        self.teamsInfo = allTeamsInfo
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -89,7 +90,7 @@ final class SettingsViewController: UIViewController {
                   print("No Navigation Controller for class:" + NSStringFromClass(self.classForCoder))
                   return
               }
-        navController.myTitle = "Настройки игры"
+        navController.myTitle = VaryVars.Strings.GameSettings
     }
     
 	override func viewDidLoad() {
@@ -115,16 +116,6 @@ final class SettingsViewController: UIViewController {
         commonLastWordSwitcher.onTintColor = additionalColor
         commonLastWordSwitcher.thumbTintColor = secondaryColor
         
-        nextButton.configuration = buttonConf
-        nextButton.setTitle("Далее", for: .normal)
-        nextButton.isEnabled = true
-        nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = primaryColor
-        nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 10
-        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = textColor
-        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         labelArray = [
@@ -132,13 +123,13 @@ final class SettingsViewController: UIViewController {
                       beginningTeamLabel, chooseDeckLabel
         ]
 
-        penaltyLabel.text = "Штраф за пропуск"
-        commonLastWordLabel.text = "Общее последнее слово"
-        beginningTeamLabel.text = "Начинающая команда"
-        chooseDeckLabel.text = "Выбрать колоду"
+        penaltyLabel.text =  VaryVars.Strings.PenaltyForSkip
+        commonLastWordLabel.text =  VaryVars.Strings.CommonLastWord
+        beginningTeamLabel.text =  VaryVars.Strings.BeginningTeam
+        chooseDeckLabel.text = VaryVars.Strings.ChooseDeck
         
-        beginningTeamPullDown.text = "Вместо выпадающего списка"
-        chooseDeckPullDown.text = "Вместо выпадающего списка"
+        beginningTeamPullDown.text = VaryVars.Strings.DefaultPullDownText
+        chooseDeckPullDown.text = VaryVars.Strings.DefaultPullDownText
         
         for label in labelArray{
             label.font = label.font.withSize(20)
@@ -148,20 +139,20 @@ final class SettingsViewController: UIViewController {
     }
     
     
-    func createNewDropDown() -> DropDownMenu{
-        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
-        let myUserDefault = UserDefaultsManager().userDefaults
-        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
-            return DropDownMenu(menuContent: ["Случайная"])
-        }
-        // Получим опционал, но из опционала ты знаешь как вытаскивать
+    func createTeamsDropDown() -> DropDownMenu{
+//        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
+//        let myUserDefault = UserDefaultsManager().userDefaults
+//        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
+//        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
+//            return DropDownMenu(menuContent: [VaryVars.Strings.Random])
+//        }
+//        // Получим опционал, но из опционала ты знаешь как вытаскивать
         
-        self.teamsInfo = allTeams
+//        self.teamsInfo = allTeams
         
-        var allTeamsNames: [String] = ["Случайная"]
+        var allTeamsNames: [String] = [VaryVars.Strings.Random]
         
-        for team in allTeams.teamsList{
+        for team in self.teamsInfo!.teamsList{
             allTeamsNames.append(team.name)
         }
         
@@ -169,7 +160,7 @@ final class SettingsViewController: UIViewController {
     }
     
     func setupSubviews() {
-        dropDownTeam = createNewDropDown()
+        dropDownTeam = createTeamsDropDown()
         
         allElements = [
 
