@@ -17,7 +17,7 @@ class RoundDescriptionView: UIView {
     var roundType: RoundType?
     
     
-    let tipMessage: String =  "Нажми на экран, когда будешь готов"
+    let tipMessage: String =  VaryVars.Strings.TouchWordWhenWillBeReady
     
 
     weak var delegate: RoundDescriptionViewDelegagate?

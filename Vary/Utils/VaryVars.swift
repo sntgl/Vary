@@ -51,6 +51,14 @@ class VaryVars{
         
               static let AppSounds = "Звуки в игре"
               static let CheckUpdates = "Проверять обновления"
+              static let Describe = "Объясни"
+              static let Show = "Покажи"
+              static let OneWord = "Одно слово"
+              static let DescribeByWords = "Объясни Словами"
+              static let ShowWithGestures = "Покажи жестами"
+              static let DescribeByOneWord = "Объясни одним словом"
+              static let DoTaskFromPlayers = "Выполни задание от игроков"
+              static let TouchWordWhenWillBeReady = "Нажми на экран, когда будешь готов"
         //      static let
         //      static let
         //      static let
@@ -74,9 +82,9 @@ class VaryVars{
               static let MusicOffIcon = "MusicOffIcon"
               static let SystemUpdateIcon = "SystemUpdateIcon"
               static let SystemUpdateOffIcon = "MobileOffIcon"
-        //      static let
-        //      static let
-        //      static let
+              static let ConversationIcon = "ConversationIcon"
+              static let HandIcon = "HandIcon"
+              static let OneNumberIcon = "OneNumberIcon"
     }
     
     
@@ -88,12 +96,32 @@ class VaryVars{
         static let textColor = UIColor(named: VaryVars.ResNames.textColor)!
     }
     
+    
+    public enum Keys{
+        static let appVersionKey = "appVersionKey"
+        static let storageQueueLabel = "StorageQueue"
+        static let defaultFileName = "dictionary.json"
+        static let gameSettingsOptionsKey = "gameSettingsOptions"
+        static let gameInfo = "gameInfo"
+    }
+    
+    public enum ServerRequests{
+        
+        static func requestGetVersion(ip:String) -> String{
+            return "http://\(ip)/categories/version"
+        }
+        
+        static func requestGetCardsByVersion(ip:String, version:String) -> String{
+            return "http://\(ip)/categories?version=\(version)"
+        }
+    }
+    
     public static let iconsSize = CGFloat(60)
     public static let scoreForWord: Int = 10
     public static var juniorDebug: Bool = true
     public static let DefaultTeamChoice = ["Случайная", "Команда 1", "Команда 2"]
     public static let DefaultDeckChoice = ["Средние", "Маленькие", "Большие"]
-    //      static let
+         
     //      static let
     //      static let
     //      static let

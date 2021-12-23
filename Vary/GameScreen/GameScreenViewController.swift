@@ -437,7 +437,7 @@ final class GameScreenViewController: UIViewController {
         // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
         let myUserDefault = UserDefaultsManager().userDefaults
         //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        return try? myUserDefault.get(objectType: GameInfo.self, forKey: UserDefaultKeys.gameInfo)
+        return try? myUserDefault.get(objectType: GameInfo.self, forKey: VaryVars.Keys.gameInfo)
     }
 
     

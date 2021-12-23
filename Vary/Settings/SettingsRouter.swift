@@ -53,7 +53,7 @@ extension SettingsRouter: SettingsRouterInput {
         
         let gameInfo = GameInfo(allTeamsInfo: teamsInfo, cardsForGame: loadedCards, gameSettings: currentGameSettings)
         
-        try? userDef.userDefaults.set(object:gameInfo, forKey: UserDefaultKeys.gameInfo)
+        try? userDef.userDefaults.set(object:gameInfo, forKey: VaryVars.Keys.gameInfo)
         
     }
     

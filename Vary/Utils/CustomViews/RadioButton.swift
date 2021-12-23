@@ -34,7 +34,7 @@ class RadioButton: UIView {
     private let radioLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = UIColor(named: "Primary")!
+        view.textColor = VaryVars.Colors.primaryColor
         view.numberOfLines = 1
         return view
     }()

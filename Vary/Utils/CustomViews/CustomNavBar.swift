@@ -94,20 +94,5 @@ class CustomNavigationController: UINavigationController{
 
     }
     
-//    func addTimerLabel(){
-//
-//        let timerLabel = UILabel()
-//        timerLabel.text = "01:00"
-//        self.navigationBar.addSubview(timerLabel)
-//        NSLayoutConstraint.activate([
-//            self.navigationBar.heightAnchor.constraint(equalToConstant: 35),
-//            ])
-//
-//        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            timerLabel.topAnchor.constraint(equalTo: self.myTitleButton!.bottomAnchor),
-//            timerLabel.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor),
-////            timerLabel.widthAnchor.constraint(equalTo: self.navigationBar.widthAnchor),
-//            ])    }
     
 }
