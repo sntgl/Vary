@@ -40,7 +40,7 @@ final class GameScreenViewController: UIViewController {
     
     var gameInfo: GameInfo?
     var currentWordIndex: Int = 0
-    var scoreForWord: Int = 10
+    var scoreForWord: Int = VaryVars.scoreForWord
     var currentRoundType: RoundType?
     var initialCircleCoord: CGFloat?
     // End util vars
@@ -87,13 +87,6 @@ final class GameScreenViewController: UIViewController {
     
     
     // End Lifecycle
-    
-    
-    
-    
-    
-    
-    
     
     
     // Additional functions
@@ -402,11 +395,7 @@ final class GameScreenViewController: UIViewController {
 
     
     @objc func updateCounter() {
-        //example functionality
-        
-//        guard var time = self.countdownTime, let timer = self.timer else{
-//            return
-//        }
+
         print("COUNTDOWN LEFT - \(self.countdownTime!)")
         if self.countdownTime! > 0 {
             self.countdownTime! -= 1
@@ -422,7 +411,7 @@ final class GameScreenViewController: UIViewController {
     
     func markLeftWordsAsUnGuessed(){
         for index in self.currentWordIndex..<self.gameInfo!.currentCards.count{
-            self.gameInfo!.notGuessedCardsIndex.append(index)
+            self.gameInfo!.notGuessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
         }
     }
     
@@ -446,9 +435,9 @@ final class GameScreenViewController: UIViewController {
         if wordGuessed{
             gameInfo!.scoreOfLastRound  += self.scoreForWord
 //            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
-            gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
+            gameInfo!.guessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
         }else{
-            gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
+            gameInfo!.notGuessedCardsIndex.append(gameInfo!.currentCards[self.currentWordIndex].id)
             switch gameInfo!.gameSettings.penaltyForPass {
             case .No:
                 return

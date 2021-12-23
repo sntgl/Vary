@@ -156,22 +156,12 @@ final class ResultsViewController: UIViewController {
     }
     
     func prepareGameInfoForNextRound(){
-        deleteGuessedCards()
+//        deleteGuessedCards()
         cleanCurrentsVars()
         decideNextRound()
     }
     
-    func deleteGuessedCards(){
-        for index in self.gameInfo!.guessedCardsIndex.reversed() {
-//            if let searched_index = self.gameInfo?.guessedCardsIndex.firstIndex(of: index) {
-                self.gameInfo?.currentCards.remove(at: index)
-//            }
-            
-//            self.gameInfo!.currentCards.remove(at: index)
-        }
-        print("Card left: \(self.gameInfo?.currentCards.first?.name)")
-    }
-    
+
     
     func cleanCurrentsVars(){
         self.gameInfo!.guessedCardsIndex = []
@@ -190,7 +180,7 @@ final class ResultsViewController: UIViewController {
     }
     
     func checkLastRound() -> Bool{
-        if self.gameInfo!.getNextRoundType()  == nil {
+        if (self.gameInfo!.getNextRoundType()  == nil) && (self.gameInfo!.currentCards.count == 0) {
             return true
         }else{
             return false

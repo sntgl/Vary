@@ -44,7 +44,7 @@ final class ScoresViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        view.backgroundColor        = VaryVars.Colors.primaryColor
+        view.backgroundColor = VaryVars.Colors.primaryColor
         
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
@@ -159,12 +159,13 @@ final class ScoresViewController: UIViewController {
     
     @IBAction func onNextButtonClicked() {
         self.reCalculateScore()
+        self.deleteGuessedCards()
         self.output.goToResultsView()
     }
     
     
     func reCalculateScore(){
-        let scoreForWord: Int = 10
+        let scoreForWord: Int = VaryVars.scoreForWord
         let scoreForGuessed =  self.gameInfo!.guessedCardsIndex.count * scoreForWord
         var scoreForNotGuessed = 0
         switch gameInfo!.gameSettings.penaltyForPass {
@@ -180,23 +181,20 @@ final class ScoresViewController: UIViewController {
         self.gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.gameInfo!.scoreOfLastRound
     
     }
-//        if dawd {
-//            gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score += self.scoreForWord
-//            gameInfo!.guessedCardsIndex.append(self.currentWordIndex)
-//        }else{
-//            gameInfo!.notGuessedCardsIndex.append(self.currentWordIndex)
-//            switch gameInfo!.gameSettings.penaltyForPass {
-//            case .No:
-//                return
-//            case .LosePoints:
-//                gameInfo!.currentRoundTeams[gameInfo!.currentTeam].score -= self.scoreForWord
-//            case .TaskFromPlayers:
-//                self.showTaskFromPlayers()
+    
+    func deleteGuessedCards(){
+        for id_to_delete in self.gameInfo!.guessedCardsIndex {
+//            if let searched_index = self.gameInfo?.guessedCardsIndex.firstIndex(of: index) {
+            let index_to_delete = self.gameInfo?.getIndexOfCurrentCardById(by: id_to_delete)
+            self.gameInfo?.currentCards.remove(at: index_to_delete!)
+            
 //            }
-//
-//        }
-//
-//    }
+//            self.gameInfo!.currentCards.remove(at: index)
+        }
+        //print("Card left: \(self.gameInfo?.currentCards.first?.name)")
+    }
+    
+
     
 }
 
@@ -223,9 +221,11 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
         print("Row = \(indexPath.row) and Section = \(indexPath.section)")
     
         cell.wordLabel.text = self.gameInfo?.currentCards[indexPath.row].name
-        if self.gameInfo!.guessedCardsIndex.contains(indexPath.row){
-            print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
-            print("--------------------------------")
+        let cell_id = self.gameInfo?.currentCards[indexPath.row].id
+        
+        if self.gameInfo!.guessedCardsIndex.contains(cell_id!){
+            //print("YESSS \(self.gameInfo?.guessedCardsIndex) contains: \(indexPath.row)")
+            //print("--------------------------------")
             cell.wordLabel.textColor = VaryVars.Colors.primaryColor
             cell.wordLabel.font = cell.wordLabel.font.withSize(20)
 //            cell.setSelected(true, animated: false)
@@ -250,22 +250,24 @@ extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
 //
 //        print(String(indexPath.section))
         let cell = scoresTableView.cellForRow(at: indexPath) as! ScoreTableViewCell
+        let cell_id = self.gameInfo!.currentCards[indexPath.row].id
+        
         if cell.wordLabel.textColor == VaryVars.Colors.primaryColor{
             print("Cell was Selected")
             cell.wordLabel.textColor = VaryVars.Colors.textColor
-            if let index = self.gameInfo?.guessedCardsIndex.firstIndex(of: indexPath.row) {
+            if let index = self.gameInfo?.guessedCardsIndex.firstIndex(of: cell_id) {
                 self.gameInfo?.guessedCardsIndex.remove(at: index)
             }
-            self.gameInfo?.notGuessedCardsIndex.append(indexPath.row)
+            self.gameInfo?.notGuessedCardsIndex.append(cell_id)
             
         }else if cell.wordLabel.textColor == VaryVars.Colors.textColor {
             print("Cell was not Selected")
             cell.wordLabel.textColor = VaryVars.Colors.primaryColor
-            self.gameInfo?.guessedCardsIndex.append(indexPath.row)
-            if let index = self.gameInfo?.notGuessedCardsIndex.firstIndex(of: indexPath.row) {
+            self.gameInfo?.guessedCardsIndex.append(cell_id)
+            if let index = self.gameInfo?.notGuessedCardsIndex.firstIndex(of: cell_id) {
                 self.gameInfo?.notGuessedCardsIndex.remove(at: index)
             }
-     
+    
     }
     
 

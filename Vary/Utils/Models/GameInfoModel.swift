@@ -23,8 +23,8 @@ struct GameInfo: Codable{
     var gameStarted: Bool
     
     
-    var guessedCardsIndex: [Int]
-    var notGuessedCardsIndex: [Int]
+    var guessedCardsIndex: [String]
+    var notGuessedCardsIndex: [String]
     
     init(allTeamsInfo: AllTeams, cardsForGame:Dictionary, gameSettings: GameSettings){
         self.allTeamsInfo = allTeamsInfo
@@ -70,6 +70,17 @@ struct GameInfo: Codable{
         return nil
         
     }
+    
+    func getIndexOfCurrentCardById(by id:String) -> Int?{
+        for i in 0..<currentCards.count{
+            if id == currentCards[i].id {
+                return i
+                
+            }
+        }
+        return nil
+    }
+        
     
     func getNextRoundType() -> RoundType? {
         switch currentRoundType{

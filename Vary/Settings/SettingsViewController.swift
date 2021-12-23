@@ -139,20 +139,20 @@ final class SettingsViewController: UIViewController {
     }
     
     
-    func createNewDropDown() -> DropDownMenu{
-        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
-        let myUserDefault = UserDefaultsManager().userDefaults
-        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
-        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
-            return DropDownMenu(menuContent: [VaryVars.Strings.Random])
-        }
-        // Получим опционал, но из опционала ты знаешь как вытаскивать
+    func createTeamsDropDown() -> DropDownMenu{
+//        // Проинициализировать UserDefaultManager - там у нас ссылка на userDefault
+//        let myUserDefault = UserDefaultsManager().userDefaults
+//        //  Вытащить из UserDefault объект по ключу и типу нужной нам структуры
+//        guard let allTeams =  try? myUserDefault.get(objectType: AllTeams.self, forKey: "allTeamsKey") else{
+//            return DropDownMenu(menuContent: [VaryVars.Strings.Random])
+//        }
+//        // Получим опционал, но из опционала ты знаешь как вытаскивать
         
-        self.teamsInfo = allTeams
+//        self.teamsInfo = allTeams
         
         var allTeamsNames: [String] = [VaryVars.Strings.Random]
         
-        for team in allTeams.teamsList{
+        for team in self.teamsInfo!.teamsList{
             allTeamsNames.append(team.name)
         }
         
@@ -160,7 +160,7 @@ final class SettingsViewController: UIViewController {
     }
     
     func setupSubviews() {
-        dropDownTeam = createNewDropDown()
+        dropDownTeam = createTeamsDropDown()
         
         allElements = [
 
