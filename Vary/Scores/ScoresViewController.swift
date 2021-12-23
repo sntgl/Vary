@@ -15,7 +15,7 @@ final class ScoresViewController: UIViewController {
 
     private let container = UIView()
     
-    private let nextButton = UIButton()
+    private let nextButton = BottomBigButton(label: VaryVars.Strings.Ready)
     private var buttonConf = UIButton.Configuration.filled()
     private let tipLable = UILabel()
     
@@ -49,16 +49,6 @@ final class ScoresViewController: UIViewController {
         buttonConf.buttonSize = .large
         buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
         
-        nextButton.configuration = buttonConf
-        nextButton.setTitle(VaryVars.Strings.Ready, for: .normal)
-        nextButton.isEnabled = true
-        nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = VaryVars.Colors.primaryColor
-        nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 10
-        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = VaryVars.Colors.textColor
-        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         tipLable.textColor = VaryVars.Colors.textColor

@@ -13,7 +13,7 @@ final class TeamsViewController: UIViewController {
 
     private let teamsTableView = UITableView()
 
-    private let continueButton = UIButton()
+    private let continueButton = BottomBigButton(label: VaryVars.Strings.Next)
 
     private let backButton = UIButton()
     private let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
@@ -110,14 +110,6 @@ final class TeamsViewController: UIViewController {
         teamsLabel.layer.cornerRadius = 20
         teamsLabel.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
 
-        continueButton.configuration = buttonConf
-        continueButton.setTitle(VaryVars.Strings.Next, for: .normal)
-        continueButton.backgroundColor = VaryVars.Colors.primaryColor
-        continueButton.isEnabled = true
-        continueButton.layer.cornerRadius = 0
-        continueButton.clipsToBounds = true
-        continueButton.layer.cornerRadius = 30
-        continueButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         continueButton.addTarget(self, action: #selector(goToSettingsView), for: .touchUpInside)
     }
 

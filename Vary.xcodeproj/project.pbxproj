@@ -75,6 +75,7 @@
 		72CF72A7277498CB00999C4E /* GameInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CF72A6277498CB00999C4E /* GameInfoModel.swift */; };
 		72CF72A92774990600999C4E /* GameSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CF72A82774990600999C4E /* GameSettingsModel.swift */; };
 		72CF72AB2774994A00999C4E /* CardsAndTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CF72AA2774994A00999C4E /* CardsAndTeams.swift */; };
+		72CF72AD27749AAD00999C4E /* BottomBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CF72AC27749AAD00999C4E /* BottomBigButton.swift */; };
 		72E0FA72274132BE00B01C26 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA71274132BE00B01C26 /* SliderView.swift */; };
 		72E0FA862741534500B01C26 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA852741534500B01C26 /* DropDownMenu.swift */; };
 		72E0FA89274154EF00B01C26 /* View+anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0FA88274154EF00B01C26 /* View+anchors.swift */; };
@@ -151,6 +152,7 @@
 		72CF72A6277498CB00999C4E /* GameInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoModel.swift; sourceTree = "<group>"; };
 		72CF72A82774990600999C4E /* GameSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsModel.swift; sourceTree = "<group>"; };
 		72CF72AA2774994A00999C4E /* CardsAndTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAndTeams.swift; sourceTree = "<group>"; };
+		72CF72AC27749AAD00999C4E /* BottomBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBigButton.swift; sourceTree = "<group>"; };
 		72E0FA71274132BE00B01C26 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		72E0FA852741534500B01C26 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		72E0FA88274154EF00B01C26 /* View+anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+anchors.swift"; sourceTree = "<group>"; };
@@ -256,9 +258,9 @@
 				72E0FA872741548F00B01C26 /* Utils */,
 				3BDAB1352763EC8E00674ACD /* Help */,
 				3BDAB1342763EC8000674ACD /* AppSettings */,
-				4CF9FF912739D2C600F5F0CA /* Settings */,
-				4CF9FF902739D2B400F5F0CA /* Teams */,
 				4CE42D8A27383B68005631D6 /* Start */,
+				4CF9FF902739D2B400F5F0CA /* Teams */,
+				4CF9FF912739D2C600F5F0CA /* Settings */,
 				3BDAB14E2763F10100674ACD /* GameScreen */,
 				3BB986EE275CC066005BC87A /* Scores */,
 				3BB800B7275D35790061D2F6 /* Results */,
@@ -342,6 +344,7 @@
 		72E0FA702741328A00B01C26 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				72E0FA88274154EF00B01C26 /* View+anchors.swift */,
 				72454EB02760D6E300ED5D1E /* CustomNavBar.swift */,
 				72E0FA71274132BE00B01C26 /* SliderView.swift */,
 				72E0FA852741534500B01C26 /* DropDownMenu.swift */,
@@ -349,6 +352,7 @@
 				72AE6F37274D11C5003F32D0 /* RadioButton.swift */,
 				72BB7CA727648DFA00E74012 /* RoundDescriptionView.swift */,
 				72601825276A58A1002BDFEC /* SettingsButton.swift */,
+				72CF72AC27749AAD00999C4E /* BottomBigButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -360,7 +364,6 @@
 				72E0FA702741328A00B01C26 /* CustomViews */,
 				72BD7821275407B200CF4F8D /* Storage */,
 				72BD781C2753EB5700CF4F8D /* Network */,
-				72E0FA88274154EF00B01C26 /* View+anchors.swift */,
 				722A967A2769ED1A00D14E90 /* VaryVars.swift */,
 			);
 			path = Utils;
@@ -509,6 +512,7 @@
 				3BDAB1582763F13700674ACD /* GameScreenProtocols.swift in Sources */,
 				72CF72A7277498CB00999C4E /* GameInfoModel.swift in Sources */,
 				4CF9FFA52739D38B00F5F0CA /* SettingsPresenter.swift in Sources */,
+				72CF72AD27749AAD00999C4E /* BottomBigButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

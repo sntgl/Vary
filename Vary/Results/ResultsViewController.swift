@@ -15,7 +15,7 @@ final class ResultsViewController: UIViewController {
 
     private let container = UIView()
     
-    private let nextButton = UIButton()
+    private let nextButton = BottomBigButton(label: VaryVars.Strings.NextRound)
     private var buttonConf = UIButton.Configuration.filled()
     
     var gameInfo: GameInfo?
@@ -110,19 +110,6 @@ final class ResultsViewController: UIViewController {
 
         container.backgroundColor = VaryVars.Colors.surfaceColor
 
-        buttonConf.buttonSize = .large
-        buttonConf.baseBackgroundColor = VaryVars.Colors.primaryColor
-        
-        nextButton.configuration = buttonConf
-        nextButton.setTitle(VaryVars.Strings.NextRound, for: .normal)
-        nextButton.isEnabled = true
-        nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = VaryVars.Colors.primaryColor
-        nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 10
-        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = VaryVars.Colors.textColor
-        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         

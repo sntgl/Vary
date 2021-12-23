@@ -47,7 +47,7 @@ final class SettingsViewController: UIViewController {
     private let chooseDeckLabel = UILabel()
     private let chooseDeckPullDown = UILabel()
     
-    private let nextButton = UIButton()
+    private let nextButton = BottomBigButton(label: VaryVars.Strings.Next)
     private var buttonConf = UIButton.Configuration.filled()
     
     private var labelArray: [UILabel] = []
@@ -73,8 +73,9 @@ final class SettingsViewController: UIViewController {
     // END SubViews
     
     
-    init(output: SettingsViewOutput) {
+    init(output: SettingsViewOutput, allTeamsInfo: AllTeams) {
         self.output = output
+        self.teamsInfo = allTeamsInfo
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -115,16 +116,6 @@ final class SettingsViewController: UIViewController {
         commonLastWordSwitcher.onTintColor = additionalColor
         commonLastWordSwitcher.thumbTintColor = secondaryColor
         
-        nextButton.configuration = buttonConf
-        nextButton.setTitle(VaryVars.Strings.Next, for: .normal)
-        nextButton.isEnabled = true
-        nextButton.layer.cornerRadius = 0
-        nextButton.backgroundColor = primaryColor
-        nextButton.clipsToBounds = true
-        nextButton.layer.cornerRadius = 10
-        nextButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        nextButton.titleLabel?.textColor = textColor
-        nextButton.titleLabel?.font =  nextButton.titleLabel?.font.withSize(25)
         nextButton.addTarget(self, action: #selector(onNextButtonClicked), for: .touchUpInside)
         
         labelArray = [

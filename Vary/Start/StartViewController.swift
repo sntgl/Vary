@@ -44,6 +44,7 @@ final class StartViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         setupStyle()
+        setupConstraints()
         setupActions()
         output.viewDidLoad()
         
@@ -59,20 +60,12 @@ final class StartViewController: UIViewController {
         navigationArray.removeAll()
         navigationArray.append(temp!) //To remove all previous UIViewController except the last one
         self.navigationController?.viewControllers = navigationArray
-//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
-
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupConstraints()
-    }
     
     func setupStyle() {
         view.backgroundColor = VaryVars.Colors.primaryColor

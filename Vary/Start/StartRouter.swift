@@ -15,19 +15,9 @@ final class StartRouter {
 extension StartRouter: StartRouterInput {
     
     func startNewGame() {
-//        viewController?.navigationController?.pushViewController(container.viewController, animated: true)
         let navController: UINavigationController = viewController?.navigationController ?? CustomNavigationController(rootViewController: self.viewController!)
-//        if  viewController?.navigationController else {
-//            print("no nav controller")
-//            let myNavController = CustomNavigationController(rootViewController: viewController!)
-//            let container = TeamsContainer.assemble(with: TeamsContext())
-//            myNavController.pushViewController(container.viewController, animated: true)
-//            return
-//        }
-//        navController = CustomNavigationController()
         let container = TeamsContainer.assemble(with: TeamsContext())
         navController.pushViewController(container.viewController, animated: true)
-//        viewController.rootViewController = container
     }
     
     func openSettings(){
@@ -37,9 +27,6 @@ extension StartRouter: StartRouterInput {
         }
         let container = AppSettingsContainer.assemble(with: AppSettingsContext())
         navController.pushViewController(container.viewController, animated: true)
-        
-//                let container = ResultsContainer.assemble(with: ResultsContext())
-//                navController.pushViewController(container.viewController, animated: true)
     }
     
     func openHelp(){

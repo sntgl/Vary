@@ -13,8 +13,8 @@ final class StartInteractor {
     
     var appVersion: Int?
     var storageManager: StorageManagerProtocol?
-    let serverIp = "109.197.30.247:8001"
-//    init(networkManager: NetworkManager, storageManager: StorageManager)
+    let serverIp = VaryVars.ServerRequests.serverIp
+
 }
 
 extension StartInteractor: StartInteractorInput {

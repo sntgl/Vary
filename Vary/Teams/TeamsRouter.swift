@@ -18,7 +18,6 @@ extension TeamsRouter: TeamsRouterInput {
     }
     func nextScreen() {
         guard let navController = viewController?.navigationController else {
-            print("no nav controller")
             return
         }
         
@@ -29,11 +28,10 @@ extension TeamsRouter: TeamsRouterInput {
             let newTeam = Team(id: index, name: teamName, score: 0)
             allTeamsList.append(newTeam)
         }
-        let myUserDefault = UserDefaultsManager().userDefaults
-        try? myUserDefault.set(object:AllTeams(teamsList: allTeamsList), forKey: "allTeamsKey")
+
         
         let context: SettingsContext = SettingsContext()
-        let container: SettingsContainer = SettingsContainer.assemble(with: context)
+        let container: SettingsContainer = SettingsContainer.assemble(with: context, teamsInfo: AllTeams(teamsList: allTeamsList))
         let settingsViewController: UIViewController = container.viewController
         navController.pushViewController(settingsViewController, animated: true)
     }

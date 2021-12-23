@@ -106,6 +106,7 @@ class VaryVars{
     }
     
     public enum ServerRequests{
+        static let serverIp = "109.197.30.247:8001"
         
         static func requestGetVersion(ip:String) -> String{
             return "http://\(ip)/categories/version"
