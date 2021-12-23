@@ -65,7 +65,6 @@ final class ScoresViewController: UIViewController {
         scoresTableView.backgroundColor = VaryVars.Colors.surfaceColor
         scoresTableView.tintColor = VaryVars.Colors.surfaceColor
         scoresTableView.allowsMultipleSelection = true
-        self.navigationController?.navigationBar.barStyle = .blackTranslucent
 //        self.navigationController?.navigationBa
         scoresTableView.separatorColor = VaryVars.Colors.secondaryColor
         scoresTableView.separatorInset = .zero
